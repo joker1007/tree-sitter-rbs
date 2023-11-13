@@ -1,0 +1,247 @@
+==================
+Class
+==================
+
+class Foo
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))))
+
+==================
+Class with type param
+==================
+
+class Foo[A]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (module_type_parameters
+   (module_type_parameter
+    (type_variable
+     (constant))))))
+
+==================
+Class with multiple type params
+==================
+
+class Foo[A, B]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (module_type_parameters
+   (module_type_parameter
+    (type_variable
+     (constant)))
+   (module_type_parameter
+    (type_variable
+     (constant))))))
+
+==================
+Module
+==================
+
+module Foo
+end
+
+---
+
+(program
+ (module_decl
+  (module_name
+   (constant))))
+
+
+==================
+Module with self type
+==================
+
+module Foo : Bar
+end
+
+---
+
+(program
+ (module_decl
+  (module_name
+   (constant))
+  (module_self_types
+   (class_name
+    (constant)))))
+
+==================
+Module with multiple self types
+==================
+
+module Foo : Bar, Baz
+end
+
+---
+
+(program
+ (module_decl
+  (module_name
+   (constant))
+  (module_self_types
+   (class_name
+    (constant))
+   (module_self_types
+    (class_name
+     (constant))))))
+
+==================
+Class alias
+==================
+
+class A = B
+
+---
+
+(program
+ (class_alias_decl
+  (class_name
+   (constant))
+  (class_name
+   (constant))))
+
+==================
+Module alias
+==================
+
+module A = B
+
+---
+
+(program
+ (module_alias_decl
+  (module_name
+   (constant))
+  (module_name
+   (constant))))
+
+==================
+Interface
+==================
+
+interface _Foo
+end
+
+---
+
+(program
+ (interface_decl
+  (interface_name
+   (interface))))
+
+
+==================
+Type alias
+==================
+
+type foo = String
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+
+==================
+Constant
+==================
+
+Foo: String
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+
+==================
+Constant with namespace
+==================
+
+Foo::Bar: String
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (namespace
+    (constant))
+   (constant))
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+==================
+Global
+==================
+
+$global: String
+
+---
+
+(program
+ (global_decl
+  (global_name)
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+
+==================
+Proc type
+==================
+
+type foo = ^(String) -> Integer
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (proc
+    (parameters
+     (required_positionals
+      (parameter
+       (type
+        (class_type
+         (class_name
+          (constant)))))))
+    (type
+     (class_type
+      (class_name
+       (constant))))))))

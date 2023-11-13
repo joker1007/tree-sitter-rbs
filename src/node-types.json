@@ -1,14 +1,33 @@
 [
   {
+    "type": "alias_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "method_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "alias_name",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "variable",
           "named": true
         }
       ]
@@ -34,6 +53,65 @@
     }
   },
   {
+    "type": "attribute_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribyte_type",
+          "named": true
+        },
+        {
+          "type": "ivar_name",
+          "named": true
+        },
+        {
+          "type": "method_name",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "visibility",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribyte_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameters",
+          "named": true
+        },
+        {
+          "type": "self_type_binding",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "bound_type",
     "named": true,
     "fields": {},
@@ -51,6 +129,21 @@
         },
         {
           "type": "singleton_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_alias_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_name",
           "named": true
         }
       ]
@@ -88,9 +181,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
         {
           "type": "namespace",
           "named": true
@@ -118,20 +215,66 @@
     }
   },
   {
+    "type": "const_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "const_name",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "const_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "cvar_name",
     "named": true,
     "fields": {}
   },
   {
-    "type": "decl",
+    "type": "extend_member",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "class_decl",
+          "type": "class_name",
+          "named": true
+        },
+        {
+          "type": "interface_name",
+          "named": true
+        },
+        {
+          "type": "type_arguments",
           "named": true
         }
       ]
@@ -158,13 +301,120 @@
     "fields": {}
   },
   {
-    "type": "interface_name",
+    "type": "global_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "global_name",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_name",
+          "named": true
+        },
+        {
+          "type": "interface_name",
+          "named": true
+        },
+        {
+          "type": "type_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interface_members",
+          "named": true
+        },
+        {
+          "type": "interface_name",
+          "named": true
+        },
+        {
+          "type": "module_type_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_member",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "alias_member",
+          "named": true
+        },
+        {
+          "type": "include_member",
+          "named": true
+        },
+        {
+          "type": "method_member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_members",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interface_member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "interface",
+          "named": true
+        },
         {
           "type": "namespace",
           "named": true
@@ -235,6 +485,34 @@
     "fields": {}
   },
   {
+    "type": "keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "keywords",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "optional_keywords",
+          "named": true
+        },
+        {
+          "type": "required_keywords",
+          "named": true
+        },
+        {
+          "type": "splat_keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "literal",
     "named": true,
     "fields": {},
@@ -266,7 +544,35 @@
       "required": true,
       "types": [
         {
+          "type": "alias_member",
+          "named": true
+        },
+        {
+          "type": "attribute_member",
+          "named": true
+        },
+        {
+          "type": "extend_member",
+          "named": true
+        },
+        {
+          "type": "include_member",
+          "named": true
+        },
+        {
           "type": "ivar_member",
+          "named": true
+        },
+        {
+          "type": "method_member",
+          "named": true
+        },
+        {
+          "type": "prepend_member",
+          "named": true
+        },
+        {
+          "type": "visibility_member",
           "named": true
         }
       ]
@@ -282,6 +588,193 @@
       "types": [
         {
           "type": "member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "method_name",
+          "named": true
+        },
+        {
+          "type": "method_types",
+          "named": true
+        },
+        {
+          "type": "visibility",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "parameters",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_type_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_types",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "method_type",
+          "named": true
+        },
+        {
+          "type": "method_type_parameters",
+          "named": true
+        },
+        {
+          "type": "method_types",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_alias_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "module_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "members",
+          "named": true
+        },
+        {
+          "type": "module_name",
+          "named": true
+        },
+        {
+          "type": "module_self_types",
+          "named": true
+        },
+        {
+          "type": "module_type_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_self_types",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_name",
+          "named": true
+        },
+        {
+          "type": "interface_name",
+          "named": true
+        },
+        {
+          "type": "module_self_types",
+          "named": true
+        },
+        {
+          "type": "type_arguments",
           "named": true
         }
       ]
@@ -334,11 +827,53 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
+          "type": "constant",
+          "named": true
+        },
+        {
           "type": "namespace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optional_keywords",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "keywords",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optional_positionals",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
           "named": true
         }
       ]
@@ -360,15 +895,143 @@
     }
   },
   {
+    "type": "parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "var_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "keywords",
+          "named": true
+        },
+        {
+          "type": "optional_positionals",
+          "named": true
+        },
+        {
+          "type": "required_positionals",
+          "named": true
+        },
+        {
+          "type": "rest_positional",
+          "named": true
+        },
+        {
+          "type": "trailing_positionals",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "prepend_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_name",
+          "named": true
+        },
+        {
+          "type": "interface_name",
+          "named": true
+        },
+        {
+          "type": "type_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "proc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "parameters",
+          "named": true
+        },
+        {
+          "type": "self_type_binding",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "program",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
-          "type": "decl",
+          "type": "class_alias_decl",
+          "named": true
+        },
+        {
+          "type": "class_decl",
+          "named": true
+        },
+        {
+          "type": "const_decl",
+          "named": true
+        },
+        {
+          "type": "global_decl",
+          "named": true
+        },
+        {
+          "type": "interface_decl",
+          "named": true
+        },
+        {
+          "type": "module_alias_decl",
+          "named": true
+        },
+        {
+          "type": "module_decl",
+          "named": true
+        },
+        {
+          "type": "type_alias_decl",
           "named": true
         }
       ]
@@ -401,6 +1064,74 @@
     }
   },
   {
+    "type": "required_keywords",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "keywords",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "required_positionals",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rest_positional",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "self_type_binding",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "singleton_type",
     "named": true,
     "fields": {},
@@ -410,6 +1141,21 @@
       "types": [
         {
           "type": "class_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "splat_keyword",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
           "named": true
         }
       ]
@@ -430,6 +1176,21 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trailing_positionals",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
           "named": true
         }
       ]
@@ -483,6 +1244,10 @@
           "named": true
         },
         {
+          "type": "proc",
+          "named": true
+        },
+        {
           "type": "record_type",
           "named": true
         },
@@ -496,6 +1261,29 @@
         },
         {
           "type": "union_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_alias_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alias_name",
+          "named": true
+        },
+        {
+          "type": "module_type_parameters",
+          "named": true
+        },
+        {
+          "type": "type",
           "named": true
         }
       ]
@@ -519,7 +1307,17 @@
   {
     "type": "type_variable",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "union_type",
@@ -537,7 +1335,45 @@
     }
   },
   {
+    "type": "var_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "variable",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "visibility",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "visibility_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "visibility",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "&",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": "()",
     "named": false
   },
   {
@@ -545,11 +1381,27 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "**",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
   {
+    "type": "->",
+    "named": false
+  },
+  {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": "...",
     "named": false
   },
   {
@@ -565,7 +1417,15 @@
     "named": false
   },
   {
+    "type": "=",
+    "named": false
+  },
+  {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "?.",
     "named": false
   },
   {
@@ -585,6 +1445,26 @@
     "named": false
   },
   {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "alias",
+    "named": false
+  },
+  {
+    "type": "attr_accessor",
+    "named": false
+  },
+  {
+    "type": "attr_reader",
+    "named": false
+  },
+  {
+    "type": "attr_writer",
+    "named": false
+  },
+  {
     "type": "bool",
     "named": false
   },
@@ -597,7 +1477,23 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "constant",
+    "named": true
+  },
+  {
+    "type": "def",
+    "named": false
+  },
+  {
     "type": "end",
+    "named": false
+  },
+  {
+    "type": "extend",
     "named": false
   },
   {
@@ -609,11 +1505,19 @@
     "named": true
   },
   {
+    "type": "global_name",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
   {
     "type": "in",
+    "named": false
+  },
+  {
+    "type": "include",
     "named": false
   },
   {
@@ -625,6 +1529,18 @@
     "named": true
   },
   {
+    "type": "interface",
+    "named": false
+  },
+  {
+    "type": "interface",
+    "named": true
+  },
+  {
+    "type": "module",
+    "named": false
+  },
+  {
     "type": "nil",
     "named": false
   },
@@ -633,11 +1549,27 @@
     "named": false
   },
   {
+    "type": "prepend",
+    "named": false
+  },
+  {
+    "type": "private",
+    "named": false
+  },
+  {
+    "type": "public",
+    "named": false
+  },
+  {
     "type": "record_key",
     "named": true
   },
   {
     "type": "self",
+    "named": false
+  },
+  {
+    "type": "self.",
     "named": false
   },
   {
@@ -650,6 +1582,10 @@
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "type",
     "named": false
   },
   {

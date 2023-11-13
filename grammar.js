@@ -1,13 +1,12 @@
 const IDENTIFIER_CHARS = /[^\x00-\x1F\s:;`"'@$#.,|^&<=>+\-*/\\%?!~()\[\]{}]*/;
 const LOWER_ALPHA_CHAR = /[^\x00-\x1F\sA-Z0-9:;`"'@$#.,|^&<=>+\-*/\\%?!~()\[\]{}]/;
-const ALPHA_CHAR = /[^\x00-\x1F\s0-9:;`"'@$#.,|^&<=>+\-*/\\%?!~()\[\]{}]/;
 
 
 module.exports = grammar({
   name: 'rbs',
 
   extras: $ => [
-    // $.comment,
+    $.comment,
     /\s/,
     /\\\r?\n/
   ],
@@ -15,11 +14,11 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    program: $ => $.decl,
+    program: $ => repeat($._decl),
 
-    _constant: $ => /[A-Z]\w*/,
-    _interface: $ => /_[A-Z]\w*/,
-    _variable: $ => /[a-z]\w*/,
+    constant: $ => /[A-Z]\w*/,
+    interface: $ => /_[A-Z]\w*/,
+    variable: $ => /[a-z]\w*/,
 
     type: $ => choice(
       $.class_type,
@@ -41,14 +40,18 @@ module.exports = grammar({
       "top",
       "bot",
       "void",
-      // $._proc_,
+      $.proc,
     ),
 
-    class_type: $ => seq($.class_name, optional($.type_arguments)),
+    comment: $ => token(prec(-2, 
+      seq('#', /.*/),
+    )),
 
-    interface_type: $ => seq($.interface_name, optional($.type_arguments)),
+    class_type: $ => prec.right(seq($.class_name, optional($.type_arguments))),
 
-    alias_type: $ => seq($.alias_name, optional($.type_arguments)),
+    interface_type: $ => prec.right(seq($.interface_name, optional($.type_arguments))),
+
+    alias_type: $ => prec.right(seq($.alias_name, optional($.type_arguments))),
 
     singleton_type: $ => seq("singleton(", $.class_name, ")"),
 
@@ -56,22 +59,22 @@ module.exports = grammar({
 
     intersection_type: $ => prec.right(2, seq($.type, "&", $.type)),
 
-    optional_type: $ => prec.right(seq($.type, "?")),
+    optional_type: $ => prec.right(1, seq($.type, "?")),
 
     tuple_type: $ => seq("[", optional(seq(commaSep1($.type), optional(","))), "]"),
 
     _record_type_single: $ => seq(field("key", alias($.identifier, $.record_key)), ":", field("value", $.type)),
     record_type: $ => seq("{", optional(seq(commaSep1($._record_type_single), optional(","))), "}"),
 
-    class_name: $ => seq(optional($.namespace), $._constant),
-    interface_name: $ => seq(optional($.namespace), $._interface),
-    alias_name: $ => seq(optional($.namespace), $._variable),
+    class_name: $ => seq(optional($.namespace), $.constant),
+    interface_name: $ => seq(optional($.namespace), $.interface),
+    alias_name: $ => seq(optional($.namespace), $.variable),
 
-    type_variable: $ => $._constant,
+    type_variable: $ => $.constant,
 
-    namespace: $ => prec.right(choice(
+    namespace: $ => prec.right(2, choice(
       "::",
-      seq(optional($.namespace), $._constant, "::")
+      seq(optional($.namespace), $.constant, "::")
     )),
 
     type_arguments: $ => seq("[", commaSep1($.type), "]"),
@@ -105,8 +108,17 @@ module.exports = grammar({
       )
     )),
 
-    decl: $ => choice(
+    proc: $ => seq("^", optional($.parameters), optional($.self_type_binding), optional($.block), "->", $.type),
+
+    _decl: $ => choice(
       $.class_decl,
+      $.module_decl,
+      $.class_alias_decl,
+      $.module_alias_decl,
+      $.interface_decl,
+      $.type_alias_decl,
+      $.const_decl,
+      $.global_decl,
     ),
 
     class_decl: $ => choice(
@@ -123,11 +135,56 @@ module.exports = grammar({
         optional($.module_type_parameters),
         "<",
         $.class_name,
-        $.type_arguments,
+        optional($.type_arguments),
         alias(repeat($.member), $.members),
         "end"
       ),
     ),
+
+    module_decl: $ => choice(
+      seq(
+        "module",
+        alias($.class_name, $.module_name),
+        optional($.module_type_parameters),
+        alias(repeat($.member), $.members),
+        "end"
+      ),
+      seq(
+        "module",
+        alias($.class_name, $.module_name),
+        optional($.module_type_parameters),
+        ":",
+        $.module_self_types,
+        alias(repeat($.member), $.members),
+        "end"
+      ),
+    ),
+
+    class_alias_decl: $ => seq("class", $.class_name, "=", $.class_name),
+    module_alias_decl: $ => seq("module", alias($.class_name, $.module_name), "=", alias($.class_name, $.module_name)),
+
+    module_self_types: $ => choice(
+      seq($.class_name, optional($.type_arguments), optional(seq(",", $.module_self_types))),
+      seq($.interface_name, optional($.type_arguments), optional(seq(",", $.module_self_types))),
+    ),
+
+    interface_decl: $ => seq("interface", $.interface_name, optional($.module_type_parameters), alias(repeat($.interface_member), $.interface_members), "end"),
+
+    interface_member: $ => choice(
+      $.method_member,
+      $.include_member,
+      $.alias_member,
+    ),
+
+    type_alias_decl: $ => seq("type", $.alias_name, optional($.module_type_parameters), "=", $.type),
+
+    const_decl: $ => seq($.const_name, ":", $.type),
+
+    const_name: $ => seq(optional($.namespace), $.constant),
+
+    global_decl: $ => seq($.global_name, ":", $.type),
+
+    global_name: $ => /\$[a-zA-Z]\w+/,
 
     module_type_parameters: $ => seq(
       "[",
@@ -154,15 +211,50 @@ module.exports = grammar({
 
     generics_variance: $ => choice("out", "in"),
 
+    method_type: $ => seq(optional($.parameters), optional($.block), "->", $.type),
+
+    proc: $ => seq("^", optional($.parameters), optional($.self_type_binding), optional($.block), "->", $.type),
+
+    parameters: $ => seq("(", optional($.required_positionals), optional($.optional_positionals), optional($.rest_positional), optional($.trailing_positionals), optional($.keywords), ")"),
+
+    parameter: $ => prec.right(seq($.type, optional($.var_name))),
+
+    required_positionals: $ => prec.right(seq(commaSep1($.parameter), optional(","))),
+
+    optional_positionals: $ => prec.right(-1, seq(commaSep1(seq("?", $.parameter)), optional(","))),
+
+    rest_positional: $ => prec.right(-2, seq("*", $.parameter, optional(","))),
+
+    trailing_positionals: $ => prec.right(-3, seq(commaSep1($.parameter), optional(","))),
+
+    keywords: $ => choice(
+      $.splat_keyword,
+      prec.right($.required_keywords),
+      prec.right($.optional_keywords),
+    ),
+
+    splat_keyword: $ => seq("**", $.parameter),
+    required_keywords: $ => seq(prec.right(1, seq(alias($.variable, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
+    optional_keywords: $ => seq(prec.right(1, seq("?", alias($.variable, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
+
+    var_name: $ => /[a-z]\w*/,
+
+    self_type_binding: $ => seq("[", "self", ":", $.type, "]"),
+
+    block: $ => choice(
+      seq("{", $.parameters, optional($.self_type_binding), "->", $.type, "}"),
+      seq("?", "{", $.parameters, optional($.self_type_binding), "->", $.type, "}"),
+    ),
+
     member: $ => choice(
       $.ivar_member,
-      // $.method_member,
-      // $.attribute_member,
-      // $.include_member,
-      // $.extend_member,
-      // $.prepend_member,
-      // $.alias_member,
-      // $.visibility_member,
+      $.method_member,
+      prec.right($.attribute_member),
+      $.include_member,
+      $.extend_member,
+      $.prepend_member,
+      $.alias_member,
+      prec.left($.visibility_member),
     ),
 
     ivar_member: $ => choice(
@@ -171,22 +263,54 @@ module.exports = grammar({
       seq($.cvar_name, ":", $.type),
     ),
 
+    method_member: $ => choice(
+      seq(optional($.visibility), "def", $.method_name, ":", $.method_types),
+      seq(optional($.visibility), "def", "self", ".", $.method_name, ":", $.method_types),
+      seq("def", "self", "?.", $.method_name, ":", $.method_types),
+    ),
+
+    method_types: $ => choice(
+      seq(optional($.method_type_parameters), $.method_type),
+      seq(optional($.method_type_parameters), $.method_type, "|", $.method_types),
+      "..."
+    ),
+
+    method_type_parameters: $ => seq("[", commaSep1($.type_variable), "]"),
+
+    attribute_member: $ => choice(
+      seq(optional($.visibility), $.attribyte_type, $.method_name, ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, $.method_name, "(", $.ivar_name, ")", ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, $.method_name, "()", ":", $.type),
+    ),
+
+    visibility_member : $ => seq($.visibility, token.immediate(/\n/)),
+    visibility: $ => choice("public", "private"),
+
+    attribyte_type: $ => choice("attr_reader", "attr_writer", "attr_accessor"),
+
+    include_member: $ => choice(
+      seq("include", $.class_name, optional($.type_arguments)),
+      seq("include", $.interface_name, optional($.type_arguments)),
+    ),
+
+    extend_member: $ => choice(
+      seq("extend", $.class_name, optional($.type_arguments)),
+      seq("extend", $.interface_name, optional($.type_arguments)),
+    ),
+
+    prepend_member: $ => choice(
+      seq("prepend", $.class_name, optional($.type_arguments)),
+      seq("prepend", $.interface_name, optional($.type_arguments)),
+    ),
+
+    alias_member: $ => choice(
+      seq("alias", $.method_name, $.method_name),
+      seq("alias", "self.", $.method_name, "self.", $.method_name),
+    ),
+
     ivar_name: $ => seq("@", /\w+/),
     cvar_name: $ => seq("@@", /\w+/),
-
-    // method_member: $ => choice(
-    //   seq($.visibility, "def", $.method_name, ":", $.method_types),
-    //   seq($.visibility, "def", "self", ".", $.method_name, ":", $.method_types),
-    //   seq("def", "self", "?.", $.method_name, ":", $.method_types),
-    // ),
-
-    // method_types: $ => choice(
-    //   seq(optional($.method_type_parameters), $.method_type),
-    //   seq(optional($.method_type_parameters), $.method_type, "|", $.method_types),
-    //   "..."
-    // ),
-
-    // method_type_parameters: $ => seq("[", commaSep1($.type_variable), "]"),
+    method_name: $ => $.identifier,
 
     identifier: $ => token(seq(LOWER_ALPHA_CHAR, IDENTIFIER_CHARS)),
   }

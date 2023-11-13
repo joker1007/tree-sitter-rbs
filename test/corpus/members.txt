@@ -1,0 +1,409 @@
+==================
+ivar member
+==================
+
+class Foo
+  @foo: String
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (ivar_member
+     (ivar_name)
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
+
+==================
+method member with no args
+==================
+
+class Foo
+  def foo: () -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (method_member
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters)
+       (type
+        (class_type
+         (class_name
+          (constant)))))))))))
+
+==================
+method member with required args
+==================
+
+class Foo
+  def foo: (String st, Integer it) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (method_member
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters
+        (required_positionals
+         (parameter
+          (type
+           (class_type
+            (class_name
+             (constant))))
+          (var_name))
+         (parameter
+          (type
+           (class_type
+            (class_name
+             (constant))))
+          (var_name))))
+       (type
+        (class_type
+         (class_name
+          (constant)))))))))))
+
+==================
+method member with optional args
+==================
+
+class Foo
+  def foo: (String st, Integer it, Float fl, ?Foo foo, ?Bar) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (method_member
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters
+        (required_positionals
+         (parameter
+          (type
+           (class_type
+            (class_name
+             (constant))))
+          (var_name))
+         (parameter
+          (type
+           (class_type
+            (class_name
+             (constant))))
+          (var_name))
+         (parameter
+          (type
+           (class_type
+            (class_name
+             (constant))))
+          (var_name)))
+        (optional_positionals
+         (parameter
+          (type
+           (class_type
+            (class_name
+             (constant))))
+          (var_name))
+         (parameter
+          (type
+           (class_type
+            (class_name
+             (constant)))))))
+  (type
+   (class_type
+    (class_name
+     (constant)))))))))))
+
+
+==================
+method member with keyword args
+==================
+
+class Foo
+  def foo: (key: String, bar: Hash[Symbol, Integer]) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (method_member
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters
+        (keywords
+         (required_keywords
+          (keyword)
+          (parameter
+           (type
+            (class_type
+             (class_name
+              (constant)))))
+          (keywords
+           (required_keywords
+            (keyword)
+            (parameter
+             (type
+              (class_type
+               (class_name
+                (constant))
+               (type_arguments
+                (type
+                 (class_type
+                  (class_name
+                   (constant))))
+                (type
+                 (class_type
+                  (class_name
+                   (constant)))))))))))))
+  (type
+   (class_type
+    (class_name
+     (constant)))))))))))
+
+
+==================
+method member with block
+==================
+
+class Foo
+  def foo: () { (Integer) [self: String] -> void} -> void
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (method_member
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters)
+       (block
+        (parameters
+         (required_positionals
+          (parameter
+           (type
+            (class_type
+             (class_name
+              (constant)))))))
+        (self_type_binding
+         (type
+          (class_type
+           (class_name
+            (constant)))))
+        (type
+         (alias_type
+          (alias_name
+           (variable)))))
+       (type
+        (alias_type
+         (alias_name
+          (variable)))))))))))
+
+==================
+attribute member
+==================
+
+class Foo
+  attr_reader foo: String
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (attribute_member
+     (attribyte_type)
+     (method_name
+      (identifier))
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
+
+==================
+include member
+==================
+
+class Foo
+  include Mod
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (include_member
+     (class_name
+      (constant)))))))
+
+
+==================
+extend member
+==================
+
+class Foo
+  extend Mod
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (extend_member
+     (class_name
+      (constant)))))))
+
+
+==================
+prepend member
+==================
+
+class Foo
+  prepend Mod
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (prepend_member
+     (class_name
+      (constant)))))))
+
+==================
+alias member
+==================
+
+class Foo
+  alias bar foo
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (alias_member
+     (method_name
+      (identifier))
+     (method_name
+      (identifier)))))))
+
+==================
+visibility member
+==================
+
+class Foo
+  private
+  def foo: () -> Integer
+  public def hoge: () -> Integer
+  private attr_reader bar: String
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (visibility_member
+     (visibility)))
+   (member
+    (method_member
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters)
+       (type
+        (class_type
+         (class_name
+          (constant))))))))
+   (member
+    (method_member
+     (visibility)
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters)
+       (type
+        (class_type
+         (class_name
+          (constant))))))))
+   (member
+    (attribute_member
+     (visibility)
+     (attribyte_type)
+     (method_name
+      (identifier))
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
