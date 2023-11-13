@@ -18,29 +18,36 @@ module.exports = grammar({
 
     constant: $ => /[A-Z]\w*/,
     interface: $ => /_[A-Z]\w*/,
-    variable: $ => /[a-z]\w*/,
+    variable: $ => token(prec(-1, /[a-z]\w*/)),
+
+    self: $ => "self",
 
     type: $ => choice(
       $.class_type,
       $.interface_type,
       $.alias_type,
       $.singleton_type,
-      $.literal,
+      $._literal,
       $.union_type,
       $.intersection_type,
       $.optional_type,
       $.record_type,
       $.tuple_type,
-      "self",
+      $.builtin_type,
+      $.proc,
+    ),
+
+    builtin_type: $ => choice(
+      $.self,
       "instance",
       "class",
       "bool",
+      "class",
       "untyped",
       "nil",
       "top",
       "bot",
       "void",
-      $.proc,
     ),
 
     comment: $ => token(prec(-2, 
@@ -53,13 +60,13 @@ module.exports = grammar({
 
     alias_type: $ => prec.right(seq($.alias_name, optional($.type_arguments))),
 
-    singleton_type: $ => seq("singleton(", $.class_name, ")"),
+    singleton_type: $ => seq("singleton", "(", $.class_name, ")"),
 
-    union_type: $ => prec.right(1, seq($.type, "|", $.type)),
+    union_type: $ => prec.left(1, seq($.type, "|", $.type)),
 
-    intersection_type: $ => prec.right(2, seq($.type, "&", $.type)),
+    intersection_type: $ => prec.left(2, seq($.type, "&", $.type)),
 
-    optional_type: $ => prec.right(1, seq($.type, "?")),
+    optional_type: $ => prec(3, seq($.type, token.immediate("?"))),
 
     tuple_type: $ => seq("[", optional(seq(commaSep1($.type), optional(","))), "]"),
 
@@ -72,14 +79,15 @@ module.exports = grammar({
 
     type_variable: $ => $.constant,
 
+    _scope: $ => token("::"),
     namespace: $ => prec.right(2, choice(
-      "::",
-      seq(optional($.namespace), $.constant, "::")
+      $._scope,
+      seq(optional($.namespace), $.constant, $._scope),
     )),
 
     type_arguments: $ => seq("[", commaSep1($.type), "]"),
 
-    literal: $ => choice(
+    _literal: $ => choice(
       $.string_literal,
       $.symbol_literal,
       $.integer_literal,
@@ -92,7 +100,7 @@ module.exports = grammar({
       /'.*'/,
     ),
 
-    symbol_literal: $ => seq(":", $.identifier),
+    symbol_literal: $ => /:["']?[a-zA-Z]\w+["']?/,
 
     integer_literal: $ => /0[bB][01](_?[01])*|0[oO]?[0-7](_?[0-7])*|(0[dD])?\d(_?\d)*|0[xX][0-9a-fA-F](_?[0-9a-fA-F])*/,
 
@@ -234,12 +242,12 @@ module.exports = grammar({
     ),
 
     splat_keyword: $ => seq("**", $.parameter),
-    required_keywords: $ => seq(prec.right(1, seq(alias($.variable, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
-    optional_keywords: $ => seq(prec.right(1, seq("?", alias($.variable, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
+    required_keywords: $ => seq(prec.right(1, seq(alias($.var_name, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
+    optional_keywords: $ => seq(prec.right(1, seq("?", alias($.var_name, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
 
     var_name: $ => /[a-z]\w*/,
 
-    self_type_binding: $ => seq("[", "self", ":", $.type, "]"),
+    self_type_binding: $ => seq("[", $.self, ":", $.type, "]"),
 
     block: $ => choice(
       seq("{", $.parameters, optional($.self_type_binding), "->", $.type, "}"),
@@ -259,14 +267,14 @@ module.exports = grammar({
 
     ivar_member: $ => choice(
       seq($.ivar_name, ":", $.type),
-      seq("self", ".", $.ivar_name, ":", $.type),
+      seq($.self, ".", $.ivar_name, ":", $.type),
       seq($.cvar_name, ":", $.type),
     ),
 
     method_member: $ => choice(
       seq(optional($.visibility), "def", $.method_name, ":", $.method_types),
-      seq(optional($.visibility), "def", "self", ".", $.method_name, ":", $.method_types),
-      seq("def", "self", "?.", $.method_name, ":", $.method_types),
+      seq(optional($.visibility), "def", $.self, ".", $.method_name, ":", $.method_types),
+      seq("def", $.self, "?.", $.method_name, ":", $.method_types),
     ),
 
     method_types: $ => choice(
@@ -305,11 +313,11 @@ module.exports = grammar({
 
     alias_member: $ => choice(
       seq("alias", $.method_name, $.method_name),
-      seq("alias", "self.", $.method_name, "self.", $.method_name),
+      seq("alias", $.self, ".", $.method_name, $.self, ".", $.method_name),
     ),
 
-    ivar_name: $ => seq("@", /\w+/),
-    cvar_name: $ => seq("@@", /\w+/),
+    ivar_name: $ => /@[a-zA-Z]\w+/,
+    cvar_name: $ => /@@[a-zA-Z]\w+/,
     method_name: $ => $.identifier,
 
     identifier: $ => token(seq(LOWER_ALPHA_CHAR, IDENTIFIER_CHARS)),

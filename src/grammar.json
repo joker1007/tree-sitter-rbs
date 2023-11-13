@@ -18,8 +18,19 @@
       "value": "_[A-Z]\\w*"
     },
     "variable": {
-      "type": "PATTERN",
-      "value": "[a-z]\\w*"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[a-z]\\w*"
+        }
+      }
+    },
+    "self": {
+      "type": "STRING",
+      "value": "self"
     },
     "type": {
       "type": "CHOICE",
@@ -42,7 +53,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "literal"
+          "name": "_literal"
         },
         {
           "type": "SYMBOL",
@@ -65,8 +76,21 @@
           "name": "tuple_type"
         },
         {
-          "type": "STRING",
-          "value": "self"
+          "type": "SYMBOL",
+          "name": "builtin_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "proc"
+        }
+      ]
+    },
+    "builtin_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "self"
         },
         {
           "type": "STRING",
@@ -79,6 +103,10 @@
         {
           "type": "STRING",
           "value": "bool"
+        },
+        {
+          "type": "STRING",
+          "value": "class"
         },
         {
           "type": "STRING",
@@ -99,10 +127,6 @@
         {
           "type": "STRING",
           "value": "void"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "proc"
         }
       ]
     },
@@ -206,7 +230,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "singleton("
+          "value": "singleton"
+        },
+        {
+          "type": "STRING",
+          "value": "("
         },
         {
           "type": "SYMBOL",
@@ -219,7 +247,7 @@
       ]
     },
     "union_type": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": 1,
       "content": {
         "type": "SEQ",
@@ -240,7 +268,7 @@
       }
     },
     "intersection_type": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": 2,
       "content": {
         "type": "SEQ",
@@ -261,8 +289,8 @@
       }
     },
     "optional_type": {
-      "type": "PREC_RIGHT",
-      "value": 1,
+      "type": "PREC",
+      "value": 3,
       "content": {
         "type": "SEQ",
         "members": [
@@ -271,8 +299,11 @@
             "name": "type"
           },
           {
-            "type": "STRING",
-            "value": "?"
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "?"
+            }
           }
         ]
       }
@@ -500,6 +531,13 @@
       "type": "SYMBOL",
       "name": "constant"
     },
+    "_scope": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "::"
+      }
+    },
     "namespace": {
       "type": "PREC_RIGHT",
       "value": 2,
@@ -507,8 +545,8 @@
         "type": "CHOICE",
         "members": [
           {
-            "type": "STRING",
-            "value": "::"
+            "type": "SYMBOL",
+            "name": "_scope"
           },
           {
             "type": "SEQ",
@@ -530,8 +568,8 @@
                 "name": "constant"
               },
               {
-                "type": "STRING",
-                "value": "::"
+                "type": "SYMBOL",
+                "name": "_scope"
               }
             ]
           }
@@ -576,7 +614,7 @@
         }
       ]
     },
-    "literal": {
+    "_literal": {
       "type": "CHOICE",
       "members": [
         {
@@ -615,17 +653,8 @@
       ]
     },
     "symbol_literal": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        }
-      ]
+      "type": "PATTERN",
+      "value": ":[\"']?[a-zA-Z]\\w+[\"']?"
     },
     "integer_literal": {
       "type": "PATTERN",
@@ -1762,7 +1791,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "variable"
+                  "name": "var_name"
                 },
                 "named": true,
                 "value": "keyword"
@@ -1818,7 +1847,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "variable"
+                  "name": "var_name"
                 },
                 "named": true,
                 "value": "keyword"
@@ -1869,8 +1898,8 @@
           "value": "["
         },
         {
-          "type": "STRING",
-          "value": "self"
+          "type": "SYMBOL",
+          "name": "self"
         },
         {
           "type": "STRING",
@@ -2038,8 +2067,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "STRING",
-              "value": "self"
+              "type": "SYMBOL",
+              "name": "self"
             },
             {
               "type": "STRING",
@@ -2134,8 +2163,8 @@
               "value": "def"
             },
             {
-              "type": "STRING",
-              "value": "self"
+              "type": "SYMBOL",
+              "name": "self"
             },
             {
               "type": "STRING",
@@ -2163,8 +2192,8 @@
               "value": "def"
             },
             {
-              "type": "STRING",
-              "value": "self"
+              "type": "SYMBOL",
+              "name": "self"
             },
             {
               "type": "STRING",
@@ -2642,16 +2671,24 @@
               "value": "alias"
             },
             {
+              "type": "SYMBOL",
+              "name": "self"
+            },
+            {
               "type": "STRING",
-              "value": "self."
+              "value": "."
             },
             {
               "type": "SYMBOL",
               "name": "method_name"
             },
             {
+              "type": "SYMBOL",
+              "name": "self"
+            },
+            {
               "type": "STRING",
-              "value": "self."
+              "value": "."
             },
             {
               "type": "SYMBOL",
@@ -2662,30 +2699,12 @@
       ]
     },
     "ivar_name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "@"
-        },
-        {
-          "type": "PATTERN",
-          "value": "\\w+"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "@[a-zA-Z]\\w+"
     },
     "cvar_name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "@@"
-        },
-        {
-          "type": "PATTERN",
-          "value": "\\w+"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "@@[a-zA-Z]\\w+"
     },
     "method_name": {
       "type": "SYMBOL",

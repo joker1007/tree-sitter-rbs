@@ -1,0 +1,263 @@
+==================
+class type
+==================
+
+type foo = String
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+==================
+namespaced class type
+==================
+
+type foo = Foo::Bar::Baz
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (class_type
+    (class_name
+     (namespace
+      (namespace
+       (constant))
+      (constant))
+     (constant))))))
+
+==================
+singleton class type
+==================
+
+type foo = singleton(String)
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (singleton_type
+    (class_name
+     (constant))))))
+
+==================
+literal type
+==================
+
+type foo = "string"
+type bar = 123
+type baz = :symbol
+type baz = :"symbol"
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (string_literal)))
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (integer_literal)))
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (symbol_literal)))
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (symbol_literal))))
+
+==================
+Proc type
+==================
+
+type foo = ^(String) -> Integer
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (proc
+    (parameters
+     (required_positionals
+      (parameter
+       (type
+        (class_type
+         (class_name
+          (constant)))))))
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
+
+==================
+Proc (no args) type
+==================
+
+type foo = ^() -> Integer
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (proc
+    (parameters)
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
+
+==================
+Proc type with self binding
+==================
+
+type foo = ^() [self: String] -> Integer
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (proc
+    (parameters)
+    (self_type_binding
+     (self)
+     (type
+      (class_type
+       (class_name
+        (constant)))))
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
+
+==================
+Proc type with block
+==================
+
+type foo = ^() {(String) -> Integer} -> Integer
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (proc
+    (parameters)
+    (block
+     (parameters
+      (required_positionals
+       (parameter
+        (type
+         (class_type
+          (class_name
+           (constant)))))))
+     (type
+      (class_type
+       (class_name
+        (constant)))))
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
+
+
+==================
+alias type
+==================
+
+type foo = hoge
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (alias_type
+    (alias_name
+     (variable))))))
+
+
+==================
+complex union and intersection type
+==================
+
+type foo = String | Integer & Float | Bar?
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (union_type
+    (type
+     (union_type
+      (type
+       (class_type
+        (class_name
+         (constant))))
+      (type
+       (intersection_type
+        (type
+         (class_type
+          (class_name
+           (constant))))
+        (type
+         (class_type
+          (class_name
+           (constant))))))))
+    (type
+     (optional_type
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
+
+==================
+builtin type
+==================
+
+type foo1 = bool
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (builtin_type))))
+

@@ -22,7 +22,7 @@ end
         (constant)))))))))
 
 ==================
-method member with no args
+method member
 ==================
 
 class Foo
@@ -49,11 +49,11 @@ end
           (constant)))))))))))
 
 ==================
-method member with required args
+singleton method member
 ==================
 
 class Foo
-  def foo: (String st, Integer it) -> Integer
+  def self.foo: () -> Integer
 end
 
 ---
@@ -65,184 +65,16 @@ end
   (members
    (member
     (method_member
-     (method_name
-      (identifier))
-     (method_types
-      (method_type
-       (parameters
-        (required_positionals
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant))))
-          (var_name))
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant))))
-          (var_name))))
-       (type
-        (class_type
-         (class_name
-          (constant)))))))))))
-
-==================
-method member with optional args
-==================
-
-class Foo
-  def foo: (String st, Integer it, Float fl, ?Foo foo, ?Bar) -> Integer
-end
-
----
-
-(program
- (class_decl
-  (class_name
-   (constant))
-  (members
-   (member
-    (method_member
-     (method_name
-      (identifier))
-     (method_types
-      (method_type
-       (parameters
-        (required_positionals
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant))))
-          (var_name))
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant))))
-          (var_name))
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant))))
-          (var_name)))
-        (optional_positionals
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant))))
-          (var_name))
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant)))))))
-  (type
-   (class_type
-    (class_name
-     (constant)))))))))))
-
-
-==================
-method member with keyword args
-==================
-
-class Foo
-  def foo: (key: String, bar: Hash[Symbol, Integer]) -> Integer
-end
-
----
-
-(program
- (class_decl
-  (class_name
-   (constant))
-  (members
-   (member
-    (method_member
-     (method_name
-      (identifier))
-     (method_types
-      (method_type
-       (parameters
-        (keywords
-         (required_keywords
-          (keyword)
-          (parameter
-           (type
-            (class_type
-             (class_name
-              (constant)))))
-          (keywords
-           (required_keywords
-            (keyword)
-            (parameter
-             (type
-              (class_type
-               (class_name
-                (constant))
-               (type_arguments
-                (type
-                 (class_type
-                  (class_name
-                   (constant))))
-                (type
-                 (class_type
-                  (class_name
-                   (constant)))))))))))))
-  (type
-   (class_type
-    (class_name
-     (constant)))))))))))
-
-
-==================
-method member with block
-==================
-
-class Foo
-  def foo: () { (Integer) [self: String] -> void} -> void
-end
-
----
-
-(program
- (class_decl
-  (class_name
-   (constant))
-  (members
-   (member
-    (method_member
+     (self)
      (method_name
       (identifier))
      (method_types
       (method_type
        (parameters)
-       (block
-        (parameters
-         (required_positionals
-          (parameter
-           (type
-            (class_type
-             (class_name
-              (constant)))))))
-        (self_type_binding
-         (type
-          (class_type
-           (class_name
-            (constant)))))
-        (type
-         (alias_type
-          (alias_name
-           (variable)))))
        (type
-        (alias_type
-         (alias_name
-          (variable)))))))))))
+        (class_type
+         (class_name
+          (constant)))))))))))
 
 ==================
 attribute member
@@ -407,3 +239,5 @@ end
       (class_type
        (class_name
         (constant)))))))))
+
+

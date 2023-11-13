@@ -1,5 +1,5 @@
 ==================
-Class
+class
 ==================
 
 class Foo
@@ -13,7 +13,23 @@ end
    (constant))))
 
 ==================
-Class with type param
+class with superclass
+==================
+
+class Foo < Bar
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (class_name
+   (constant))))
+
+==================
+class with type param
 ==================
 
 class Foo[A]
@@ -31,7 +47,7 @@ end
      (constant))))))
 
 ==================
-Class with multiple type params
+class with multiple type params
 ==================
 
 class Foo[A, B]
@@ -52,7 +68,7 @@ end
      (constant))))))
 
 ==================
-Module
+module
 ==================
 
 module Foo
@@ -67,7 +83,7 @@ end
 
 
 ==================
-Module with self type
+module with self type
 ==================
 
 module Foo : Bar
@@ -84,7 +100,7 @@ end
     (constant)))))
 
 ==================
-Module with multiple self types
+module with multiple self types
 ==================
 
 module Foo : Bar, Baz
@@ -104,7 +120,7 @@ end
      (constant))))))
 
 ==================
-Class alias
+class alias
 ==================
 
 class A = B
@@ -119,7 +135,7 @@ class A = B
    (constant))))
 
 ==================
-Module alias
+module alias
 ==================
 
 module A = B
@@ -134,7 +150,7 @@ module A = B
    (constant))))
 
 ==================
-Interface
+interface
 ==================
 
 interface _Foo
@@ -149,7 +165,7 @@ end
 
 
 ==================
-Type alias
+type alias
 ==================
 
 type foo = String
@@ -167,7 +183,7 @@ type foo = String
 
 
 ==================
-Constant
+constant
 ==================
 
 Foo: String
@@ -185,7 +201,7 @@ Foo: String
 
 
 ==================
-Constant with namespace
+constant with namespace
 ==================
 
 Foo::Bar: String
@@ -204,7 +220,7 @@ Foo::Bar: String
      (constant))))))
 
 ==================
-Global
+global
 ==================
 
 $global: String
@@ -218,30 +234,3 @@ $global: String
    (class_type
     (class_name
      (constant))))))
-
-
-==================
-Proc type
-==================
-
-type foo = ^(String) -> Integer
-
----
-
-(program
- (type_alias_decl
-  (alias_name
-   (variable))
-  (type
-   (proc
-    (parameters
-     (required_positionals
-      (parameter
-       (type
-        (class_type
-         (class_name
-          (constant)))))))
-    (type
-     (class_type
-      (class_name
-       (constant))))))))

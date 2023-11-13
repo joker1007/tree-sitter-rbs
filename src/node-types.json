@@ -10,6 +10,10 @@
         {
           "type": "method_name",
           "named": true
+        },
+        {
+          "type": "self",
+          "named": true
         }
       ]
     }
@@ -135,6 +139,21 @@
     }
   },
   {
+    "type": "builtin_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "self",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "class_alias_decl",
     "named": true,
     "fields": {},
@@ -251,11 +270,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "cvar_name",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "extend_member",
@@ -473,21 +487,15 @@
           "named": true
         },
         {
+          "type": "self",
+          "named": true
+        },
+        {
           "type": "type",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "ivar_name",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "keyword",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "keywords",
@@ -507,29 +515,6 @@
         },
         {
           "type": "splat_keyword",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "integer_literal",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "symbol_literal",
           "named": true
         }
       ]
@@ -607,6 +592,10 @@
         },
         {
           "type": "method_types",
+          "named": true
+        },
+        {
+          "type": "self",
           "named": true
         },
         {
@@ -1121,9 +1110,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "self",
+          "named": true
+        },
         {
           "type": "type",
           "named": true
@@ -1165,21 +1158,6 @@
     "type": "string_literal",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "symbol_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "trailing_positionals",
@@ -1224,7 +1202,15 @@
           "named": true
         },
         {
+          "type": "builtin_type",
+          "named": true
+        },
+        {
           "type": "class_type",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
           "named": true
         },
         {
@@ -1233,10 +1219,6 @@
         },
         {
           "type": "intersection_type",
-          "named": true
-        },
-        {
-          "type": "literal",
           "named": true
         },
         {
@@ -1253,6 +1235,14 @@
         },
         {
           "type": "singleton_type",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "symbol_literal",
           "named": true
         },
         {
@@ -1335,16 +1325,6 @@
     }
   },
   {
-    "type": "var_name",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "variable",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "visibility",
     "named": true,
     "fields": {}
@@ -1409,10 +1389,6 @@
     "named": false
   },
   {
-    "type": "::",
-    "named": false
-  },
-  {
     "type": "<",
     "named": false
   },
@@ -1426,14 +1402,6 @@
   },
   {
     "type": "?.",
-    "named": false
-  },
-  {
-    "type": "@",
-    "named": false
-  },
-  {
-    "type": "@@",
     "named": false
   },
   {
@@ -1485,6 +1453,10 @@
     "named": true
   },
   {
+    "type": "cvar_name",
+    "named": true
+  },
+  {
     "type": "def",
     "named": false
   },
@@ -1530,10 +1502,18 @@
   },
   {
     "type": "interface",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
+    "named": false
+  },
+  {
+    "type": "ivar_name",
+    "named": true
+  },
+  {
+    "type": "keyword",
     "named": true
   },
   {
@@ -1566,15 +1546,15 @@
   },
   {
     "type": "self",
+    "named": true
+  },
+  {
+    "type": "singleton",
     "named": false
   },
   {
-    "type": "self.",
-    "named": false
-  },
-  {
-    "type": "singleton(",
-    "named": false
+    "type": "symbol_literal",
+    "named": true
   },
   {
     "type": "top",
@@ -1591,6 +1571,14 @@
   {
     "type": "untyped",
     "named": false
+  },
+  {
+    "type": "var_name",
+    "named": true
+  },
+  {
+    "type": "variable",
+    "named": true
   },
   {
     "type": "void",

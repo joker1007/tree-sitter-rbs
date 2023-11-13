@@ -1,0 +1,34 @@
+class Foo[A]
+  # <- keyword
+  def foo: (String) -> String
+   # <- keyword
+      # <- function.method
+              # <- type
+                        # <- type
+
+  @ids: Array[Integer]
+   # <- property
+                # <- type
+  @sym: :foo
+          # <- symbol
+  @str: "foo"
+          # <- string
+  @int: 42
+         # <- number
+
+  def self.bar: (String string) -> String
+       # <- variable.builtin
+                          # <- variable.parameter
+                                 # <- operator
+
+  def keyword_arg: (a: bool, b: untyped) -> void
+                        # <- type
+                                  # <- type
+                                             # <- type
+end
+ # <- keyword
+
+
+type newString = String
+  # <- keyword
+               # <- operator
