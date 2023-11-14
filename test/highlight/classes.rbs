@@ -1,11 +1,23 @@
 class Foo[A]
   # <- keyword
+        # <- type
+          # <- constant
   def foo: (String) -> String
    # <- keyword
       # <- function.method
               # <- type
                         # <- type
 
+  include Mod1
+    # <- function.method
+  extend Mod2
+    # <- function.method
+  prepend Mod3
+    # <- function.method
+
+  attr_reader id: Integer
+    # <- keyword
+                    # <- type
   @ids: Array[Integer]
    # <- property
                 # <- type
@@ -21,14 +33,27 @@ class Foo[A]
                           # <- variable.parameter
                                  # <- operator
 
-  def keyword_arg: (a: bool, b: untyped) -> void
+  def keyword_arg: (a: bool, b: untyped, **Hash opts) -> void
+                    # <- variable.parameter
                         # <- type
                                   # <- type
-                                             # <- type
+                                                 # <- variable.parameter
+                                                          # <- type
 end
  # <- keyword
 
+$global: String
+  # <- property
 
 type newString = String
   # <- keyword
+      # <- type
                # <- operator
+
+CONST: String
+ # <- constant
+
+interface _Bar
+  # <- keyword
+          # <- type
+end

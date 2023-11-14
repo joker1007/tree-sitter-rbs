@@ -20,7 +20,11 @@
  "def"
 ] @keyword.function
 
-(visibility) @keyword
+(include_member "include" @function.method)  
+(extend_member "extend" @function.method)  
+(prepend_member "prepend" @function.method)  
+
+(visibility) @type.qualifier
 
 (comment) @comment
 
@@ -34,13 +38,16 @@
 (class_name (constant) @type)
 (module_name (constant) @type)
 (interface_name (interface) @type)
+(alias_name (variable) @type)
 
 (builtin_type) @type
 
 (const_name) @constant
-(global_name) @variable.global
+(global_name) @property
 
 (parameter (var_name) @variable.parameter)
+
+(keyword) @variable.parameter
 
 (self) @variable.builtin
 
