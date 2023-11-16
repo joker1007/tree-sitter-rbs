@@ -54,11 +54,24 @@ type foo = singleton(String)
      (constant))))))
 
 ==================
-literal type
+integer literal type
 ==================
 
-type foo = "string"
 type bar = 123
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (integer_literal))))
+
+==================
+symbol literal type
+==================
+
 type baz = :symbol
 type baz = :"symbol"
 
@@ -69,22 +82,66 @@ type baz = :"symbol"
   (alias_name
    (variable))
   (type
-   (string_literal)))
- (type_alias_decl
-  (alias_name
-   (variable))
-  (type
-   (integer_literal)))
- (type_alias_decl
-  (alias_name
-   (variable))
-  (type
    (symbol_literal)))
  (type_alias_decl
   (alias_name
    (variable))
   (type
    (symbol_literal))))
+
+==================
+string literal type with double-quote and escape-sequence
+==================
+
+type foo = "str\ting\u1234"
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (string_literal
+    (double_quote_string_body)
+    (escape_sequence)
+    (double_quote_string_body)
+    (escape_sequence)))))
+
+==================
+string literal type with single-quote
+==================
+
+type foo = 'string'
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (string_literal
+    (single_quote_string_body)))))
+
+==================
+string literal type with single-quote and escape-sequence
+==================
+
+type foo = 'str\ting\u1234'
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (variable))
+  (type
+   (string_literal
+    (single_quote_string_body)
+    (escape_sequence)
+    (single_quote_string_body)
+    (escape_sequence)))))
 
 ==================
 Proc type

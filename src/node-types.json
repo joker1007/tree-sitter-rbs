@@ -189,7 +189,7 @@
           "named": true
         },
         {
-          "type": "type_arguments",
+          "type": "superclass",
           "named": true
         }
       ]
@@ -713,7 +713,7 @@
           "named": true
         },
         {
-          "type": "module_self_types",
+          "type": "module_self_type_binds",
           "named": true
         },
         {
@@ -737,6 +737,21 @@
         },
         {
           "type": "namespace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_self_type_binds",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "module_self_types",
           "named": true
         }
       ]
@@ -1157,7 +1172,44 @@
   {
     "type": "string_literal",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "double_quote_string_body",
+          "named": true
+        },
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "single_quote_string_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "superclass",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_name",
+          "named": true
+        },
+        {
+          "type": "type_arguments",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "trailing_positionals",
@@ -1345,7 +1397,15 @@
     }
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "&",
+    "named": false
+  },
+  {
+    "type": "'",
     "named": false
   },
   {
@@ -1461,8 +1521,16 @@
     "named": false
   },
   {
+    "type": "double_quote_string_body",
+    "named": true
+  },
+  {
     "type": "end",
     "named": false
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
   },
   {
     "type": "extend",
@@ -1546,6 +1614,10 @@
   },
   {
     "type": "self",
+    "named": true
+  },
+  {
+    "type": "single_quote_string_body",
     "named": true
   },
   {

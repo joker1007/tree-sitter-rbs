@@ -96,9 +96,12 @@ module.exports = grammar({
     ),
 
     string_literal: $ => choice(
-      /".*"/,
-      /'.*'/,
+      seq('"', repeat(choice($.double_quote_string_body, $.escape_sequence)), '"'),
+      seq('\'', repeat(choice($.single_quote_string_body, $.escape_sequence)), '\''),
     ),
+
+    double_quote_string_body: $ => token(/[^"\\]+/),
+    single_quote_string_body: $ => token(/[^'\\]+/),
 
     symbol_literal: $ => /:["']?[a-zA-Z]\w+["']?/,
 
@@ -134,39 +137,26 @@ module.exports = grammar({
         "class",
         $.class_name,
         optional($.module_type_parameters),
+        optional($.superclass),
         alias(repeat($.member), $.members),
         "end"
-      ),
-      seq(
-        "class",
-        $.class_name,
-        optional($.module_type_parameters),
-        "<",
-        $.class_name,
-        optional($.type_arguments),
-        alias(repeat($.member), $.members),
-        "end"
-      ),
+      )
     ),
+
+    superclass: $ => seq("<", $.class_name, optional($.type_arguments)),
 
     module_decl: $ => choice(
       seq(
         "module",
         alias($.class_name, $.module_name),
         optional($.module_type_parameters),
+        optional($.module_self_type_binds),
         alias(repeat($.member), $.members),
         "end"
-      ),
-      seq(
-        "module",
-        alias($.class_name, $.module_name),
-        optional($.module_type_parameters),
-        ":",
-        $.module_self_types,
-        alias(repeat($.member), $.members),
-        "end"
-      ),
+      )
     ),
+
+    module_self_type_binds: $ => seq(":", $.module_self_types),
 
     class_alias_decl: $ => seq("class", $.class_name, "=", $.class_name),
     module_alias_decl: $ => seq("module", alias($.class_name, $.module_name), "=", alias($.class_name, $.module_name)),

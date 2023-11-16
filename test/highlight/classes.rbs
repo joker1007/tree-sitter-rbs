@@ -25,6 +25,10 @@ class Foo[A]
           # <- symbol
   @str: "foo"
           # <- string
+  @escape: "foo\nbar"
+              # <- string
+                # <- escape
+                  # <- string
   @int: 42
          # <- number
 

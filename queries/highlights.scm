@@ -53,6 +53,7 @@
 
 (type (symbol_literal) @symbol)
 
+(type (string_literal (escape_sequence) @escape))
 (type (string_literal) @string)
 
 (type (integer_literal) @number)

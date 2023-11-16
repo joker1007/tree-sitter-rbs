@@ -102,6 +102,59 @@ end
         (constant)))))))))
 
 ==================
+attribute member with ivar
+==================
+
+class Foo
+  attr_writer name (@raw_name): String
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (attribute_member
+     (attribyte_type)
+     (method_name
+      (identifier))
+     (ivar_name)
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
+
+==================
+attribute member for singleton and instance
+==================
+
+class Foo
+  attr_writer self?.name: String
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (member
+    (attribute_member
+     (attribyte_type)
+     (method_name
+      (identifier))
+     (ERROR
+      (identifier))
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
+
+==================
 include member
 ==================
 

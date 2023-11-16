@@ -295,7 +295,8 @@ end
         (required_positionals
          (parameter
           (type
-           (string_literal)))
+           (string_literal
+            (double_quote_string_body))))
          (parameter
           (type
            (integer_literal)))
@@ -373,7 +374,8 @@ end
         (required_positionals
          (parameter
           (type
-           (string_literal)))
+           (string_literal
+            (double_quote_string_body))))
          (parameter
           (type
            (integer_literal)))
