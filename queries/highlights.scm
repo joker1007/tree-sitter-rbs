@@ -2,10 +2,15 @@
 [
   "true"
   "false"
-] @type
+] @boolean
+
+[
+ "nil"
+] @constant.builtin
 
 [
   "class"
+  "module"
   "interface"
   "type"
   "def"
@@ -39,10 +44,12 @@
 (module_name (constant) @type)
 (interface_name (interface) @type)
 (alias_name (variable) @type)
+(type_variable) @constant
+(namespace (constant) @constant)
 
 (builtin_type) @type
 
-(const_name) @constant
+(const_name (constant) @constant)
 (global_name) @property
 
 (parameter (var_name) @variable.parameter)
@@ -53,12 +60,10 @@
 
 (type (symbol_literal) @symbol)
 
-(type (string_literal (escape_sequence) @escape))
+(type (string_literal (escape_sequence) @string.escape))
 (type (string_literal) @string)
 
 (type (integer_literal) @number)
-
-(constant) @constant
 
 
 [
