@@ -27,7 +27,7 @@ class Foo[A]
           # <- string
   @escape: "foo\nbar"
               # <- string
-                # <- escape
+                # <- string.escape
                   # <- string
   @int: 42
          # <- number
