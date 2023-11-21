@@ -237,3 +237,71 @@ $global: String
    (class_type
     (class_name
      (constant))))))
+
+
+==================
+nested declaration
+==================
+
+module Foo
+  CONST: String
+  class Bar
+    class ID = Integer 
+    module En = Enumerable 
+    type a = String 
+    class Baz
+      def hello: () -> String
+    end
+  end
+end
+
+---
+
+(program
+ (module_decl
+  (module_name
+   (constant))
+  (members
+   (const_decl
+    (const_name
+     (constant))
+    (type
+     (class_type
+      (class_name
+       (constant)))))
+   (class_decl
+    (class_name
+     (constant))
+    (members
+     (class_alias_decl
+      (class_name
+       (constant))
+      (class_name
+       (constant)))
+     (module_alias_decl
+      (module_name
+       (constant))
+      (module_name
+       (constant)))
+     (type_alias_decl
+      (alias_name
+       (variable))
+      (type
+       (class_type
+        (class_name
+         (constant)))))
+     (class_decl
+      (class_name
+       (constant))
+      (members
+       (member
+        (method_member
+         (method_name
+          (identifier))
+         (method_types
+          (method_type
+           (parameters)
+           (type
+            (class_type
+             (class_name
+              (constant)))))))))))))))

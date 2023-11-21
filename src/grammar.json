@@ -851,6 +851,39 @@
         }
       ]
     },
+    "_nestable_decls": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "class_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "module_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "class_alias_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "module_alias_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "interface_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_alias_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "const_decl"
+        }
+      ]
+    },
     "class_decl": {
       "type": "CHOICE",
       "members": [
@@ -894,8 +927,17 @@
               "content": {
                 "type": "REPEAT",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "member"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "member"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_nestable_decls"
+                    }
+                  ]
                 }
               },
               "named": true,
@@ -982,8 +1024,17 @@
               "content": {
                 "type": "REPEAT",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "member"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "member"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_nestable_decls"
+                    }
+                  ]
                 }
               },
               "named": true,
