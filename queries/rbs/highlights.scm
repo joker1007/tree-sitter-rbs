@@ -1,3 +1,13 @@
+(use_directive
+ "use" @keyword)
+(use_clause
+ "as" @keyword)
+
+(use_clause
+  [
+    (type_name)
+    (simple_type_name)
+  ] @type)
 
 [
   "true"

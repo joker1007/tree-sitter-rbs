@@ -14,7 +14,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    program: $ => repeat($._decl),
+    program: $ => seq(repeat($.use_directive), repeat($._decl)),
 
     constant: $ => /[A-Z]\w*/,
     interface: $ => /_[A-Z]\w*/,
@@ -120,6 +120,14 @@ module.exports = grammar({
     )),
 
     proc: $ => seq("^", optional($.parameters), optional($.self_type_binding), optional($.block), "->", $.type),
+
+    use_directive: $ => seq("use", commaSep1($.use_clause)),
+
+    use_clause: $ => choice(
+      seq(alias($.class_name, $.type_name)),
+      seq(alias($.class_name, $.type_name), "as", alias($.constant, $.simple_type_name)),
+      seq($.namespace, "*"),
+    ),
 
     _decl: $ => choice(
       $.class_decl,

@@ -1,0 +1,90 @@
+==================
+single use clause
+==================
+
+use Foo::Bar
+
+---
+
+(program
+ (use_directive
+  (use_clause
+   (type_name
+    (namespace
+     (constant))
+    (constant)))))
+
+
+==================
+multi use clause
+==================
+
+use Foo::Bar, Baz::Quux
+
+---
+
+(program
+ (use_directive
+  (use_clause
+   (type_name
+    (namespace
+     (constant))
+    (constant)))
+  (use_clause
+   (type_name
+    (namespace
+     (constant))
+    (constant)))))
+
+==================
+single use clause with alias
+==================
+
+use Foo::Bar as Baz
+
+---
+
+(program
+ (use_directive
+  (use_clause
+   (type_name
+    (namespace
+     (constant))
+    (constant))
+   (simple_type_name))))
+
+==================
+multi use clause with alias
+==================
+
+use Foo::Bar as Baz, Hoge::Fuga as Fu
+
+---
+
+(program
+ (use_directive
+  (use_clause
+   (type_name
+    (namespace
+     (constant))
+    (constant))
+   (simple_type_name))
+  (use_clause
+   (type_name
+    (namespace
+     (constant))
+    (constant))
+   (simple_type_name))))
+
+==================
+wildcard use clause
+==================
+
+use Foo::*
+
+---
+(program
+ (use_directive
+  (use_clause
+   (namespace
+    (constant)))))

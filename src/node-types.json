@@ -1065,6 +1065,10 @@
         {
           "type": "type_alias_decl",
           "named": true
+        },
+        {
+          "type": "use_directive",
+          "named": true
         }
       ]
     }
@@ -1375,6 +1379,25 @@
     }
   },
   {
+    "type": "type_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "type_variable",
     "named": true,
     "fields": {},
@@ -1399,6 +1422,44 @@
       "types": [
         {
           "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "use_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "simple_type_name",
+          "named": true
+        },
+        {
+          "type": "type_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "use_directive",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "use_clause",
           "named": true
         }
       ]
@@ -1506,6 +1567,10 @@
   },
   {
     "type": "alias",
+    "named": false
+  },
+  {
+    "type": "as",
     "named": false
   },
   {
@@ -1645,6 +1710,10 @@
     "named": true
   },
   {
+    "type": "simple_type_name",
+    "named": true
+  },
+  {
     "type": "single_quote_string_body",
     "named": true
   },
@@ -1670,6 +1739,10 @@
   },
   {
     "type": "untyped",
+    "named": false
+  },
+  {
+    "type": "use",
     "named": false
   },
   {

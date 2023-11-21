@@ -1,3 +1,9 @@
+use RBS::TypeName as TN
+ # <- keyword
+     # <- constant
+           # <- type
+                   # <- keyword
+
 class Foo[A]
   # <- keyword
         # <- type
