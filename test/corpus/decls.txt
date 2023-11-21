@@ -294,14 +294,13 @@ end
       (class_name
        (constant))
       (members
-       (member
-        (method_member
-         (method_name
-          (identifier))
-         (method_types
-          (method_type
-           (parameters)
-           (type
-            (class_type
-             (class_name
-              (constant)))))))))))))))
+       (method_member
+        (method_name
+         (identifier))
+        (method_types
+         (method_type
+          (parameters)
+          (type
+           (class_type
+            (class_name
+             (constant))))))))))))))

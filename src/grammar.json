@@ -1036,7 +1036,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "member"
+                      "name": "_member"
                     },
                     {
                       "type": "SYMBOL",
@@ -1133,7 +1133,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "member"
+                      "name": "_member"
                     },
                     {
                       "type": "SYMBOL",
@@ -2165,7 +2165,7 @@
         }
       ]
     },
-    "member": {
+    "_member": {
       "type": "CHOICE",
       "members": [
         {

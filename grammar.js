@@ -156,7 +156,7 @@ module.exports = grammar({
         $.class_name,
         optional($.module_type_parameters),
         optional($.superclass),
-        alias(repeat(choice($.member, $._nestable_decls)), $.members),
+        alias(repeat(choice($._member, $._nestable_decls)), $.members),
         "end"
       )
     ),
@@ -169,7 +169,7 @@ module.exports = grammar({
         alias($.class_name, $.module_name),
         optional($.module_type_parameters),
         optional($.module_self_type_binds),
-        alias(repeat(choice($.member, $._nestable_decls)), $.members),
+        alias(repeat(choice($._member, $._nestable_decls)), $.members),
         "end"
       )
     ),
@@ -262,7 +262,7 @@ module.exports = grammar({
       seq("?", "{", $.parameters, optional($.self_type_binding), "->", $.type, "}"),
     ),
 
-    member: $ => choice(
+    _member: $ => choice(
       $.ivar_member,
       $.method_member,
       prec.right($.attribute_member),

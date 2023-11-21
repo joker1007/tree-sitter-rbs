@@ -13,13 +13,12 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (ivar_member
-     (ivar_name)
-     (type
-      (class_type
-       (class_name
-        (constant)))))))))
+   (ivar_member
+    (ivar_name)
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
 
 ==================
 method member
@@ -36,17 +35,16 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (method_member
-     (method_name
-      (identifier))
-     (method_types
-      (method_type
-       (parameters)
-       (type
-        (class_type
-         (class_name
-          (constant)))))))))))
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
 
 ==================
 singleton method member
@@ -63,18 +61,17 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (method_member
-     (self)
-     (method_name
-      (identifier))
-     (method_types
-      (method_type
-       (parameters)
-       (type
-        (class_type
-         (class_name
-          (constant)))))))))))
+   (method_member
+    (self)
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
 
 ==================
 attribute member
@@ -91,15 +88,14 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (attribute_member
-     (attribyte_type)
-     (method_name
-      (identifier))
-     (type
-      (class_type
-       (class_name
-        (constant)))))))))
+   (attribute_member
+    (attribyte_type)
+    (method_name
+     (identifier))
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
 
 ==================
 attribute member with ivar
@@ -116,16 +112,15 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (attribute_member
-     (attribyte_type)
-     (method_name
-      (identifier))
-     (ivar_name)
-     (type
-      (class_type
-       (class_name
-        (constant)))))))))
+   (attribute_member
+    (attribyte_type)
+    (method_name
+     (identifier))
+    (ivar_name)
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
 
 ==================
 attribute member for singleton and instance
@@ -142,17 +137,16 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (attribute_member
-     (attribyte_type)
-     (method_name
-      (identifier))
-     (ERROR
-      (identifier))
-     (type
-      (class_type
-       (class_name
-        (constant)))))))))
+   (attribute_member
+    (attribyte_type)
+    (method_name
+     (identifier))
+    (ERROR
+     (identifier))
+    (type
+     (class_type
+      (class_name
+       (constant))))))))
 
 ==================
 include member
@@ -169,10 +163,9 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (include_member
-     (class_name
-      (constant)))))))
+   (include_member
+    (class_name
+     (constant))))))
 
 
 ==================
@@ -190,10 +183,9 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (extend_member
-     (class_name
-      (constant)))))))
+   (extend_member
+    (class_name
+     (constant))))))
 
 
 ==================
@@ -211,10 +203,9 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (prepend_member
-     (class_name
-      (constant)))))))
+   (prepend_member
+    (class_name
+     (constant))))))
 
 ==================
 alias member
@@ -231,12 +222,11 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (alias_member
-     (method_name
-      (identifier))
-     (method_name
-      (identifier)))))))
+   (alias_member
+    (method_name
+     (identifier))
+    (method_name
+     (identifier))))))
 
 ==================
 visibility member
@@ -256,41 +246,37 @@ end
   (class_name
    (constant))
   (members
-   (member
-    (visibility_member
-     (visibility)))
-   (member
-    (method_member
-     (method_name
-      (identifier))
-     (method_types
-      (method_type
-       (parameters)
-       (type
-        (class_type
-         (class_name
-          (constant))))))))
-   (member
-    (method_member
-     (visibility)
-     (method_name
-      (identifier))
-     (method_types
-      (method_type
-       (parameters)
-       (type
-        (class_type
-         (class_name
-          (constant))))))))
-   (member
-    (attribute_member
-     (visibility)
-     (attribyte_type)
-     (method_name
-      (identifier))
-     (type
-      (class_type
-       (class_name
-        (constant)))))))))
+   (visibility_member
+    (visibility))
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant)))))))
+   (method_member
+    (visibility)
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant)))))))
+  (attribute_member
+   (visibility)
+   (attribyte_type)
+   (method_name
+    (identifier))
+   (type
+    (class_type
+     (class_name
+      (constant))))))))
 
 
