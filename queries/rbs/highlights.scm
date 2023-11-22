@@ -43,7 +43,14 @@
 
 (comment) @comment
 
-(method_member (method_name (identifier) @function.method))
+(method_member
+  (method_name
+    [
+     (identifier)
+     (constant)
+     (operator)
+     (setter)
+    ] @function.method))
 
 (ivar_member (ivar_name) @property)
 (ivar_member (cvar_name) @property)
