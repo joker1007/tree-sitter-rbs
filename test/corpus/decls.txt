@@ -178,7 +178,7 @@ type foo = String
 (program
  (type_alias_decl
   (alias_name
-   (variable))
+   (identifier))
   (type
    (class_type
     (class_name
@@ -285,7 +285,7 @@ end
        (constant)))
      (type_alias_decl
       (alias_name
-       (variable))
+       (identifier))
       (type
        (class_type
         (class_name

@@ -52,8 +52,9 @@ class Foo[A]
 end
  # <- keyword
 
-$global: String
+$global: boolean
   # <- property
+              # <- type
 
 type newString = String
   # <- keyword

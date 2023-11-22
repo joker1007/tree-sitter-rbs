@@ -18,7 +18,6 @@ module.exports = grammar({
 
     constant: $ => /[A-Z]\w*/,
     interface: $ => /_[A-Z]\w*/,
-    variable: $ => token(prec(-1, /[a-z]\w*/)),
 
     self: $ => "self",
 
@@ -75,7 +74,7 @@ module.exports = grammar({
 
     class_name: $ => seq(optional($.namespace), $.constant),
     interface_name: $ => seq(optional($.namespace), $.interface),
-    alias_name: $ => seq(optional($.namespace), $.variable),
+    alias_name: $ => seq(optional($.namespace), $.identifier),
 
     type_variable: $ => $.constant,
 
@@ -294,9 +293,9 @@ module.exports = grammar({
     method_type_parameters: $ => seq("[", commaSep1($.type_variable), "]"),
 
     attribute_member: $ => choice(
-      seq(optional($.visibility), $.attribyte_type, $.method_name, ":", $.type),
-      seq(optional($.visibility), $.attribyte_type, $.method_name, "(", $.ivar_name, ")", ":", $.type),
-      seq(optional($.visibility), $.attribyte_type, $.method_name, "()", ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, optional(seq($.self, ".")), $.method_name, ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, optional(seq($.self, ".")), $.method_name, "(", $.ivar_name, ")", ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, optional(seq($.self, ".")), $.method_name, "()", ":", $.type),
     ),
 
     visibility_member : $ => seq($.visibility, token.immediate(/\n/)),
@@ -328,7 +327,25 @@ module.exports = grammar({
 
     ivar_name: $ => /@[a-zA-Z]\w+/,
     cvar_name: $ => /@@[a-zA-Z]\w+/,
-    method_name: $ => $.identifier,
+
+    operator: $ => choice(
+      '..', '|', '^', '&', '<=>', '==', '===', '=~', '>', '>=', '<', '<=', '+',
+      '-', '*', '/', '%', '!', '!~', '**', '<<', '>>', '~', '+@', '-@', '~@', '[]', '[]=', '`'
+    ),
+
+    setter: $ => seq(field('name', $.identifier), token.immediate('=')),
+    identifier_suffix: $ => seq($.identifier, token.immediate('?')),
+    constant_suffix: $ => seq($.constant, token.immediate('?')),
+
+    method_name: $ => choice(
+      $.identifier,
+      $.identifier_suffix,
+      $.constant,
+      $.constant_suffix,
+      $.setter,
+      $.operator,
+      /`[^`]+`/,
+    ), 
 
     identifier: $ => token(seq(LOWER_ALPHA_CHAR, IDENTIFIER_CHARS)),
   }

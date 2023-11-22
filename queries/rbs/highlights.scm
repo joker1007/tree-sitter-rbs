@@ -53,7 +53,7 @@
 (class_name (constant) @type)
 (module_name (constant) @type)
 (interface_name (interface) @type)
-(alias_name (variable) @type)
+(alias_name (identifier) @type)
 (type_variable) @constant
 (namespace (constant) @constant)
 

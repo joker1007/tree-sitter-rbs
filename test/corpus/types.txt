@@ -2,14 +2,14 @@
 class type
 ==================
 
-type foo = String
+FOO: String
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (class_type
     (class_name
@@ -19,14 +19,14 @@ type foo = String
 namespaced class type
 ==================
 
-type foo = Foo::Bar::Baz
+FOO: Foo::Bar::Baz
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (class_type
     (class_name
@@ -40,14 +40,14 @@ type foo = Foo::Bar::Baz
 singleton class type
 ==================
 
-type foo = singleton(String)
+FOO: singleton(String)
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (singleton_type
     (class_name
@@ -57,14 +57,14 @@ type foo = singleton(String)
 integer literal type
 ==================
 
-type bar = 123
+BAR: 123
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (integer_literal))))
 
@@ -72,35 +72,36 @@ type bar = 123
 symbol literal type
 ==================
 
-type baz = :symbol
-type baz = :"symbol"
+BAR: :symbol
+BAZ: :"symbol"
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (symbol_literal)))
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (symbol_literal))))
+
 
 ==================
 string literal type with double-quote and escape-sequence
 ==================
 
-type foo = "str\ting\u1234"
+FOO: "str\ting\u1234"
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (string_literal
     (double_quote_string_body)
@@ -112,14 +113,14 @@ type foo = "str\ting\u1234"
 string literal type with single-quote
 ==================
 
-type foo = 'string'
+FOO: 'string'
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (string_literal
     (single_quote_string_body)))))
@@ -128,14 +129,14 @@ type foo = 'string'
 string literal type with single-quote and escape-sequence
 ==================
 
-type foo = 'str\ting\u1234'
+FOO: 'str\ting\u1234'
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (string_literal
     (single_quote_string_body)
@@ -147,14 +148,14 @@ type foo = 'str\ting\u1234'
 Proc type
 ==================
 
-type foo = ^(String) -> Integer
+FOO: ^(String) -> Integer
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (proc
     (parameters
@@ -173,14 +174,15 @@ type foo = ^(String) -> Integer
 Proc (no args) type
 ==================
 
-type foo = ^() -> Integer
+FOO: ^() -> Integer
 
 ---
 
+
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (proc
     (parameters)
@@ -193,14 +195,14 @@ type foo = ^() -> Integer
 Proc type with self binding
 ==================
 
-type foo = ^() [self: String] -> Integer
+FOO: ^() [self: String] -> Integer
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (proc
     (parameters)
@@ -219,14 +221,14 @@ type foo = ^() [self: String] -> Integer
 Proc type with block
 ==================
 
-type foo = ^() {(String) -> Integer} -> Integer
+FOO: ^() {(String) -> Integer} -> Integer
 
 ---
 
 (program
- (type_alias_decl
-  (alias_name
-   (variable))
+ (const_decl
+  (const_name
+   (constant))
   (type
    (proc
     (parameters)
@@ -247,7 +249,6 @@ type foo = ^() {(String) -> Integer} -> Integer
       (class_name
        (constant))))))))
 
-
 ==================
 alias type
 ==================
@@ -259,11 +260,11 @@ type foo = hoge
 (program
  (type_alias_decl
   (alias_name
-   (variable))
+   (identifier))
   (type
    (alias_type
     (alias_name
-     (variable))))))
+     (identifier))))))
 
 
 ==================
@@ -277,7 +278,7 @@ type foo = String | Integer & Float | Bar?
 (program
  (type_alias_decl
   (alias_name
-   (variable))
+   (identifier))
   (type
    (union_type
     (type
@@ -314,7 +315,25 @@ type foo1 = bool
 (program
  (type_alias_decl
   (alias_name
-   (variable))
+   (identifier))
   (type
    (builtin_type))))
+
+
+==================
+alias type that includes builtin type name
+==================
+
+type foo1 = boolean
+
+---
+
+(program
+ (type_alias_decl
+  (alias_name
+   (identifier))
+  (type
+   (alias_type
+    (alias_name
+     (identifier))))))
 

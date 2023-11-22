@@ -492,3 +492,120 @@ end
    (class_type
     (class_name
      (constant))))))))))
+
+
+==================
+constant name method
+==================
+
+class Foo
+  def Bar: () -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (constant))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
+
+
+==================
+? end method
+==================
+
+class Foo
+  def foo?: () -> bool
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier_suffix
+      (identifier)))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (builtin_type))))))))
+
+
+==================
+operator method
+==================
+
+class Foo
+  def +: (Integer) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (operator))
+    (method_types
+     (method_type
+      (parameters
+       (required_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant)))))))
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
+
+==================
+setter method
+==================
+
+class Foo
+  def foo=: (Integer) -> void
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (setter
+      (identifier)))
+    (method_types
+     (method_type
+      (parameters
+       (required_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant)))))))
+      (type
+       (builtin_type))))))))

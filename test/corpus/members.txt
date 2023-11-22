@@ -123,11 +123,11 @@ end
        (constant))))))))
 
 ==================
-attribute member for singleton and instance
+attribute member for singleton
 ==================
 
 class Foo
-  attr_writer self?.name: String
+  attr_writer self.name: String
 end
 
 ---
@@ -139,9 +139,8 @@ end
   (members
    (attribute_member
     (attribyte_type)
+    (self)
     (method_name
-     (identifier))
-    (ERROR
      (identifier))
     (type
      (class_type
