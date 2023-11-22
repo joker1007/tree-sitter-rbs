@@ -265,16 +265,24 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "type"
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "type"
+            }
           },
           {
             "type": "STRING",
             "value": "|"
           },
           {
-            "type": "SYMBOL",
-            "name": "type"
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "type"
+            }
           }
         ]
       }
@@ -286,16 +294,24 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "type"
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "type"
+            }
           },
           {
             "type": "STRING",
             "value": "&"
           },
           {
-            "type": "SYMBOL",
-            "name": "type"
+            "type": "FIELD",
+            "name": "right",
+            "content": {
+              "type": "SYMBOL",
+              "name": "type"
+            }
           }
         ]
       }
@@ -1174,16 +1190,24 @@
           "value": "class"
         },
         {
-          "type": "SYMBOL",
-          "name": "class_name"
+          "type": "FIELD",
+          "name": "new_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "class_name"
+          }
         },
         {
           "type": "STRING",
           "value": "="
         },
         {
-          "type": "SYMBOL",
-          "name": "class_name"
+          "type": "FIELD",
+          "name": "origin_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "class_name"
+          }
         }
       ]
     },
@@ -1195,26 +1219,34 @@
           "value": "module"
         },
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "new_name",
           "content": {
-            "type": "SYMBOL",
-            "name": "class_name"
-          },
-          "named": true,
-          "value": "module_name"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "class_name"
+            },
+            "named": true,
+            "value": "module_name"
+          }
         },
         {
           "type": "STRING",
           "value": "="
         },
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "origin_name",
           "content": {
-            "type": "SYMBOL",
-            "name": "class_name"
-          },
-          "named": true,
-          "value": "module_name"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "class_name"
+            },
+            "named": true,
+            "value": "module_name"
+          }
         }
       ]
     },
@@ -2810,6 +2842,23 @@
         }
       ]
     },
+    "singleton_method_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "self"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "method_name"
+        }
+      ]
+    },
     "alias_member": {
       "type": "CHOICE",
       "members": [
@@ -2821,12 +2870,20 @@
               "value": "alias"
             },
             {
-              "type": "SYMBOL",
-              "name": "method_name"
+              "type": "FIELD",
+              "name": "new_name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "method_name"
+              }
             },
             {
-              "type": "SYMBOL",
-              "name": "method_name"
+              "type": "FIELD",
+              "name": "origin_name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "method_name"
+              }
             }
           ]
         },
@@ -2838,28 +2895,20 @@
               "value": "alias"
             },
             {
-              "type": "SYMBOL",
-              "name": "self"
+              "type": "FIELD",
+              "name": "new_name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "singleton_method_name"
+              }
             },
             {
-              "type": "STRING",
-              "value": "."
-            },
-            {
-              "type": "SYMBOL",
-              "name": "method_name"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "self"
-            },
-            {
-              "type": "STRING",
-              "value": "."
-            },
-            {
-              "type": "SYMBOL",
-              "name": "method_name"
+              "type": "FIELD",
+              "name": "origin_name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "singleton_method_name"
+              }
             }
           ]
         }

@@ -62,9 +62,9 @@ module.exports = grammar({
 
     singleton_type: $ => seq("singleton", "(", $.class_name, ")"),
 
-    union_type: $ => prec.left(1, seq($.type, "|", $.type)),
+    union_type: $ => prec.left(1, seq(field("left", $.type), "|", field("right", $.type))),
 
-    intersection_type: $ => prec.left(2, seq($.type, "&", $.type)),
+    intersection_type: $ => prec.left(2, seq(field("left", $.type), "&", field("right", $.type))),
 
     optional_type: $ => prec(3, seq($.type, token.immediate("?"))),
 
@@ -176,8 +176,8 @@ module.exports = grammar({
 
     module_self_type_binds: $ => seq(":", $.module_self_types),
 
-    class_alias_decl: $ => seq("class", $.class_name, "=", $.class_name),
-    module_alias_decl: $ => seq("module", alias($.class_name, $.module_name), "=", alias($.class_name, $.module_name)),
+    class_alias_decl: $ => seq("class", field("new_name", $.class_name), "=", field("origin_name", $.class_name)),
+    module_alias_decl: $ => seq("module", field("new_name", alias($.class_name, $.module_name)), "=", field("origin_name", alias($.class_name, $.module_name))),
 
     module_self_types: $ => choice(
       seq($.class_name, optional($.type_arguments), optional(seq(",", $.module_self_types))),
@@ -319,9 +319,11 @@ module.exports = grammar({
       seq("prepend", $.interface_name, optional($.type_arguments)),
     ),
 
+    singleton_method_name: $ => seq($.self, ".", $.method_name),
+
     alias_member: $ => choice(
-      seq("alias", $.method_name, $.method_name),
-      seq("alias", $.self, ".", $.method_name, $.self, ".", $.method_name),
+      seq("alias", field("new_name", $.method_name), field("origin_name", $.method_name)),
+      seq("alias", field("new_name", $.singleton_method_name), field("origin_name", $.singleton_method_name)),
     ),
 
     ivar_name: $ => /@[a-zA-Z]\w+/,
