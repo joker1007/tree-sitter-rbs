@@ -302,6 +302,21 @@
     }
   },
   {
+    "type": "constant_setter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "constant_suffix",
     "named": true,
     "fields": {},
@@ -699,6 +714,10 @@
       "types": [
         {
           "type": "constant",
+          "named": true
+        },
+        {
+          "type": "constant_setter",
           "named": true
         },
         {
@@ -1378,35 +1397,11 @@
       "required": false,
       "types": [
         {
-          "type": "constant",
-          "named": true
-        },
-        {
-          "type": "constant_suffix",
-          "named": true
-        },
-        {
           "type": "double_quote_string_body",
           "named": true
         },
         {
           "type": "escape_sequence",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "identifier_suffix",
-          "named": true
-        },
-        {
-          "type": "operator",
-          "named": true
-        },
-        {
-          "type": "setter",
           "named": true
         },
         {
@@ -1939,11 +1934,11 @@
   },
   {
     "type": "interface",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
-    "named": true
+    "named": false
   },
   {
     "type": "ivar_name",
