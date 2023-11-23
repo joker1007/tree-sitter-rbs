@@ -265,7 +265,7 @@ end
        (builtin_type))))))))
 
 ==================
-literal types
+literal type args
 ==================
 
 class Foo
@@ -295,7 +295,8 @@ end
           (integer_literal)))
         (parameter
          (type
-          (symbol_literal)))))
+          (symbol_literal
+           (identifier))))))
       (type
        (class_type
         (class_name
@@ -340,43 +341,6 @@ end
         (builtin_type)))
       (type
        (builtin_type))))))))
-
-==================
-literal type args
-==================
-
-class Foo
-  def foo: ("foo", 123, :sym) -> Integer
-end
-
----
-
-(program
- (class_decl
-  (class_name
-   (constant))
-  (members
-   (method_member
-    (method_name
-     (identifier))
-    (method_types
-     (method_type
-      (parameters
-       (required_positionals
-        (parameter
-         (type
-          (string_literal
-           (double_quote_string_body))))
-        (parameter
-         (type
-          (integer_literal)))
-        (parameter
-         (type
-          (symbol_literal)))))
-      (type
-       (class_type
-        (class_name
-         (constant))))))))))
 
 ==================
 complex args

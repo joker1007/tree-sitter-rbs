@@ -102,7 +102,16 @@ module.exports = grammar({
     double_quote_string_body: $ => token(/[^"\\]+/),
     single_quote_string_body: $ => token(/[^'\\]+/),
 
-    symbol_literal: $ => /:["']?[a-zA-Z]\w+["']?/,
+    symbol_literal: $ => prec.right(choice(
+      seq(":\"", repeat(choice($.double_quote_string_body, $.escape_sequence)), "\""),
+      seq(":'", repeat(choice($.single_quote_string_body, $.escape_sequence)), "'"),
+      seq(":", $.identifier_suffix),
+      seq(":", $.identifier),
+      seq(":", $.constant),
+      seq(":", $.constant_suffix),
+      seq(":", $.operator),
+      seq(":", $.setter),
+    )),
 
     integer_literal: $ => /0[bB][01](_?[01])*|0[oO]?[0-7](_?[0-7])*|(0[dD])?\d(_?\d)*|0[xX][0-9a-fA-F](_?[0-9a-fA-F])*/,
 
@@ -333,7 +342,7 @@ module.exports = grammar({
       '-', '*', '/', '%', '!', '!~', '**', '<<', '>>', '~', '+@', '-@', '~@', '[]', '[]=', '`'
     ),
 
-    setter: $ => seq(field('name', $.identifier), token.immediate('=')),
+    setter: $ => seq($.identifier, token.immediate('=')),
     identifier_suffix: $ => seq($.identifier, token.immediate('?')),
     constant_suffix: $ => seq($.constant, token.immediate('?')),
 

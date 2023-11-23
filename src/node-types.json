@@ -1266,17 +1266,16 @@
   {
     "type": "setter",
     "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1365,6 +1364,53 @@
         },
         {
           "type": "type_arguments",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbol_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "constant_suffix",
+          "named": true
+        },
+        {
+          "type": "double_quote_string_body",
+          "named": true
+        },
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "identifier_suffix",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        },
+        {
+          "type": "setter",
+          "named": true
+        },
+        {
+          "type": "single_quote_string_body",
           "named": true
         }
       ]
@@ -1712,6 +1758,14 @@
     "named": false
   },
   {
+    "type": ":\"",
+    "named": false
+  },
+  {
+    "type": ":'",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -1942,10 +1996,6 @@
   {
     "type": "singleton",
     "named": false
-  },
-  {
-    "type": "symbol_literal",
-    "named": true
   },
   {
     "type": "top",

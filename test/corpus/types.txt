@@ -69,11 +69,10 @@ BAR: 123
    (integer_literal))))
 
 ==================
-symbol literal type
+symbol literal type (simple)
 ==================
 
 BAR: :symbol
-BAZ: :"symbol"
 
 ---
 
@@ -82,13 +81,127 @@ BAZ: :"symbol"
   (const_name
    (constant))
   (type
-   (symbol_literal)))
+   (symbol_literal
+    (identifier)))))
+
+==================
+symbol literal type with double-quote
+==================
+
+BAR: :"symbo\nl"
+
+---
+
+(program
  (const_decl
   (const_name
    (constant))
   (type
-   (symbol_literal))))
+   (symbol_literal
+    (double_quote_string_body)
+    (escape_sequence)
+    (double_quote_string_body)))))
 
+==================
+symbol literal type with single-quote
+==================
+
+BAR: :'symbo\nl'
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (symbol_literal
+    (single_quote_string_body)
+    (escape_sequence)
+    (single_quote_string_body)))))
+
+==================
+symbol literal type (operator)
+==================
+
+BAR: :+
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (symbol_literal
+    (operator)))))
+
+==================
+symbol literal type (?suffix)
+==================
+
+BAR: :symbol?
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (symbol_literal
+    (identifier_suffix
+     (identifier))))))
+
+==================
+symbol literal type (const)
+==================
+
+BAR: :CONST
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (symbol_literal
+    (constant)))))
+
+==================
+symbol literal type (const ?suffix)
+==================
+
+BAR: :CONST?
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (symbol_literal
+    (constant_suffix
+     (constant))))))
+
+==================
+symbol literal type (setter)
+==================
+
+BAR: :foo=
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (symbol_literal
+    (setter
+     (identifier))))))
 
 ==================
 string literal type with double-quote and escape-sequence
