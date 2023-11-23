@@ -334,7 +334,7 @@ module.exports = grammar({
       seq("alias", field("new_name", $.singleton_method_name), field("origin_name", $.singleton_method_name)),
     ),
 
-    ivar_name: $ => /@[a-zA-Z]\w+/,
+    ivar_name: $ => /@[a-zA-Z]\w*/,
     cvar_name: $ => /@@[a-zA-Z]\w+/,
 
     operator: $ => choice(

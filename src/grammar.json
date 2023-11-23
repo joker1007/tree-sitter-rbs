@@ -3109,7 +3109,7 @@
     },
     "ivar_name": {
       "type": "PATTERN",
-      "value": "@[a-zA-Z]\\w+"
+      "value": "@[a-zA-Z]\\w*"
     },
     "cvar_name": {
       "type": "PATTERN",
