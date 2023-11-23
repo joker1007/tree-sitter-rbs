@@ -69,6 +69,21 @@ BAR: 123
    (integer_literal))))
 
 ==================
+integer literal type with underscore
+==================
+
+BAR: 1_2_3
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (integer_literal))))
+
+==================
 symbol literal type (simple)
 ==================
 

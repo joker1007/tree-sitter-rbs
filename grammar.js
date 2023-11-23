@@ -113,7 +113,7 @@ module.exports = grammar({
       seq(":", $.setter),
     )),
 
-    integer_literal: $ => /0[bB][01](_?[01])*|0[oO]?[0-7](_?[0-7])*|(0[dD])?\d(_?\d)*|0[xX][0-9a-fA-F](_?[0-9a-fA-F])*/,
+    integer_literal: $ => /\d(_?\d)*/,
 
     // https://ruby-doc.org/core-2.5.0/doc/syntax/literals_rdoc.html#label-Strings
     escape_sequence: $ => token(seq(
