@@ -11,6 +11,13 @@ module.exports = grammar({
     /\\\r?\n/
   ],
 
+  conflicts: $ => [
+    [$.alias_name, $.var_name],
+    [$.required_positionals],
+    [$.optional_positionals],
+    [$.trailing_positionals],
+  ], 
+
   word: $ => $.identifier,
 
   rules: {
@@ -237,17 +244,39 @@ module.exports = grammar({
 
     proc: $ => seq("^", optional($.parameters), optional($.self_type_binding), optional($.block), "->", $.type),
 
-    parameters: $ => seq("(", optional($.required_positionals), optional($.optional_positionals), optional($.rest_positional), optional($.trailing_positionals), optional($.keywords), ")"),
+    parameters: $ => seq(
+      "(",
+      optional(choice(
+        seq($.required_positionals),
+        seq($.required_positionals, ",", choice($.optional_positionals, $.rest_positional, $.keywords)),
+        seq($.required_positionals, ",", $.optional_positionals, ",", choice($.rest_positional, $.trailing_positionals, $.keywords)),
+        seq($.required_positionals, ",", $.optional_positionals, ",", $.rest_positional, ",", choice($.trailing_positionals, $.keywords)),
+        seq($.required_positionals, ",", $.optional_positionals, ",", $.rest_positional, ",", $.trailing_positionals, ",", $.keywords),
+        seq($.required_positionals, ",", $.optional_positionals, ",", $.trailing_positionals, ",", optional($.keywords)),
+        seq($.required_positionals, ",", $.rest_positional, ",", choice($.trailing_positionals, $.keywords)),
+        seq($.required_positionals, ",", $.rest_positional, ",", $.trailing_positionals, ",", $.keywords),
+        seq($.optional_positionals),
+        seq($.optional_positionals, ",", choice($.rest_positional, $.trailing_positionals, $.keywords)),
+        seq($.optional_positionals, ",", $.rest_positional, ",", choice($.trailing_positionals, $.keywords)),
+        seq($.optional_positionals, ",", $.rest_positional, ",", $.trailing_positionals, ",", $.keywords),
+        seq($.optional_positionals, ",", $.trailing_positionals, ",", $.keywords),
+        seq($.rest_positional),
+        seq($.rest_positional, ",", choice($.trailing_positionals, $.keywords)),
+        seq($.rest_positional, ",", $.trailing_positionals, ",", $.keywords),
+        seq($.keywords),
+      )),
+      ")"
+    ),
 
     parameter: $ => prec.right(seq($.type, optional($.var_name))),
 
-    required_positionals: $ => prec.right(seq(commaSep1($.parameter), optional(","))),
+    required_positionals: $ => seq(commaSep1($.parameter)),
 
-    optional_positionals: $ => prec.right(-1, seq(commaSep1(seq("?", $.parameter)), optional(","))),
+    optional_positionals: $ => seq(commaSep1(seq("?", $.parameter))),
 
-    rest_positional: $ => prec.right(-2, seq("*", $.parameter, optional(","))),
+    rest_positional: $ => seq("*", $.parameter),
 
-    trailing_positionals: $ => prec.right(-3, seq(commaSep1($.parameter), optional(","))),
+    trailing_positionals: $ => seq(commaSep1($.parameter)),
 
     keywords: $ => choice(
       $.splat_keyword,
@@ -256,10 +285,10 @@ module.exports = grammar({
     ),
 
     splat_keyword: $ => seq("**", $.parameter),
-    required_keywords: $ => seq(prec.right(1, seq(alias($.var_name, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
-    optional_keywords: $ => seq(prec.right(1, seq("?", alias($.var_name, $.keyword), ":")), $.parameter, optional(seq(",", $.keywords))),
+    required_keywords: $ => seq(prec.right(1, seq(alias($.var_name, $.keyword), ":")), $.type, optional(seq(",", $.keywords))),
+    optional_keywords: $ => seq(prec.right(1, seq("?", alias($.var_name, $.keyword), ":")), $.type, optional(seq(",", $.keywords))),
 
-    var_name: $ => /[a-z]\w*/,
+    var_name: $ => $.identifier,
 
     self_type_binding: $ => seq("[", $.self, ":", $.type, "]"),
 

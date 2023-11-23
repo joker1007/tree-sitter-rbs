@@ -51,7 +51,8 @@ end
           (class_type
            (class_name
             (constant))))
-         (var_name))
+         (var_name
+          (identifier)))
         (parameter
          (type
           (class_type
@@ -89,26 +90,30 @@ end
           (class_type
            (class_name
             (constant))))
-         (var_name))
+         (var_name
+          (identifier)))
         (parameter
          (type
           (class_type
            (class_name
             (constant))))
-         (var_name))
+         (var_name
+          (identifier)))
         (parameter
          (type
           (class_type
            (class_name
             (constant))))
-         (var_name)))
+         (var_name
+          (identifier))))
        (optional_positionals
         (parameter
          (type
           (class_type
            (class_name
             (constant))))
-         (var_name))
+         (var_name
+          (identifier)))
         (parameter
          (type
           (class_type
@@ -130,6 +135,7 @@ end
 
 ---
 
+
 (program
  (class_decl
   (class_name
@@ -143,41 +149,40 @@ end
       (parameters
        (keywords
         (required_keywords
-         (keyword)
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant)))))
+         (keyword
+          (identifier))
+         (type
+          (class_type
+           (class_name
+            (constant))))
          (keywords
           (required_keywords
-           (keyword)
-           (parameter
-            (type
-             (class_type
-              (class_name
-               (constant))
-              (type_arguments
-               (type
-                (class_type
-                 (class_name
-                  (constant))))
-               (type
-                (class_type
-                 (class_name
-                  (constant)))))))))))))
+           (keyword
+            (identifier))
+           (type
+            (class_type
+             (class_name
+              (constant))
+             (type_arguments
+              (type
+               (class_type
+                (class_name
+                 (constant))))
+              (type
+               (class_type
+                (class_name
+                 (constant))))))))))))
   (type
    (class_type
     (class_name
      (constant))))))))))
-
 
 ==================
 required args and keyword args
 ==================
 
 class Foo
-  def foo: (String st, key1: String, ?key2: String?, **Hash) -> Integer
+  def foo: (String st, alias_type al, key1: String, ?key2: String?, **Hash) -> Integer
 end
 
 ---
@@ -199,25 +204,33 @@ end
           (class_type
            (class_name
             (constant))))
-         (var_name)))
+         (var_name
+          (identifier)))
+        (parameter
+         (type
+          (alias_type
+           (alias_name
+            (identifier))))
+         (var_name
+          (identifier))))
        (keywords
         (required_keywords
-         (keyword)
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant)))))
+         (keyword
+          (identifier))
+         (type
+          (class_type
+           (class_name
+            (constant))))
          (keywords
           (optional_keywords
-           (keyword)
-           (parameter
-            (type
-             (optional_type
-              (type
-               (class_type
-                (class_name
-                 (constant)))))))
+           (keyword
+            (identifier))
+           (type
+            (optional_type
+             (type
+              (class_type
+               (class_name
+                (constant))))))
            (keywords
             (splat_keyword
              (parameter
@@ -295,8 +308,7 @@ end
           (integer_literal)))
         (parameter
          (type
-          (symbol_literal
-           (identifier))))))
+          (symbol_literal)))))
       (type
        (class_type
         (class_name
@@ -369,7 +381,8 @@ end
           (class_type
            (class_name
             (constant))))
-         (var_name)))
+         (var_name
+          (identifier))))
        (optional_positionals
         (parameter
          (type
@@ -406,33 +419,34 @@ end
                (class_type
                 (class_name
                  (constant)))))))))
-         (var_name)))
+         (var_name
+          (identifier))))
        (keywords
         (required_keywords
-         (keyword)
-         (parameter
-          (type
-           (class_type
-            (class_name
-             (constant)))))
+         (keyword
+          (identifier))
+         (type
+          (class_type
+           (class_name
+            (constant))))
          (keywords
           (required_keywords
-           (keyword)
-           (parameter
-            (type
-             (class_type
-              (class_name
-               (constant)))))
+           (keyword
+            (identifier))
+           (type
+            (class_type
+             (class_name
+              (constant))))
            (keywords
             (optional_keywords
-             (keyword)
-             (parameter
-              (type
-               (optional_type
-                (type
-                 (class_type
-                  (class_name
-                   (constant)))))))
+             (keyword
+              (identifier))
+             (type
+              (optional_type
+               (type
+                (class_type
+                 (class_name
+                  (constant))))))
              (keywords
               (splat_keyword
                (parameter
@@ -440,7 +454,8 @@ end
                  (class_type
                   (class_name
                    (constant))))
-                (var_name)))))))))))
+                (var_name
+                 (identifier))))))))))))
   (block
    (parameters
     (required_positionals
@@ -449,14 +464,14 @@ end
        (class_type
         (class_name
          (constant))))
-      (var_name))))
+      (var_name
+       (identifier)))))
    (type
     (builtin_type)))
   (type
    (class_type
     (class_name
      (constant))))))))))
-
 
 ==================
 constant name method

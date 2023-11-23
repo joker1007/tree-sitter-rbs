@@ -96,8 +96,7 @@ BAR: :symbol
   (const_name
    (constant))
   (type
-   (symbol_literal
-    (identifier)))))
+   (symbol_literal))))
 
 ==================
 symbol literal type with double-quote
@@ -148,8 +147,7 @@ BAR: :+
   (const_name
    (constant))
   (type
-   (symbol_literal
-    (operator)))))
+   (symbol_literal))))
 
 ==================
 symbol literal type (?suffix)
@@ -164,9 +162,7 @@ BAR: :symbol?
   (const_name
    (constant))
   (type
-   (symbol_literal
-    (identifier_suffix
-     (identifier))))))
+   (symbol_literal))))
 
 ==================
 symbol literal type (const)
@@ -181,8 +177,7 @@ BAR: :CONST
   (const_name
    (constant))
   (type
-   (symbol_literal
-    (constant)))))
+   (symbol_literal))))
 
 ==================
 symbol literal type (const ?suffix)
@@ -197,9 +192,7 @@ BAR: :CONST?
   (const_name
    (constant))
   (type
-   (symbol_literal
-    (constant_suffix
-     (constant))))))
+   (symbol_literal))))
 
 ==================
 symbol literal type (setter)
@@ -214,9 +207,7 @@ BAR: :foo=
   (const_name
    (constant))
   (type
-   (symbol_literal
-    (setter
-     (identifier))))))
+   (symbol_literal))))
 
 ==================
 string literal type with double-quote and escape-sequence
