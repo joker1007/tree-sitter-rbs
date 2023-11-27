@@ -68,6 +68,45 @@ optional args
 ==================
 
 class Foo
+  def foo: (?Foo foo, ?Bar) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters
+       (optional_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (var_name
+          (identifier)))
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant)))))))
+  (type
+   (class_type
+    (class_name
+     (constant))))))))))
+
+==================
+required args and optional args
+==================
+
+class Foo
   def foo: (String st, Integer it, Float fl, ?Foo foo, ?Bar) -> Integer
 end
 
@@ -119,6 +158,60 @@ end
           (class_type
            (class_name
             (constant)))))))
+  (type
+   (class_type
+    (class_name
+     (constant))))))))))
+
+==================
+optional args and trailing args
+==================
+
+class Foo
+  def foo: (?Foo foo, ?Bar, String st, Integer int) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters
+       (optional_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (var_name
+          (identifier)))
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))))
+       (trailing_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (var_name
+          (identifier)))
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (var_name
+          (identifier)))))
   (type
    (class_type
     (class_name
@@ -213,6 +306,137 @@ end
             (identifier))))
          (var_name
           (identifier))))
+       (keywords
+        (required_keywords
+         (keyword
+          (identifier))
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (keywords
+          (optional_keywords
+           (keyword
+            (identifier))
+           (type
+            (optional_type
+             (type
+              (class_type
+               (class_name
+                (constant))))))
+           (keywords
+            (splat_keyword
+             (parameter
+              (type
+               (class_type
+                (class_name
+                 (constant))))))))))))
+  (type
+   (class_type
+    (class_name
+     (constant))))))))))
+
+==================
+optional args and keyword args
+==================
+
+class Foo
+  def foo: (?String st, ?alias_type al, key1: String, ?key2: String?, **Hash) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters
+       (optional_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (var_name
+          (identifier)))
+        (parameter
+         (type
+          (alias_type
+           (alias_name
+            (identifier))))
+         (var_name
+          (identifier))))
+       (keywords
+        (required_keywords
+         (keyword
+          (identifier))
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (keywords
+          (optional_keywords
+           (keyword
+            (identifier))
+           (type
+            (optional_type
+             (type
+              (class_type
+               (class_name
+                (constant))))))
+           (keywords
+            (splat_keyword
+             (parameter
+              (type
+               (class_type
+                (class_name
+                 (constant))))))))))))
+  (type
+   (class_type
+    (class_name
+     (constant))))))))))
+
+==================
+optional args and trailing args and keyword args
+==================
+
+class Foo
+  def foo: (?String st, Integer, key1: String, ?key2: String?, **Hash) -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters
+       (optional_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))
+         (var_name
+          (identifier))))
+       (trailing_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant))))))
        (keywords
         (required_keywords
          (keyword
