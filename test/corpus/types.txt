@@ -54,6 +54,28 @@ FOO: singleton(String)
      (constant))))))
 
 ==================
+class type with type variable
+==================
+
+FOO: Array[T]
+
+---
+
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (class_type
+    (class_name
+     (constant))
+    (type_arguments
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
+
+==================
 integer literal type
 ==================
 

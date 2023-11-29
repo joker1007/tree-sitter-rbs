@@ -48,6 +48,87 @@ end
      (constant))))))
 
 ==================
+class with unchecked generics
+==================
+
+class Foo[unchecked A]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (module_type_parameters
+   (module_type_parameter
+    (generics_unchecked)
+    (type_variable
+     (constant))))))
+
+==================
+class with variant generics
+==================
+
+class Foo[out A]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (module_type_parameters
+   (module_type_parameter
+    (generics_variance)
+    (type_variable
+     (constant))))))
+
+==================
+class with unchecked and variant generics
+==================
+
+class Foo[unchecked out A]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (module_type_parameters
+   (module_type_parameter
+    (generics_unchecked)
+    (generics_variance)
+    (type_variable
+     (constant))))))
+
+==================
+class with variant bound generics
+==================
+
+class Foo[A < _B]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (module_type_parameters
+   (module_type_parameter
+    (type_variable
+     (constant))
+    (generics_bound
+     (bound_type
+      (interface_type
+       (interface_name
+        (interface)))))))))
+
+==================
 class with multiple type params
 ==================
 
