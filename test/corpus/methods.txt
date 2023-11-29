@@ -812,3 +812,29 @@ end
             (constant)))))))
       (type
        (builtin_type))))))))
+
+==================
+multibyte method name
+==================
+
+class Foo
+  def テスト: () -> Integer
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
