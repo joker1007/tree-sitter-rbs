@@ -35,9 +35,11 @@
  "def"
 ] @keyword.function
 
-(include_member "include" @function.method)  
-(extend_member "extend" @function.method)  
-(prepend_member "prepend" @function.method)  
+[
+ "include"
+ "extend"
+ "prepend"
+] @function.method
 
 (visibility) @type.qualifier
 
@@ -52,8 +54,7 @@
      (setter)
     ] @function.method))
 
-(ivar_member (ivar_name) @property)
-(ivar_member (cvar_name) @property)
+[(ivar_name) (cvar_name)] @property
 
 (alias_member (method_name) @function)
 
