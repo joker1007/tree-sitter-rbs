@@ -1,7 +1,4 @@
-(use_directive
- "use" @keyword)
-(use_clause
- "as" @keyword)
+; Use directive
 
 (use_clause
   [
@@ -9,16 +6,18 @@
     (simple_type_name)
   ] @type)
 
+; Buitin constants and Keywords
+
 [
   "true"
   "false"
 ] @boolean
 
-[
- "nil"
-] @constant.builtin
+"nil" @constant.builtin
 
 [
+  "use"
+  "as"
   "class"
   "module"
   "interface"
@@ -31,9 +30,9 @@
   "alias"
 ] @keyword
 
-[
- "def"
-] @keyword.function
+"def" @keyword.function
+
+; Members of declaration
 
 [
  "include"
@@ -43,7 +42,7 @@
 
 (visibility) @type.qualifier
 
-(comment) @comment
+(comment) @comment @spell
 
 (method_member
   (method_name
@@ -52,7 +51,7 @@
      (constant)
      (operator)
      (setter)
-    ] @function.method))
+    ] @method))
 
 [(ivar_name) (cvar_name)] @property
 
@@ -70,18 +69,24 @@
 (const_name (constant) @constant)
 (global_name) @property
 
-(parameter (var_name) @variable.parameter)
+; Standard Arguments
+(parameter (var_name) @parameter)
 
-(keyword) @variable.parameter
+; Keyword Arguments
+(keyword) @parameter
 
+; Self
 (self) @variable.builtin
 
+; Literal
 (type (symbol_literal) @symbol)
 
 (type (string_literal (escape_sequence) @string.escape))
 (type (string_literal) @string)
 
 (type (integer_literal) @number)
+
+; Operators
 
 [
  "="
@@ -93,6 +98,8 @@
  "|"
  "^"
  ] @operator
+
+; Punctuation
 
 [
  "("
