@@ -1,6 +1,6 @@
 use RBS::TypeName as TN
  # <- keyword
-     # <- constant
+     # <- namespace
            # <- type
                    # <- keyword
 
@@ -21,9 +21,10 @@ class Foo[A]
   prepend Mod3
     # <- function.method
 
-  attr_reader id: Integer
+  attr_reader id: Integer | nil
     # <- keyword
                     # <- type
+                          # <- operator
   @ids: Array[Integer]
    # <- property
                 # <- type
@@ -45,10 +46,10 @@ class Foo[A]
 
   def keyword_arg: (a: bool, b: untyped, **Hash opts) -> void
                     # <- variable.parameter
-                        # <- type
-                                  # <- type
+                        # <- type.builtin
+                                  # <- type.builtin
                                                  # <- variable.parameter
-                                                          # <- type
+                                                          # <- type.builtin
 end
  # <- keyword
 

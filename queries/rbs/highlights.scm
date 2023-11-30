@@ -62,9 +62,9 @@
 (interface_name (interface) @type)
 (alias_name (identifier) @type)
 (type_variable) @constant
-(namespace (constant) @constant)
+(namespace (constant) @namespace)
 
-(builtin_type) @type
+(builtin_type) @type.builtin
 
 (const_name (constant) @constant)
 (global_name) @property
@@ -82,6 +82,7 @@
 
 (type (integer_literal) @number)
 
+(ERROR) @error
 
 [
  "="
