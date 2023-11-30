@@ -10,7 +10,7 @@ class Foo[A]
           # <- constant
   def foo: (String) -> String
    # <- keyword
-      # <- function.method
+      # <- method
               # <- type
                         # <- type
 
@@ -41,14 +41,14 @@ class Foo[A]
 
   def self.bar: (String string) -> String
        # <- variable.builtin
-                          # <- variable.parameter
+                          # <- parameter
                                  # <- operator
 
   def keyword_arg: (a: bool, b: untyped, **Hash opts) -> void
-                    # <- variable.parameter
+                    # <- parameter
                         # <- type.builtin
                                   # <- type.builtin
-                                                 # <- variable.parameter
+                                                 # <- parameter
                                                           # <- type.builtin
 end
  # <- keyword
