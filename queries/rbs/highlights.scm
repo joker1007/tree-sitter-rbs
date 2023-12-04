@@ -86,6 +86,9 @@
 
 (type (integer_literal) @number)
 
+; Annotation
+(annotation_text) @attribute
+
 ; Operators
 
 [
