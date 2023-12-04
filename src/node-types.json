@@ -805,6 +805,29 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "method_type_body",
+          "named": true
+        },
+        {
+          "type": "method_type_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_type_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
           "type": "block",
           "named": true
         },
@@ -843,15 +866,7 @@
       "required": false,
       "types": [
         {
-          "type": "annotations",
-          "named": true
-        },
-        {
           "type": "method_type",
-          "named": true
-        },
-        {
-          "type": "method_type_parameters",
           "named": true
         }
       ]

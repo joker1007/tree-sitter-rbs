@@ -14,6 +14,7 @@ module.exports = grammar({
   inline: $ => [
     $._no_parantheses_type,
     $._parantheses_type,
+    $._nestable_decls,
   ],
 
   conflicts: $ => [
@@ -272,7 +273,7 @@ module.exports = grammar({
 
     generics_variance: $ => choice("out", "in"),
 
-    method_type: $ => seq(optional($.parameters), optional($.block), "->", $.type),
+    method_type_body: $ => seq(optional($.parameters), optional($.block), "->", $.type),
 
     proc: $ => seq("^", optional($.parameters), optional($.self_type_binding), optional($.block), "->", $.type),
 
@@ -355,8 +356,10 @@ module.exports = grammar({
       seq("def", $.self, "?.", $.method_name, ":", $.method_types),
     ),
 
+    method_type: $ => seq(optional($.method_type_parameters), alias(repeat($.annotation), $.annotations), $.method_type_body),
+
     method_types: $ => choice(
-      sep1(seq(optional($.method_type_parameters), alias(repeat($.annotation), $.annotations), $.method_type), "|"),
+      sep1($.method_type, "|"),
       "..."
     ),
 
