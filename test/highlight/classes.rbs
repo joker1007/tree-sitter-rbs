@@ -39,10 +39,11 @@ class Foo[A]
   @int: 42
          # <- number
 
-  def self.bar: (String string) -> String
-       # <- variable.builtin
-                          # <- parameter
-                                 # <- operator
+  %a{pure} def self.bar: (String string) -> String
+      # <- attribute
+                # <- variable.builtin
+                                   # <- parameter
+                                          # <- operator
 
   def keyword_arg: (a: bool, b: untyped, **Hash opts) -> void
                     # <- parameter
