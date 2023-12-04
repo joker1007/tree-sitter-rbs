@@ -872,3 +872,57 @@ end
           (class_type
            (class_name
             (constant)))))))))))))
+
+==================
+method type overload
+==================
+
+class Foo
+  def foo: [A] () -> Array[A] | [B] (B) -> Array[B]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type_parameters
+      (type_variable
+       (constant)))
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))
+        (type_arguments
+         (type
+          (class_type
+           (class_name
+            (constant))))))))
+     (method_type_parameters
+      (type_variable
+       (constant)))
+     (method_type
+      (parameters
+       (required_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant)))))))
+      (type
+       (class_type
+        (class_name
+         (constant))
+        (type_arguments
+         (type
+          (class_type
+           (class_name
+            (constant)))))))))))))

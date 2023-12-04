@@ -11,6 +11,11 @@ module.exports = grammar({
     /\\\r?\n/
   ],
 
+  inline: $ => [
+    $._no_parantheses_type,
+    $._parantheses_type,
+  ],
+
   conflicts: $ => [
     [$.alias_name, $.var_name],
     [$.required_positionals],
@@ -28,7 +33,7 @@ module.exports = grammar({
 
     self: $ => "self",
 
-    type: $ => choice(
+    _no_parantheses_type: $ => choice(
       $.class_type,
       $.interface_type,
       $.alias_type,
@@ -41,6 +46,13 @@ module.exports = grammar({
       $.tuple_type,
       $.builtin_type,
       $.proc,
+    ),
+
+    _parantheses_type: $ => seq("(", $._no_parantheses_type, ")"),
+
+    type: $ => choice(
+      $._no_parantheses_type,
+      $._parantheses_type,
     ),
 
     builtin_type: $ => choice(
@@ -68,7 +80,7 @@ module.exports = grammar({
 
     singleton_type: $ => seq("singleton", "(", $.class_name, ")"),
 
-    union_type: $ => prec.left(1, seq(field("left", $.type), "|", field("right", $.type))),
+    union_type: $ => prec.left(-1, seq(field("left", $.type), "|", field("right", $.type))),
 
     intersection_type: $ => prec.left(2, seq(field("left", $.type), "&", field("right", $.type))),
 
@@ -321,8 +333,7 @@ module.exports = grammar({
     ),
 
     method_types: $ => choice(
-      seq(optional($.method_type_parameters), $.method_type),
-      seq(optional($.method_type_parameters), $.method_type, "|", $.method_types),
+      sep1(seq(optional($.method_type_parameters), $.method_type), "|"),
       "..."
     ),
 

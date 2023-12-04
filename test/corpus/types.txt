@@ -478,3 +478,31 @@ type foo1 = boolean
     (alias_name
      (identifier))))))
 
+
+==================
+type definition with parentheses
+==================
+
+FOO: (String | Integer) & Float
+
+---
+(program
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (intersection_type
+    (type
+     (union_type
+      (type
+       (class_type
+        (class_name
+         (constant))))
+      (type
+       (class_type
+        (class_name
+         (constant))))))
+    (type
+     (class_type
+      (class_name
+       (constant))))))))

@@ -811,10 +811,6 @@
         {
           "type": "method_type_parameters",
           "named": true
-        },
-        {
-          "type": "method_types",
-          "named": true
         }
       ]
     }
@@ -1964,11 +1960,11 @@
   },
   {
     "type": "interface",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
-    "named": true
+    "named": false
   },
   {
     "type": "ivar_name",
