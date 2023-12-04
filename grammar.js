@@ -14,6 +14,7 @@ module.exports = grammar({
   inline: $ => [
     $._no_parantheses_type,
     $._parantheses_type,
+    $._nestable_decls,
   ],
 
   conflicts: $ => [
@@ -154,15 +155,32 @@ module.exports = grammar({
       seq($.namespace, "*"),
     ),
 
-    _decl: $ => choice(
-      $.class_decl,
-      $.module_decl,
-      $.class_alias_decl,
-      $.module_alias_decl,
-      $.interface_decl,
-      $.type_alias_decl,
-      $.const_decl,
-      $.global_decl,
+    _annotation_text_without_brace: $ => /[^\x00}]*/,
+    _annotation_text_without_parenthesis: $ => /[^\x00)]*/,
+    _annotation_text_without_bracket: $ => /[^\x00]]*/,
+    _annotation_text_without_bar: $ => /[^\x00\|]]*/,
+    _annotation_text_without_angle_bracket: $ => /[^\x00>]]*/,
+
+    annotation: $ => choice(
+      seq("%a{", alias($._annotation_text_without_brace, $.annotation_text), "}"),
+      seq("%a(", alias($._annotation_text_without_parenthesis, $.annotation_text), ")"),
+      seq("%a[", $._annotation_text_without_bracket, "]"),
+      seq("%a|", $._annotation_text_without_bar, "|"),
+      seq("%a<", $._annotation_text_without_angle_bracket, ">"),
+    ),
+
+    _decl: $ => seq(
+      alias(repeat($.annotation), $.annotations),
+      choice(
+        $.class_decl,
+        $.module_decl,
+        $.class_alias_decl,
+        $.module_alias_decl,
+        $.interface_decl,
+        $.type_alias_decl,
+        $.const_decl,
+        $.global_decl,
+      )
     ),
 
     _nestable_decls: $ => choice(
@@ -211,10 +229,13 @@ module.exports = grammar({
 
     interface_decl: $ => seq("interface", $.interface_name, optional($.module_type_parameters), alias(repeat($.interface_member), $.interface_members), "end"),
 
-    interface_member: $ => choice(
-      $.method_member,
-      $.include_member,
-      $.alias_member,
+    interface_member: $ => seq(
+      alias(repeat($.annotation), $.annotations),
+      choice(
+        $.method_member,
+        $.include_member,
+        $.alias_member,
+      )
     ),
 
     type_alias_decl: $ => seq("type", $.alias_name, optional($.module_type_parameters), "=", $.type),
@@ -252,7 +273,7 @@ module.exports = grammar({
 
     generics_variance: $ => choice("out", "in"),
 
-    method_type: $ => seq(optional($.parameters), optional($.block), "->", $.type),
+    method_type_body: $ => seq(optional($.parameters), optional($.block), "->", $.type),
 
     proc: $ => seq("^", optional($.parameters), optional($.self_type_binding), optional($.block), "->", $.type),
 
@@ -309,15 +330,18 @@ module.exports = grammar({
       seq("?", "{", $.parameters, optional($.self_type_binding), "->", $.type, "}"),
     ),
 
-    _member: $ => choice(
-      $.ivar_member,
-      $.method_member,
-      prec.right($.attribute_member),
-      $.include_member,
-      $.extend_member,
-      $.prepend_member,
-      $.alias_member,
-      prec.left($.visibility_member),
+    _member: $ => seq(
+      alias(repeat($.annotation), $.annotations),
+      choice(
+        $.ivar_member,
+        $.method_member,
+        prec.right($.attribute_member),
+        $.include_member,
+        $.extend_member,
+        $.prepend_member,
+        $.alias_member,
+        prec.left($.visibility_member),
+      )
     ),
 
     ivar_member: $ => choice(
@@ -332,8 +356,10 @@ module.exports = grammar({
       seq("def", $.self, "?.", $.method_name, ":", $.method_types),
     ),
 
+    method_type: $ => seq(optional($.method_type_parameters), alias(repeat($.annotation), $.annotations), $.method_type_body),
+
     method_types: $ => choice(
-      sep1(seq(optional($.method_type_parameters), $.method_type), "|"),
+      sep1($.method_type, "|"),
       "..."
     ),
 

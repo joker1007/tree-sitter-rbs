@@ -380,8 +380,9 @@ end
          (identifier))
         (method_types
          (method_type
-          (parameters)
-          (type
-           (class_type
-            (class_name
-             (constant))))))))))))))
+          (method_type_body
+           (parameters)
+           (type
+            (class_type
+             (class_name
+              (constant)))))))))))))))
