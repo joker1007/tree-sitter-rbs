@@ -72,6 +72,36 @@
     }
   },
   {
+    "type": "annotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "annotations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "attribute_member",
     "named": true,
     "fields": {},
@@ -459,11 +489,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "alias_member",
+          "named": true
+        },
+        {
+          "type": "annotations",
           "named": true
         },
         {
@@ -631,6 +665,10 @@
       "types": [
         {
           "type": "alias_member",
+          "named": true
+        },
+        {
+          "type": "annotations",
           "named": true
         },
         {
@@ -804,6 +842,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
         {
           "type": "method_type",
           "named": true
@@ -1156,6 +1198,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
         {
           "type": "class_alias_decl",
           "named": true
@@ -1707,6 +1753,26 @@
     "named": false
   },
   {
+    "type": "%a(",
+    "named": false
+  },
+  {
+    "type": "%a<",
+    "named": false
+  },
+  {
+    "type": "%a[",
+    "named": false
+  },
+  {
+    "type": "%a{",
+    "named": false
+  },
+  {
+    "type": "%a|",
+    "named": false
+  },
+  {
     "type": "&",
     "named": false
   },
@@ -1865,6 +1931,10 @@
   {
     "type": "alias",
     "named": false
+  },
+  {
+    "type": "annotation_text",
+    "named": true
   },
   {
     "type": "as",

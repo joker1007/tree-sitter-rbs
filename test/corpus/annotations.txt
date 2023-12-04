@@ -1,0 +1,354 @@
+==================
+annotation with class decl
+==================
+
+%a{test} class Foo
+end
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (class_decl
+  (class_name
+   (constant))))
+
+==================
+annotation with module decl
+==================
+
+%a{test} module Foo
+end
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (module_decl
+  (module_name
+   (constant))))
+
+==================
+annotation with interface decl
+==================
+
+%a{test} interface _Foo
+end
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (interface_decl
+  (interface_name
+   (interface))))
+
+==================
+annotation with class alias decl
+==================
+
+%a{test} class Foo = Bar
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (class_alias_decl
+  (class_name
+   (constant))
+  (class_name
+   (constant))))
+
+==================
+annotation with module alias decl
+==================
+
+%a{test} module Foo = Bar
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (module_alias_decl
+  (module_name
+   (constant))
+  (module_name
+   (constant))))
+
+==================
+annotation with type alias decl
+==================
+
+%a{test} type foo = Bar
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (type_alias_decl
+  (alias_name
+   (identifier))
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+==================
+annotation with const decl
+==================
+
+%a{test} Foo: String
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (const_decl
+  (const_name
+   (constant))
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+==================
+annotation with global decl
+==================
+
+%a{test} $foo: String
+
+---
+
+(program
+ (annotations
+  (annotation
+   (annotation_text)))
+ (global_decl
+  (global_name)
+  (type
+   (class_type
+    (class_name
+     (constant))))))
+
+
+==================
+annotation with class members
+==================
+
+class Foo
+  %a(test) def foo: () -> String
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (annotations
+    (annotation
+     (annotation_text)))
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
+
+==================
+annotation with module members
+==================
+
+module Foo
+  %a(test) def foo: () -> String
+end
+
+---
+
+(program
+ (module_decl
+  (module_name
+   (constant))
+  (members
+   (annotations
+    (annotation
+     (annotation_text)))
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
+
+==================
+annotation with interface members
+==================
+
+interface _Foo
+  %a(test) def foo: () -> String
+end
+
+---
+
+(program
+ (interface_decl
+  (interface_name
+   (interface))
+  (interface_members
+   (interface_member
+    (annotations
+     (annotation
+      (annotation_text)))
+    (method_member
+     (method_name
+      (identifier))
+     (method_types
+      (method_type
+       (parameters)
+       (type
+        (class_type
+         (class_name
+          (constant)))))))))))
+
+
+==================
+annotation with method visibility
+==================
+
+class Foo
+  %a(test) private def foo: () -> String
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (annotations
+    (annotation
+     (annotation_text)))
+   (method_member
+    (visibility)
+    (method_name
+     (identifier))
+    (method_types
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
+
+==================
+annotation with method types
+==================
+
+class Foo
+  def foo: [A] %a{test1} () -> Array[A]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type_parameters
+      (type_variable
+       (constant)))
+     (annotations
+      (annotation
+       (annotation_text)))
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))
+        (type_arguments
+         (type
+          (class_type
+           (class_name
+            (constant)))))))))))))
+
+==================
+annotation with method overloading
+==================
+
+class Foo
+  def foo: [A] %a{test1} () -> Array[A]
+         | %a{test2} (String) -> Integer
+end
+
+---
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type_parameters
+      (type_variable
+       (constant)))
+     (annotations
+      (annotation
+       (annotation_text)))
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))
+        (type_arguments
+         (type
+          (class_type
+           (class_name
+            (constant))))))))
+     (annotations
+      (annotation
+       (annotation_text)))
+     (method_type
+      (parameters
+       (required_positionals
+        (parameter
+         (type
+          (class_type
+           (class_name
+            (constant)))))))
+      (type
+       (class_type
+        (class_name
+         (constant))))))))))
