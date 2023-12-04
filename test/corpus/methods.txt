@@ -838,3 +838,37 @@ end
        (class_type
         (class_name
          (constant))))))))))
+
+==================
+has method type parameters
+==================
+
+class Foo
+  def foo: [A] () -> Array[A]
+end
+
+---
+
+(program
+ (class_decl
+  (class_name
+   (constant))
+  (members
+   (method_member
+    (method_name
+     (identifier))
+    (method_types
+     (method_type_parameters
+      (type_variable
+       (constant)))
+     (method_type
+      (parameters)
+      (type
+       (class_type
+        (class_name
+         (constant))
+        (type_arguments
+         (type
+          (class_type
+           (class_name
+            (constant)))))))))))))
