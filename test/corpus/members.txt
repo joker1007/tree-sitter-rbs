@@ -9,16 +9,17 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (ivar_member
-        (ivar_name)
-        (type
-          (class_type
-            (class_name
-              (constant))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (ivar_member
+          (ivar_name)
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
 ================================================================================
 method member
@@ -31,21 +32,22 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (method_member
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant)))))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (method_member
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))))))))))))
 
 ================================================================================
 singleton method member
@@ -58,22 +60,23 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (method_member
-        (self)
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant)))))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (method_member
+          (self)
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))))))))))))
 
 ================================================================================
 attribute member
@@ -86,18 +89,19 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (attribute_member
-        (attribyte_type)
-        (method_name
-          (identifier))
-        (type
-          (class_type
-            (class_name
-              (constant))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (attribute_member
+          (attribyte_type)
+          (method_name
+            (identifier))
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
 ================================================================================
 attribute member with ivar
@@ -110,19 +114,20 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (attribute_member
-        (attribyte_type)
-        (method_name
-          (identifier))
-        (ivar_name)
-        (type
-          (class_type
-            (class_name
-              (constant))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (attribute_member
+          (attribyte_type)
+          (method_name
+            (identifier))
+          (ivar_name)
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
 ================================================================================
 attribute member for singleton
@@ -135,19 +140,20 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (attribute_member
-        (attribyte_type)
-        (self)
-        (method_name
-          (identifier))
-        (type
-          (class_type
-            (class_name
-              (constant))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (attribute_member
+          (attribyte_type)
+          (self)
+          (method_name
+            (identifier))
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
 ================================================================================
 include member
@@ -160,13 +166,14 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (include_member
-        (class_name
-          (constant))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (include_member
+          (class_name
+            (constant)))))))
 
 ================================================================================
 extend member
@@ -179,13 +186,14 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (extend_member
-        (class_name
-          (constant))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (extend_member
+          (class_name
+            (constant)))))))
 
 ================================================================================
 prepend member
@@ -198,13 +206,14 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (prepend_member
-        (class_name
-          (constant))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (prepend_member
+          (class_name
+            (constant)))))))
 
 ================================================================================
 alias member
@@ -217,15 +226,16 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (alias_member
-        (method_name
-          (identifier))
-        (method_name
-          (identifier))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (alias_member
+          (method_name
+            (identifier))
+          (method_name
+            (identifier)))))))
 
 ================================================================================
 visibility member
@@ -241,41 +251,42 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (visibility_member
-        (visibility))
-      (method_member
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant))))))))
-      (method_member
-        (visibility)
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant))))))))
-      (attribute_member
-        (visibility)
-        (attribyte_type)
-        (method_name
-          (identifier))
-        (type
-          (class_type
-            (class_name
-              (constant))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (visibility_member
+          (visibility))
+        (method_member
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))))))))
+        (method_member
+          (visibility)
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))))))))
+        (attribute_member
+          (visibility)
+          (attribyte_type)
+          (method_name
+            (identifier))
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))

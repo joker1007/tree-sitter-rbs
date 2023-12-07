@@ -27,7 +27,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    program: $ => seq(repeat($.use_directive), repeat($._decl)),
+    program: $ => seq(repeat($.use_directive), repeat($.decl)),
 
     constant: $ => /[A-Z]\w*/,
     interface: $ => /_[A-Z]\w*/,
@@ -169,7 +169,7 @@ module.exports = grammar({
       seq("%a<", $._annotation_text_without_angle_bracket, ">"),
     ),
 
-    _decl: $ => seq(
+    decl: $ => seq(
       alias(repeat($.annotation), $.annotations),
       choice(
         $.class_decl,

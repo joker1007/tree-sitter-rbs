@@ -8,12 +8,13 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (class_decl
-    (class_name
-      (constant))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (class_decl
+      (class_name
+        (constant)))))
 
 ================================================================================
 annotation with module decl
@@ -25,12 +26,13 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (module_decl
-    (module_name
-      (constant))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (module_decl
+      (module_name
+        (constant)))))
 
 ================================================================================
 annotation with interface decl
@@ -42,12 +44,13 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (interface_decl
-    (interface_name
-      (interface))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (interface_decl
+      (interface_name
+        (interface)))))
 
 ================================================================================
 annotation with class alias decl
@@ -58,14 +61,15 @@ annotation with class alias decl
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (class_alias_decl
-    (class_name
-      (constant))
-    (class_name
-      (constant))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (class_alias_decl
+      (class_name
+        (constant))
+      (class_name
+        (constant)))))
 
 ================================================================================
 annotation with module alias decl
@@ -76,14 +80,15 @@ annotation with module alias decl
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (module_alias_decl
-    (module_name
-      (constant))
-    (module_name
-      (constant))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (module_alias_decl
+      (module_name
+        (constant))
+      (module_name
+        (constant)))))
 
 ================================================================================
 annotation with type alias decl
@@ -94,16 +99,17 @@ annotation with type alias decl
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (type_alias_decl
-    (alias_name
-      (identifier))
-    (type
-      (class_type
-        (class_name
-          (constant))))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (type_alias_decl
+      (alias_name
+        (identifier))
+      (type
+        (class_type
+          (class_name
+            (constant)))))))
 
 ================================================================================
 annotation with const decl
@@ -114,16 +120,17 @@ annotation with const decl
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (const_decl
-    (const_name
-      (constant))
-    (type
-      (class_type
-        (class_name
-          (constant))))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (class_type
+          (class_name
+            (constant)))))))
 
 ================================================================================
 annotation with global decl
@@ -134,15 +141,16 @@ annotation with global decl
 --------------------------------------------------------------------------------
 
 (program
-  (annotations
-    (annotation
-      (annotation_text)))
-  (global_decl
-    (global_name)
-    (type
-      (class_type
-        (class_name
-          (constant))))))
+  (decl
+    (annotations
+      (annotation
+        (annotation_text)))
+    (global_decl
+      (global_name)
+      (type
+        (class_type
+          (class_name
+            (constant)))))))
 
 ================================================================================
 annotation with class members
@@ -155,71 +163,11 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (annotations
-        (annotation
-          (annotation_text)))
-      (method_member
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant)))))))))))
-
-================================================================================
-annotation with module members
-================================================================================
-
-module Foo
-  %a(test) def foo: () -> String
-end
-
---------------------------------------------------------------------------------
-
-(program
-  (module_decl
-    (module_name
-      (constant))
-    (members
-      (annotations
-        (annotation
-          (annotation_text)))
-      (method_member
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant)))))))))))
-
-================================================================================
-annotation with interface members
-================================================================================
-
-interface _Foo
-  %a(test) def foo: () -> String
-end
-
---------------------------------------------------------------------------------
-
-(program
-  (interface_decl
-    (interface_name
-      (interface))
-    (interface_members
-      (interface_member
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
         (annotations
           (annotation
             (annotation_text)))
@@ -236,6 +184,69 @@ end
                       (constant))))))))))))
 
 ================================================================================
+annotation with module members
+================================================================================
+
+module Foo
+  %a(test) def foo: () -> String
+end
+
+--------------------------------------------------------------------------------
+
+(program
+  (decl
+    (module_decl
+      (module_name
+        (constant))
+      (members
+        (annotations
+          (annotation
+            (annotation_text)))
+        (method_member
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))))))))))))
+
+================================================================================
+annotation with interface members
+================================================================================
+
+interface _Foo
+  %a(test) def foo: () -> String
+end
+
+--------------------------------------------------------------------------------
+
+(program
+  (decl
+    (interface_decl
+      (interface_name
+        (interface))
+      (interface_members
+        (interface_member
+          (annotations
+            (annotation
+              (annotation_text)))
+          (method_member
+            (method_name
+              (identifier))
+            (method_types
+              (method_type
+                (method_type_body
+                  (parameters)
+                  (type
+                    (class_type
+                      (class_name
+                        (constant)))))))))))))
+
+================================================================================
 annotation with method visibility
 ================================================================================
 
@@ -246,25 +257,26 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (annotations
-        (annotation
-          (annotation_text)))
-      (method_member
-        (visibility)
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant)))))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (annotations
+          (annotation
+            (annotation_text)))
+        (method_member
+          (visibility)
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))))))))))))
 
 ================================================================================
 annotation with method types
@@ -277,32 +289,33 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (method_member
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_parameters
-              (type_variable
-                (constant)))
-            (annotations
-              (annotation
-                (annotation_text)))
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant))
-                  (type_arguments
-                    (type
-                      (class_type
-                        (class_name
-                          (constant))))))))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (method_member
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_parameters
+                (type_variable
+                  (constant)))
+              (annotations
+                (annotation
+                  (annotation_text)))
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))
+                    (type_arguments
+                      (type
+                        (class_type
+                          (class_name
+                            (constant)))))))))))))))
 
 ================================================================================
 annotation with method overloading
@@ -316,45 +329,46 @@ end
 --------------------------------------------------------------------------------
 
 (program
-  (class_decl
-    (class_name
-      (constant))
-    (members
-      (method_member
-        (method_name
-          (identifier))
-        (method_types
-          (method_type
-            (method_type_parameters
-              (type_variable
-                (constant)))
-            (annotations
-              (annotation
-                (annotation_text)))
-            (method_type_body
-              (parameters)
-              (type
-                (class_type
-                  (class_name
-                    (constant))
-                  (type_arguments
-                    (type
-                      (class_type
-                        (class_name
-                          (constant)))))))))
-          (method_type
-            (annotations
-              (annotation
-                (annotation_text)))
-            (method_type_body
-              (parameters
-                (required_positionals
-                  (parameter
-                    (type
-                      (class_type
-                        (class_name
-                          (constant)))))))
-              (type
-                (class_type
-                  (class_name
-                    (constant)))))))))))
+  (decl
+    (class_decl
+      (class_name
+        (constant))
+      (members
+        (method_member
+          (method_name
+            (identifier))
+          (method_types
+            (method_type
+              (method_type_parameters
+                (type_variable
+                  (constant)))
+              (annotations
+                (annotation
+                  (annotation_text)))
+              (method_type_body
+                (parameters)
+                (type
+                  (class_type
+                    (class_name
+                      (constant))
+                    (type_arguments
+                      (type
+                        (class_type
+                          (class_name
+                            (constant)))))))))
+            (method_type
+              (annotations
+                (annotation
+                  (annotation_text)))
+              (method_type_body
+                (parameters
+                  (required_positionals
+                    (parameter
+                      (type
+                        (class_type
+                          (class_name
+                            (constant)))))))
+                (type
+                  (class_type
+                    (class_name
+                      (constant))))))))))))
