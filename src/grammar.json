@@ -16,7 +16,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "_decl"
+            "name": "decl"
           }
         }
       ]
@@ -1187,7 +1187,7 @@
         }
       ]
     },
-    "_decl": {
+    "decl": {
       "type": "SEQ",
       "members": [
         {

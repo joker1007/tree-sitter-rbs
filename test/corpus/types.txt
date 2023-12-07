@@ -1,508 +1,531 @@
-==================
+================================================================================
 class type
-==================
+================================================================================
 
 FOO: String
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (class_type
-    (class_name
-     (constant))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (class_type
+          (class_name
+            (constant)))))))
 
-==================
+================================================================================
 namespaced class type
-==================
+================================================================================
 
 FOO: Foo::Bar::Baz
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (class_type
-    (class_name
-     (namespace
-      (namespace
-       (constant))
-      (constant))
-     (constant))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (class_type
+          (class_name
+            (namespace
+              (namespace
+                (constant))
+              (constant))
+            (constant)))))))
 
-==================
+================================================================================
 singleton class type
-==================
+================================================================================
 
 FOO: singleton(String)
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (singleton_type
-    (class_name
-     (constant))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (singleton_type
+          (class_name
+            (constant)))))))
 
-==================
+================================================================================
 class type with type variable
-==================
+================================================================================
 
 FOO: Array[T]
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (class_type
-    (class_name
-     (constant))
-    (type_arguments
-     (type
-      (class_type
-       (class_name
-        (constant)))))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (class_type
+          (class_name
+            (constant))
+          (type_arguments
+            (type
+              (class_type
+                (class_name
+                  (constant))))))))))
 
-==================
+================================================================================
 integer literal type
-==================
+================================================================================
 
 BAR: 123
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (integer_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (integer_literal)))))
 
-==================
+================================================================================
 integer literal type with underscore
-==================
+================================================================================
 
 BAR: 1_2_3
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (integer_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (integer_literal)))))
 
-==================
+================================================================================
 symbol literal type (simple)
-==================
+================================================================================
 
 BAR: :symbol
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal)))))
 
-==================
+================================================================================
 symbol literal type with double-quote
-==================
+================================================================================
 
 BAR: :"symbo\nl"
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal
-    (double_quote_string_body)
-    (escape_sequence)
-    (double_quote_string_body)))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal
+          (double_quote_string_body)
+          (escape_sequence)
+          (double_quote_string_body))))))
 
-==================
+================================================================================
 symbol literal type with single-quote
-==================
+================================================================================
 
 BAR: :'symbo\nl'
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal
-    (single_quote_string_body)
-    (escape_sequence)
-    (single_quote_string_body)))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal
+          (single_quote_string_body)
+          (escape_sequence)
+          (single_quote_string_body))))))
 
-==================
+================================================================================
 symbol literal type (operator)
-==================
+================================================================================
 
 BAR: :+
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal)))))
 
-==================
+================================================================================
 symbol literal type (?suffix)
-==================
+================================================================================
 
 BAR: :symbol?
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal)))))
 
-==================
+================================================================================
 symbol literal type (const)
-==================
+================================================================================
 
 BAR: :CONST
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal)))))
 
-==================
+================================================================================
 symbol literal type (const ?suffix)
-==================
+================================================================================
 
 BAR: :CONST?
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal)))))
 
-==================
+================================================================================
 symbol literal type (setter)
-==================
+================================================================================
 
 BAR: :foo=
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (symbol_literal))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (symbol_literal)))))
 
-==================
+================================================================================
 string literal type with double-quote and escape-sequence
-==================
+================================================================================
 
 FOO: "str\ting\u1234"
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (string_literal
-    (double_quote_string_body)
-    (escape_sequence)
-    (double_quote_string_body)
-    (escape_sequence)))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (string_literal
+          (double_quote_string_body)
+          (escape_sequence)
+          (double_quote_string_body)
+          (escape_sequence))))))
 
-==================
+================================================================================
 string literal type with single-quote
-==================
+================================================================================
 
 FOO: 'string'
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (string_literal
-    (single_quote_string_body)))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (string_literal
+          (single_quote_string_body))))))
 
-==================
+================================================================================
 string literal type with single-quote and escape-sequence
-==================
+================================================================================
 
 FOO: 'str\ting\u1234'
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (string_literal
-    (single_quote_string_body)
-    (escape_sequence)
-    (single_quote_string_body)
-    (escape_sequence)))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (string_literal
+          (single_quote_string_body)
+          (escape_sequence)
+          (single_quote_string_body)
+          (escape_sequence))))))
 
-==================
+================================================================================
 Proc type
-==================
+================================================================================
 
 FOO: ^(String) -> Integer
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (proc
-    (parameters
-     (required_positionals
-      (parameter
-       (type
-        (class_type
-         (class_name
-          (constant)))))))
-    (type
-     (class_type
-      (class_name
-       (constant))))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (proc
+          (parameters
+            (required_positionals
+              (parameter
+                (type
+                  (class_type
+                    (class_name
+                      (constant)))))))
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
-==================
+================================================================================
 Proc (no args) type
-==================
+================================================================================
 
 FOO: ^() -> Integer
 
----
-
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (proc
-    (parameters)
-    (type
-     (class_type
-      (class_name
-       (constant))))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (proc
+          (parameters)
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
-==================
+================================================================================
 Proc type with self binding
-==================
+================================================================================
 
 FOO: ^() [self: String] -> Integer
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (proc
-    (parameters)
-    (self_type_binding
-     (self)
-     (type
-      (class_type
-       (class_name
-        (constant)))))
-    (type
-     (class_type
-      (class_name
-       (constant))))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (proc
+          (parameters)
+          (self_type_binding
+            (self)
+            (type
+              (class_type
+                (class_name
+                  (constant)))))
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
-==================
+================================================================================
 Proc type with block
-==================
+================================================================================
 
 FOO: ^() {(String) -> Integer} -> Integer
 
----
+--------------------------------------------------------------------------------
 
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (proc
-    (parameters)
-    (block
-     (parameters
-      (required_positionals
-       (parameter
-        (type
-         (class_type
-          (class_name
-           (constant)))))))
-     (type
-      (class_type
-       (class_name
-        (constant)))))
-    (type
-     (class_type
-      (class_name
-       (constant))))))))
+  (decl
+    (const_decl
+      (const_name
+        (constant))
+      (type
+        (proc
+          (parameters)
+          (block
+            (parameters
+              (required_positionals
+                (parameter
+                  (type
+                    (class_type
+                      (class_name
+                        (constant)))))))
+            (type
+              (class_type
+                (class_name
+                  (constant)))))
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
 
-==================
+================================================================================
 alias type
-==================
+================================================================================
 
 type foo = hoge
 
----
+--------------------------------------------------------------------------------
 
 (program
- (type_alias_decl
-  (alias_name
-   (identifier))
-  (type
-   (alias_type
-    (alias_name
-     (identifier))))))
+  (decl
+    (type_alias_decl
+      (alias_name
+        (identifier))
+      (type
+        (alias_type
+          (alias_name
+            (identifier)))))))
 
-
-==================
+================================================================================
 complex union and intersection type
-==================
+================================================================================
 
 type foo = String | Integer & Float | Bar?
 
----
+--------------------------------------------------------------------------------
 
 (program
- (type_alias_decl
-  (alias_name
-   (identifier))
-  (type
-   (union_type
-    (type
-     (union_type
+  (decl
+    (type_alias_decl
+      (alias_name
+        (identifier))
       (type
-       (class_type
-        (class_name
-         (constant))))
-      (type
-       (intersection_type
-        (type
-         (class_type
-          (class_name
-           (constant))))
-        (type
-         (class_type
-          (class_name
-           (constant))))))))
-    (type
-     (optional_type
-      (type
-       (class_type
-        (class_name
-         (constant))))))))))
+        (union_type
+          (type
+            (union_type
+              (type
+                (class_type
+                  (class_name
+                    (constant))))
+              (type
+                (intersection_type
+                  (type
+                    (class_type
+                      (class_name
+                        (constant))))
+                  (type
+                    (class_type
+                      (class_name
+                        (constant))))))))
+          (type
+            (optional_type
+              (type
+                (class_type
+                  (class_name
+                    (constant)))))))))))
 
-==================
+================================================================================
 builtin type
-==================
+================================================================================
 
 type foo1 = bool
 
----
+--------------------------------------------------------------------------------
 
 (program
- (type_alias_decl
-  (alias_name
-   (identifier))
-  (type
-   (builtin_type))))
+  (decl
+    (type_alias_decl
+      (alias_name
+        (identifier))
+      (type
+        (builtin_type)))))
 
-
-==================
+================================================================================
 alias type that includes builtin type name
-==================
+================================================================================
 
 type foo1 = boolean
 
----
+--------------------------------------------------------------------------------
 
 (program
- (type_alias_decl
-  (alias_name
-   (identifier))
-  (type
-   (alias_type
-    (alias_name
-     (identifier))))))
+  (decl
+    (type_alias_decl
+      (alias_name
+        (identifier))
+      (type
+        (alias_type
+          (alias_name
+            (identifier)))))))
 
-
-==================
+================================================================================
 type definition with parentheses
-==================
+================================================================================
 
 FOO: (String | Integer) & Float
 
----
+--------------------------------------------------------------------------------
+
 (program
- (const_decl
-  (const_name
-   (constant))
-  (type
-   (intersection_type
-    (type
-     (union_type
+  (decl
+    (const_decl
+      (const_name
+        (constant))
       (type
-       (class_type
-        (class_name
-         (constant))))
-      (type
-       (class_type
-        (class_name
-         (constant))))))
-    (type
-     (class_type
-      (class_name
-       (constant))))))))
+        (intersection_type
+          (type
+            (union_type
+              (type
+                (class_type
+                  (class_name
+                    (constant))))
+              (type
+                (class_type
+                  (class_name
+                    (constant))))))
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))

@@ -362,6 +362,53 @@
     }
   },
   {
+    "type": "decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "class_alias_decl",
+          "named": true
+        },
+        {
+          "type": "class_decl",
+          "named": true
+        },
+        {
+          "type": "const_decl",
+          "named": true
+        },
+        {
+          "type": "global_decl",
+          "named": true
+        },
+        {
+          "type": "interface_decl",
+          "named": true
+        },
+        {
+          "type": "module_alias_decl",
+          "named": true
+        },
+        {
+          "type": "module_decl",
+          "named": true
+        },
+        {
+          "type": "type_alias_decl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "extend_member",
     "named": true,
     "fields": {},
@@ -1214,39 +1261,7 @@
       "required": false,
       "types": [
         {
-          "type": "annotations",
-          "named": true
-        },
-        {
-          "type": "class_alias_decl",
-          "named": true
-        },
-        {
-          "type": "class_decl",
-          "named": true
-        },
-        {
-          "type": "const_decl",
-          "named": true
-        },
-        {
-          "type": "global_decl",
-          "named": true
-        },
-        {
-          "type": "interface_decl",
-          "named": true
-        },
-        {
-          "type": "module_alias_decl",
-          "named": true
-        },
-        {
-          "type": "module_decl",
-          "named": true
-        },
-        {
-          "type": "type_alias_decl",
+          "type": "decl",
           "named": true
         },
         {
