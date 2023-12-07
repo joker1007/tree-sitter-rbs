@@ -15,6 +15,7 @@ module.exports = grammar({
     $._no_parantheses_type,
     $._parantheses_type,
     $._nestable_decls,
+    $._attribute_name,
   ],
 
   conflicts: $ => [
@@ -170,8 +171,8 @@ module.exports = grammar({
     ),
 
     decl: $ => seq(
-      alias(repeat($.annotation), $.annotations),
-      choice(
+      field("annotations", alias(repeat($.annotation), $.annotations)),
+      field("body", choice(
         $.class_decl,
         $.module_decl,
         $.class_alias_decl,
@@ -180,7 +181,7 @@ module.exports = grammar({
         $.type_alias_decl,
         $.const_decl,
         $.global_decl,
-      )
+      ))
     ),
 
     _nestable_decls: $ => choice(
@@ -196,46 +197,52 @@ module.exports = grammar({
     class_decl: $ => choice(
       seq(
         "class",
-        $.class_name,
-        optional($.module_type_parameters),
-        optional($.superclass),
-        alias(repeat(choice($.member, $._nestable_decls)), $.members),
+        field("name", $.class_name),
+        field("type_parameters", optional($.module_type_parameters)),
+        field("superclass", optional($.superclass)),
+        field("body", alias(repeat(choice($.member, $._nestable_decls)), $.members)),
         "end"
       )
     ),
 
-    superclass: $ => seq("<", $.class_name, optional($.type_arguments)),
+    superclass: $ => seq("<", field("name", $.class_name), field("type_arguments", optional($.type_arguments))),
 
     module_decl: $ => choice(
       seq(
         "module",
-        alias($.class_name, $.module_name),
-        optional($.module_type_parameters),
-        optional($.module_self_type_binds),
-        alias(repeat(choice($.member, $._nestable_decls)), $.members),
+        field("name", alias($.class_name, $.module_name)),
+        field("type_parameters", optional($.module_type_parameters)),
+        field("self_type_binds", optional($.module_self_type_binds)),
+        field("body", alias(repeat(choice($.member, $._nestable_decls)), $.members)),
         "end"
       )
     ),
 
     module_self_type_binds: $ => seq(":", $.module_self_types),
 
-    class_alias_decl: $ => seq("class", field("new_name", $.class_name), "=", field("origin_name", $.class_name)),
-    module_alias_decl: $ => seq("module", field("new_name", alias($.class_name, $.module_name)), "=", field("origin_name", alias($.class_name, $.module_name))),
+    class_alias_decl: $ => seq("class", field("name", $.class_name), "=", field("origin_name", $.class_name)),
+    module_alias_decl: $ => seq("module", field("name", alias($.class_name, $.module_name)), "=", field("origin_name", alias($.class_name, $.module_name))),
 
     module_self_types: $ => choice(
       seq($.class_name, optional($.type_arguments), optional(seq(",", $.module_self_types))),
       seq($.interface_name, optional($.type_arguments), optional(seq(",", $.module_self_types))),
     ),
 
-    interface_decl: $ => seq("interface", $.interface_name, optional($.module_type_parameters), alias(repeat($.interface_member), $.interface_members), "end"),
+    interface_decl: $ => seq(
+      "interface",
+      field("name", $.interface_name),
+      field("type_parameters", optional($.module_type_parameters)),
+      field("body", alias(repeat($.interface_member), $.interface_members)),
+      "end"
+    ),
 
     interface_member: $ => seq(
-      alias(repeat($.annotation), $.annotations),
-      choice(
+      field("annotations", alias(repeat($.annotation), $.annotations)),
+      field("body", choice(
         $.method_member,
         $.include_member,
         $.alias_member,
-      )
+      ))
     ),
 
     type_alias_decl: $ => seq("type", $.alias_name, optional($.module_type_parameters), "=", $.type),
@@ -331,8 +338,8 @@ module.exports = grammar({
     ),
 
     member: $ => seq(
-      alias(repeat($.annotation), $.annotations),
-      choice(
+      field("annotations", alias(repeat($.annotation), $.annotations)),
+      field("body", choice(
         $.ivar_member,
         $.method_member,
         prec.right($.attribute_member),
@@ -341,22 +348,25 @@ module.exports = grammar({
         $.prepend_member,
         $.alias_member,
         prec.left($.visibility_member),
-      )
+      ))
     ),
 
     ivar_member: $ => choice(
-      seq($.ivar_name, ":", $.type),
-      seq($.self, ".", $.ivar_name, ":", $.type),
-      seq($.cvar_name, ":", $.type),
+      seq(field("name", $.ivar_name), ":", $.type),
+      seq(field("name", seq($.self, ".", $.ivar_name)), ":", $.type),
+      seq(field("name", $.cvar_name), ":", $.type),
     ),
 
     method_member: $ => choice(
-      seq(optional($.visibility), "def", $.method_name, ":", $.method_types),
-      seq(optional($.visibility), "def", $.self, ".", $.method_name, ":", $.method_types),
-      seq("def", $.self, "?.", $.method_name, ":", $.method_types),
+      seq(optional($.visibility), "def", field("name", $.method_name), ":", $.method_types),
+      seq(optional($.visibility), "def", field("name", seq($.self, ".", $.method_name)), ":", $.method_types),
+      seq("def", field("name", seq($.self, "?.", $.method_name)), ":", $.method_types),
     ),
 
-    method_type: $ => seq(optional($.method_type_parameters), alias(repeat($.annotation), $.annotations), $.method_type_body),
+    method_type: $ => seq(
+      field("type_parameters", optional($.method_type_parameters)),
+      field("annotations", alias(repeat($.annotation), $.annotations)),
+      field("body", $.method_type_body)),
 
     method_types: $ => choice(
       sep1($.method_type, "|"),
@@ -366,36 +376,29 @@ module.exports = grammar({
     method_type_parameters: $ => seq("[", commaSep1($.type_variable), "]"),
 
     attribute_member: $ => choice(
-      seq(optional($.visibility), $.attribyte_type, optional(seq($.self, ".")), $.method_name, ":", $.type),
-      seq(optional($.visibility), $.attribyte_type, optional(seq($.self, ".")), $.method_name, "(", $.ivar_name, ")", ":", $.type),
-      seq(optional($.visibility), $.attribyte_type, optional(seq($.self, ".")), $.method_name, "()", ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, field("name", $._attribute_name), ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, field("name", $._attribute_name), "(", $.ivar_name, ")", ":", $.type),
+      seq(optional($.visibility), $.attribyte_type, field("name", $._attribute_name), "()", ":", $.type),
     ),
+
+    _attribute_name: $ => seq(optional(seq($.self, ".")), $.method_name),
 
     visibility_member : $ => seq($.visibility, token.immediate(/\n/)),
     visibility: $ => choice("public", "private"),
 
     attribyte_type: $ => choice("attr_reader", "attr_writer", "attr_accessor"),
 
-    include_member: $ => choice(
-      seq("include", $.class_name, optional($.type_arguments)),
-      seq("include", $.interface_name, optional($.type_arguments)),
-    ),
+    include_member: $ => seq("include", field("name", choice($.class_name, $.interface_name)), optional($.type_arguments)),
 
-    extend_member: $ => choice(
-      seq("extend", $.class_name, optional($.type_arguments)),
-      seq("extend", $.interface_name, optional($.type_arguments)),
-    ),
+    extend_member: $ => seq("extend", field("name", choice($.class_name, $.interface_name)), optional($.type_arguments)),
 
-    prepend_member: $ => choice(
-      seq("prepend", $.class_name, optional($.type_arguments)),
-      seq("prepend", $.interface_name, optional($.type_arguments)),
-    ),
+    prepend_member: $ => seq("prepend", field("name", choice($.class_name, $.interface_name)), optional($.type_arguments)),
 
     singleton_method_name: $ => seq($.self, ".", $.method_name),
 
     alias_member: $ => choice(
-      seq("alias", field("new_name", $.method_name), field("origin_name", $.method_name)),
-      seq("alias", field("new_name", $.singleton_method_name), field("origin_name", $.singleton_method_name)),
+      seq("alias", field("name", $.method_name), field("origin_name", $.method_name)),
+      seq("alias", field("name", $.singleton_method_name), field("origin_name", $.singleton_method_name)),
     ),
 
     ivar_name: $ => /@[a-zA-Z]\w*/,

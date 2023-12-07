@@ -3,7 +3,7 @@
     "type": "alias_member",
     "named": true,
     "fields": {
-      "new_name": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -104,7 +104,26 @@
   {
     "type": "attribute_member",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "method_name",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -115,14 +134,6 @@
         },
         {
           "type": "ivar_name",
-          "named": true
-        },
-        {
-          "type": "method_name",
-          "named": true
-        },
-        {
-          "type": "self",
           "named": true
         },
         {
@@ -206,7 +217,7 @@
     "type": "class_alias_decl",
     "named": true,
     "fields": {
-      "new_name": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -231,28 +242,47 @@
   {
     "type": "class_decl",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "class_name",
-          "named": true
-        },
-        {
-          "type": "members",
-          "named": true
-        },
-        {
-          "type": "module_type_parameters",
-          "named": true
-        },
-        {
-          "type": "superclass",
-          "named": true
-        }
-      ]
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "members",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "class_name",
+            "named": true
+          }
+        ]
+      },
+      "superclass": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "superclass",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "module_type_parameters",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -364,66 +394,80 @@
   {
     "type": "decl",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "annotations",
-          "named": true
-        },
-        {
-          "type": "class_alias_decl",
-          "named": true
-        },
-        {
-          "type": "class_decl",
-          "named": true
-        },
-        {
-          "type": "const_decl",
-          "named": true
-        },
-        {
-          "type": "global_decl",
-          "named": true
-        },
-        {
-          "type": "interface_decl",
-          "named": true
-        },
-        {
-          "type": "module_alias_decl",
-          "named": true
-        },
-        {
-          "type": "module_decl",
-          "named": true
-        },
-        {
-          "type": "type_alias_decl",
-          "named": true
-        }
-      ]
+    "fields": {
+      "annotations": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "annotations",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "class_alias_decl",
+            "named": true
+          },
+          {
+            "type": "class_decl",
+            "named": true
+          },
+          {
+            "type": "const_decl",
+            "named": true
+          },
+          {
+            "type": "global_decl",
+            "named": true
+          },
+          {
+            "type": "interface_decl",
+            "named": true
+          },
+          {
+            "type": "module_alias_decl",
+            "named": true
+          },
+          {
+            "type": "module_decl",
+            "named": true
+          },
+          {
+            "type": "type_alias_decl",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "extend_member",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "class_name",
+            "named": true
+          },
+          {
+            "type": "interface_name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
-        {
-          "type": "class_name",
-          "named": true
-        },
-        {
-          "type": "interface_name",
-          "named": true
-        },
         {
           "type": "type_arguments",
           "named": true
@@ -488,19 +532,26 @@
   {
     "type": "include_member",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "class_name",
+            "named": true
+          },
+          {
+            "type": "interface_name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
-        {
-          "type": "class_name",
-          "named": true
-        },
-        {
-          "type": "interface_name",
-          "named": true
-        },
         {
           "type": "type_arguments",
           "named": true
@@ -511,51 +562,71 @@
   {
     "type": "interface_decl",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "interface_members",
-          "named": true
-        },
-        {
-          "type": "interface_name",
-          "named": true
-        },
-        {
-          "type": "module_type_parameters",
-          "named": true
-        }
-      ]
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "interface_members",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "interface_name",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "module_type_parameters",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
     "type": "interface_member",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "alias_member",
-          "named": true
-        },
-        {
-          "type": "annotations",
-          "named": true
-        },
-        {
-          "type": "include_member",
-          "named": true
-        },
-        {
-          "type": "method_member",
-          "named": true
-        }
-      ]
+    "fields": {
+      "annotations": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "annotations",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "alias_member",
+            "named": true
+          },
+          {
+            "type": "include_member",
+            "named": true
+          },
+          {
+            "type": "method_member",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -640,23 +711,34 @@
   {
     "type": "ivar_member",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "cvar_name",
+            "named": true
+          },
+          {
+            "type": "ivar_name",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "cvar_name",
-          "named": true
-        },
-        {
-          "type": "ivar_name",
-          "named": true
-        },
-        {
-          "type": "self",
-          "named": true
-        },
         {
           "type": "type",
           "named": true
@@ -705,48 +787,55 @@
   {
     "type": "member",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "alias_member",
-          "named": true
-        },
-        {
-          "type": "annotations",
-          "named": true
-        },
-        {
-          "type": "attribute_member",
-          "named": true
-        },
-        {
-          "type": "extend_member",
-          "named": true
-        },
-        {
-          "type": "include_member",
-          "named": true
-        },
-        {
-          "type": "ivar_member",
-          "named": true
-        },
-        {
-          "type": "method_member",
-          "named": true
-        },
-        {
-          "type": "prepend_member",
-          "named": true
-        },
-        {
-          "type": "visibility_member",
-          "named": true
-        }
-      ]
+    "fields": {
+      "annotations": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "annotations",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "alias_member",
+            "named": true
+          },
+          {
+            "type": "attribute_member",
+            "named": true
+          },
+          {
+            "type": "extend_member",
+            "named": true
+          },
+          {
+            "type": "include_member",
+            "named": true
+          },
+          {
+            "type": "ivar_member",
+            "named": true
+          },
+          {
+            "type": "method_member",
+            "named": true
+          },
+          {
+            "type": "prepend_member",
+            "named": true
+          },
+          {
+            "type": "visibility_member",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -795,21 +884,36 @@
   {
     "type": "method_member",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "?.",
+            "named": false
+          },
+          {
+            "type": "method_name",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "method_name",
-          "named": true
-        },
-        {
           "type": "method_types",
-          "named": true
-        },
-        {
-          "type": "self",
           "named": true
         },
         {
@@ -861,24 +965,37 @@
   {
     "type": "method_type",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "annotations",
-          "named": true
-        },
-        {
-          "type": "method_type_body",
-          "named": true
-        },
-        {
-          "type": "method_type_parameters",
-          "named": true
-        }
-      ]
+    "fields": {
+      "annotations": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "annotations",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "method_type_body",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "method_type_parameters",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -938,7 +1055,7 @@
     "type": "module_alias_decl",
     "named": true,
     "fields": {
-      "new_name": {
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -963,28 +1080,47 @@
   {
     "type": "module_decl",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "members",
-          "named": true
-        },
-        {
-          "type": "module_name",
-          "named": true
-        },
-        {
-          "type": "module_self_type_binds",
-          "named": true
-        },
-        {
-          "type": "module_type_parameters",
-          "named": true
-        }
-      ]
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "members",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "module_name",
+            "named": true
+          }
+        ]
+      },
+      "self_type_binds": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "module_self_type_binds",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "module_type_parameters",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1220,19 +1356,26 @@
   {
     "type": "prepend_member",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "class_name",
+            "named": true
+          },
+          {
+            "type": "interface_name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
-        {
-          "type": "class_name",
-          "named": true
-        },
-        {
-          "type": "interface_name",
-          "named": true
-        },
         {
           "type": "type_arguments",
           "named": true
@@ -1474,20 +1617,27 @@
   {
     "type": "superclass",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "class_name",
-          "named": true
-        },
-        {
-          "type": "type_arguments",
-          "named": true
-        }
-      ]
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "class_name",
+            "named": true
+          }
+        ]
+      },
+      "type_arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_arguments",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
