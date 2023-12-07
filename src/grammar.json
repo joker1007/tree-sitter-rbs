@@ -1142,8 +1142,13 @@
               "value": "%a["
             },
             {
-              "type": "SYMBOL",
-              "name": "_annotation_text_without_bracket"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_annotation_text_without_bracket"
+              },
+              "named": true,
+              "value": "annotation_text"
             },
             {
               "type": "STRING",
@@ -1159,8 +1164,13 @@
               "value": "%a|"
             },
             {
-              "type": "SYMBOL",
-              "name": "_annotation_text_without_bar"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_annotation_text_without_bar"
+              },
+              "named": true,
+              "value": "annotation_text"
             },
             {
               "type": "STRING",
@@ -1176,8 +1186,13 @@
               "value": "%a<"
             },
             {
-              "type": "SYMBOL",
-              "name": "_annotation_text_without_angle_bracket"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_annotation_text_without_angle_bracket"
+              },
+              "named": true,
+              "value": "annotation_text"
             },
             {
               "type": "STRING",

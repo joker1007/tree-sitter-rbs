@@ -164,9 +164,9 @@ module.exports = grammar({
     annotation: $ => choice(
       seq("%a{", alias($._annotation_text_without_brace, $.annotation_text), "}"),
       seq("%a(", alias($._annotation_text_without_parenthesis, $.annotation_text), ")"),
-      seq("%a[", $._annotation_text_without_bracket, "]"),
-      seq("%a|", $._annotation_text_without_bar, "|"),
-      seq("%a<", $._annotation_text_without_angle_bracket, ">"),
+      seq("%a[", alias($._annotation_text_without_bracket, $.annotation_text), "]"),
+      seq("%a|", alias($._annotation_text_without_bar, $.annotation_text), "|"),
+      seq("%a<", alias($._annotation_text_without_angle_bracket, $.annotation_text), ">"),
     ),
 
     decl: $ => seq(
