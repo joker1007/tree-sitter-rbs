@@ -1336,7 +1336,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_member"
+                      "name": "member"
                     },
                     {
                       "type": "SYMBOL",
@@ -1433,7 +1433,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_member"
+                      "name": "member"
                     },
                     {
                       "type": "SYMBOL",
@@ -2855,7 +2855,7 @@
         }
       ]
     },
-    "_member": {
+    "member": {
       "type": "SEQ",
       "members": [
         {
