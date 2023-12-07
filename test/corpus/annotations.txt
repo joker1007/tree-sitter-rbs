@@ -168,20 +168,21 @@ end
       (class_name
         (constant))
       (members
-        (annotations
-          (annotation
-            (annotation_text)))
-        (method_member
-          (method_name
-            (identifier))
-          (method_types
-            (method_type
-              (method_type_body
-                (parameters)
-                (type
-                  (class_type
-                    (class_name
-                      (constant))))))))))))
+        (member
+          (annotations
+            (annotation
+              (annotation_text)))
+          (method_member
+            (method_name
+              (identifier))
+            (method_types
+              (method_type
+                (method_type_body
+                  (parameters)
+                  (type
+                    (class_type
+                      (class_name
+                        (constant)))))))))))))
 
 ================================================================================
 annotation with module members
@@ -199,20 +200,21 @@ end
       (module_name
         (constant))
       (members
-        (annotations
-          (annotation
-            (annotation_text)))
-        (method_member
-          (method_name
-            (identifier))
-          (method_types
-            (method_type
-              (method_type_body
-                (parameters)
-                (type
-                  (class_type
-                    (class_name
-                      (constant))))))))))))
+        (member
+          (annotations
+            (annotation
+              (annotation_text)))
+          (method_member
+            (method_name
+              (identifier))
+            (method_types
+              (method_type
+                (method_type_body
+                  (parameters)
+                  (type
+                    (class_type
+                      (class_name
+                        (constant)))))))))))))
 
 ================================================================================
 annotation with interface members
@@ -262,21 +264,22 @@ end
       (class_name
         (constant))
       (members
-        (annotations
-          (annotation
-            (annotation_text)))
-        (method_member
-          (visibility)
-          (method_name
-            (identifier))
-          (method_types
-            (method_type
-              (method_type_body
-                (parameters)
-                (type
-                  (class_type
-                    (class_name
-                      (constant))))))))))))
+        (member
+          (annotations
+            (annotation
+              (annotation_text)))
+          (method_member
+            (visibility)
+            (method_name
+              (identifier))
+            (method_types
+              (method_type
+                (method_type_body
+                  (parameters)
+                  (type
+                    (class_type
+                      (class_name
+                        (constant)))))))))))))
 
 ================================================================================
 annotation with method types
@@ -294,28 +297,29 @@ end
       (class_name
         (constant))
       (members
-        (method_member
-          (method_name
-            (identifier))
-          (method_types
-            (method_type
-              (method_type_parameters
-                (type_variable
-                  (constant)))
-              (annotations
-                (annotation
-                  (annotation_text)))
-              (method_type_body
-                (parameters)
-                (type
-                  (class_type
-                    (class_name
-                      (constant))
-                    (type_arguments
-                      (type
-                        (class_type
-                          (class_name
-                            (constant)))))))))))))))
+        (member
+          (method_member
+            (method_name
+              (identifier))
+            (method_types
+              (method_type
+                (method_type_parameters
+                  (type_variable
+                    (constant)))
+                (annotations
+                  (annotation
+                    (annotation_text)))
+                (method_type_body
+                  (parameters)
+                  (type
+                    (class_type
+                      (class_name
+                        (constant))
+                      (type_arguments
+                        (type
+                          (class_type
+                            (class_name
+                              (constant))))))))))))))))
 
 ================================================================================
 annotation with method overloading
@@ -334,41 +338,42 @@ end
       (class_name
         (constant))
       (members
-        (method_member
-          (method_name
-            (identifier))
-          (method_types
-            (method_type
-              (method_type_parameters
-                (type_variable
-                  (constant)))
-              (annotations
-                (annotation
-                  (annotation_text)))
-              (method_type_body
-                (parameters)
-                (type
-                  (class_type
-                    (class_name
-                      (constant))
-                    (type_arguments
-                      (type
-                        (class_type
-                          (class_name
-                            (constant)))))))))
-            (method_type
-              (annotations
-                (annotation
-                  (annotation_text)))
-              (method_type_body
-                (parameters
-                  (required_positionals
-                    (parameter
-                      (type
-                        (class_type
-                          (class_name
-                            (constant)))))))
-                (type
-                  (class_type
-                    (class_name
-                      (constant))))))))))))
+        (member
+          (method_member
+            (method_name
+              (identifier))
+            (method_types
+              (method_type
+                (method_type_parameters
+                  (type_variable
+                    (constant)))
+                (annotations
+                  (annotation
+                    (annotation_text)))
+                (method_type_body
+                  (parameters)
+                  (type
+                    (class_type
+                      (class_name
+                        (constant))
+                      (type_arguments
+                        (type
+                          (class_type
+                            (class_name
+                              (constant)))))))))
+              (method_type
+                (annotations
+                  (annotation
+                    (annotation_text)))
+                (method_type_body
+                  (parameters
+                    (required_positionals
+                      (parameter
+                        (type
+                          (class_type
+                            (class_name
+                              (constant)))))))
+                  (type
+                    (class_type
+                      (class_name
+                        (constant)))))))))))))

@@ -703,7 +703,7 @@
     }
   },
   {
-    "type": "members",
+    "type": "member",
     "named": true,
     "fields": {},
     "children": {
@@ -723,6 +723,41 @@
           "named": true
         },
         {
+          "type": "extend_member",
+          "named": true
+        },
+        {
+          "type": "include_member",
+          "named": true
+        },
+        {
+          "type": "ivar_member",
+          "named": true
+        },
+        {
+          "type": "method_member",
+          "named": true
+        },
+        {
+          "type": "prepend_member",
+          "named": true
+        },
+        {
+          "type": "visibility_member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "members",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
           "type": "class_alias_decl",
           "named": true
         },
@@ -735,23 +770,11 @@
           "named": true
         },
         {
-          "type": "extend_member",
-          "named": true
-        },
-        {
-          "type": "include_member",
-          "named": true
-        },
-        {
           "type": "interface_decl",
           "named": true
         },
         {
-          "type": "ivar_member",
-          "named": true
-        },
-        {
-          "type": "method_member",
+          "type": "member",
           "named": true
         },
         {
@@ -763,15 +786,7 @@
           "named": true
         },
         {
-          "type": "prepend_member",
-          "named": true
-        },
-        {
           "type": "type_alias_decl",
-          "named": true
-        },
-        {
-          "type": "visibility_member",
           "named": true
         }
       ]

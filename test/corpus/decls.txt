@@ -389,14 +389,15 @@ end
               (class_name
                 (constant))
               (members
-                (method_member
-                  (method_name
-                    (identifier))
-                  (method_types
-                    (method_type
-                      (method_type_body
-                        (parameters)
-                        (type
-                          (class_type
-                            (class_name
-                              (constant))))))))))))))))
+                (member
+                  (method_member
+                    (method_name
+                      (identifier))
+                    (method_types
+                      (method_type
+                        (method_type_body
+                          (parameters)
+                          (type
+                            (class_type
+                              (class_name
+                                (constant)))))))))))))))))
