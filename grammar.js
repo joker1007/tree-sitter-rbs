@@ -64,6 +64,7 @@ module.exports = grammar({
       "bool",
       "class",
       "untyped",
+      "__todo__",
       "nil",
       "top",
       "bot",
