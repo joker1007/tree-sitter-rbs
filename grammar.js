@@ -19,7 +19,6 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$.alias_name, $.var_name],
     [$.required_positionals],
     [$.optional_positionals],
     [$.trailing_positionals],
@@ -143,7 +142,7 @@ module.exports = grammar({
         /x[0-9a-fA-F]{1,2}/, // hex code
         /[0-7]{1,3}/,        // octal
         /u[0-9a-fA-F]{4}/,   // single unicode
-        /u{[0-9a-fA-F ]+}/,  // multiple unicode
+        /u\{[0-9a-fA-F ]+\}/,  // multiple unicode
       )
     )),
 

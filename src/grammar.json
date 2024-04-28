@@ -918,7 +918,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "u{[0-9a-fA-F ]+}"
+                "value": "u\\{[0-9a-fA-F ]+\\}"
               }
             ]
           }
@@ -3982,10 +3982,6 @@
   ],
   "conflicts": [
     [
-      "alias_name",
-      "var_name"
-    ],
-    [
       "required_positionals"
     ],
     [
@@ -4005,4 +4001,3 @@
   ],
   "supertypes": []
 }
-
