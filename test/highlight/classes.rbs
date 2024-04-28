@@ -9,7 +9,7 @@ class Foo[A]
         # <- type
           # <- constant
   def foo: (String) -> String
-   # <- keyword
+   # <- keyword.function
       # <- method
               # <- type
                         # <- type

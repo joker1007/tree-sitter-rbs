@@ -8,7 +8,6 @@ package-lock.json
 *.dylib
 *.so
 *.o
-bindings/c/*.h
 .build/%
 log.html
 example-file
