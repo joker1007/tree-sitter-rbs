@@ -22,7 +22,7 @@ module.exports = grammar({
     [$.required_positionals],
     [$.optional_positionals],
     [$.trailing_positionals],
-  ], 
+  ],
 
   word: $ => $.identifier,
 
@@ -70,7 +70,7 @@ module.exports = grammar({
       "void",
     ),
 
-    comment: $ => token(prec(-2, 
+    comment: $ => token(prec(-2,
       seq('#', /.*/),
     )),
 
@@ -90,7 +90,7 @@ module.exports = grammar({
 
     tuple_type: $ => seq("[", optional(seq(commaSep1($.type), optional(","))), "]"),
 
-    _record_type_single: $ => seq(field("key", alias($.identifier, $.record_key)), ":", field("value", $.type)),
+    _record_type_single: $ => seq(optional("?"), field("key", alias($.identifier, $.record_key)), ":", field("value", $.type)),
     record_type: $ => seq("{", optional(seq(commaSep1($._record_type_single), optional(","))), "}"),
 
     class_name: $ => seq(optional($.namespace), $.constant),
@@ -287,6 +287,7 @@ module.exports = grammar({
     parameters: $ => seq(
       "(",
       optional(choice(
+        "?",
         seq($.required_positionals),
         seq($.required_positionals, ",", choice($.optional_positionals, $.rest_positional, $.keywords)),
         seq($.required_positionals, ",", $.optional_positionals, ",", choice($.rest_positional, $.trailing_positionals, $.keywords)),
@@ -423,7 +424,7 @@ module.exports = grammar({
       $.constant_setter,
       $.operator,
       /`[^`]+`/,
-    ), 
+    ),
 
     identifier: $ => token(seq(LOWER_ALPHA_CHAR, IDENTIFIER_CHARS)),
   }

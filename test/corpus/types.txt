@@ -303,6 +303,58 @@ FOO: 'str\ting\u1234'
           (escape_sequence))))))
 
 ================================================================================
+record type
+================================================================================
+
+FOO: {foo: String, bar: Integer}
+
+--------------------------------------------------------------------------------
+
+(program
+ (decl
+  (const_decl
+   (const_name
+    (constant))
+   (type
+    (record_type
+     (record_key)
+     (type
+      (class_type
+       (class_name
+        (constant))))
+     (record_key)
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
+
+================================================================================
+record type (optional field)
+================================================================================
+
+FOO: {foo: String, ?bar: Integer}
+
+--------------------------------------------------------------------------------
+
+(program
+ (decl
+  (const_decl
+   (const_name
+    (constant))
+   (type
+    (record_type
+     (record_key)
+     (type
+      (class_type
+       (class_name
+        (constant))))
+     (record_key)
+     (type
+      (class_type
+       (class_name
+        (constant)))))))))
+
+================================================================================
 Proc type
 ================================================================================
 
