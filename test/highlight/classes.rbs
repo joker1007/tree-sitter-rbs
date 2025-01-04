@@ -23,6 +23,7 @@ class Foo[A]
 
   attr_reader id: Integer | nil
     # <- keyword
+              # <- method
                     # <- type
                           # <- operator
   @ids: Array[Integer]
@@ -38,6 +39,12 @@ class Foo[A]
                   # <- string
   @int: 42
          # <- number
+
+  @record: { foo: String, "hoge" => Integer }
+             # <- symbol
+
+  def success?: () -> bool
+      # <- method
 
   %a{pure} def self.bar: (String string) -> String
       # <- attribute
