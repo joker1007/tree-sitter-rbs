@@ -126,10 +126,10 @@ module.exports = grammar({
     symbol_literal: $ => prec.right(choice(
       seq(":\"", repeat(choice($.double_quote_string_body, $.escape_sequence)), "\""),
       seq(":'", repeat(choice($.single_quote_string_body, $.escape_sequence)), "'"),
-      seq(/:[a-zA-Z]\w*/),
+      /:[a-zA-Z]\w*/,
       seq(/:[a-zA-Z]\w*/, token.immediate("?")),
       seq(/:[a-zA-Z]\w*/, token.immediate("=")),
-      seq(/:((\.\.)|(\|)|(\^)|(&)|(<=>)|(==)|(===)|(=~)|(>)|(>=)|(<)|(<=)|(\+)|(-)|(\*)|(\/)|(%)|(!)|(!~)|(\*\*)|(<<)|(>>)|(~)|(\+@)|(-@)|(~@)|(\[\])|(\[\]=)|(`))/),
+      /:((\.\.)|(\|)|(\^)|(&)|(<=>)|(==)|(===)|(=~)|(>)|(>=)|(<)|(<=)|(\+)|(-)|(\*)|(\/)|(%)|(!)|(!~)|(\*\*)|(<<)|(>>)|(~)|(\+@)|(-@)|(~@)|(\[\])|(\[\]=)|(`))/,
     )),
 
     integer_literal: $ => /\d(_?\d)*/,

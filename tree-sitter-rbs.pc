@@ -1,0 +1,11 @@
+prefix=/usr/local
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: tree-sitter-rbs
+Description: Rbs grammar for tree-sitter
+URL: ssh://git@github.com/joker1007/tree-sitter-rbs
+Version: 0.0.1
+Requires: 
+Libs: -L${libdir}  -ltree-sitter-rbs
+Cflags: -I${includedir}
