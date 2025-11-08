@@ -1,5 +1,4 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "rbs",
   "word": "identifier",
   "rules": {
@@ -27,41 +26,36 @@
         },
         {
           "type": "SYMBOL",
+          "name": "inline_type"
+        },
+        {
+          "type": "SYMBOL",
           "name": "inline_content"
         }
       ]
     },
     "inline_content": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
           "name": "inline_type"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "inline_type"
-            },
-            {
-              "type": "REPEAT1",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "inline_prefix"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "inline_body"
-                  }
-                ]
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "inline_prefix"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "inline_body"
               }
-            }
-          ]
+            ]
+          }
         }
       ]
     },
@@ -89,32 +83,6 @@
     "inline_body": {
       "type": "CHOICE",
       "members": [
-        {
-          "type": "PREC",
-          "value": 4,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "|"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "method_type"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "method_type_body"
-                  }
-                ]
-              }
-            ]
-          }
-        },
         {
           "type": "PREC",
           "value": 3,
@@ -156,7 +124,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "#\\|\\s*"
+            "value": "#\\s*\\|\\s*"
           }
         ]
       }
@@ -4155,7 +4123,8 @@
     "_no_parantheses_type",
     "_parantheses_type",
     "_nestable_decls",
-    "_attribute_name"
+    "_attribute_name",
+    "inline_body"
   ],
   "supertypes": []
 }

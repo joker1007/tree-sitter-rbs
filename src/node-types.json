@@ -560,13 +560,21 @@
     }
   },
   {
-    "type": "inline_body",
+    "type": "inline_content",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "inline_prefix",
+          "named": true
+        },
+        {
+          "type": "inline_type",
+          "named": true
+        },
         {
           "type": "method_type",
           "named": true
@@ -583,29 +591,6 @@
     }
   },
   {
-    "type": "inline_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "inline_body",
-          "named": true
-        },
-        {
-          "type": "inline_prefix",
-          "named": true
-        },
-        {
-          "type": "inline_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "inline_type",
     "named": true,
     "fields": {},
@@ -614,11 +599,19 @@
       "required": true,
       "types": [
         {
-          "type": "inline_body",
+          "type": "inline_prefix",
           "named": true
         },
         {
-          "type": "inline_prefix",
+          "type": "method_type",
+          "named": true
+        },
+        {
+          "type": "method_type_body",
+          "named": true
+        },
+        {
+          "type": "type",
           "named": true
         }
       ]
@@ -1492,6 +1485,10 @@
           "named": true
         },
         {
+          "type": "inline_type",
+          "named": true
+        },
+        {
           "type": "use_directive",
           "named": true
         }
@@ -2302,11 +2299,11 @@
   },
   {
     "type": "interface",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
-    "named": true
+    "named": false
   },
   {
     "type": "ivar_name",

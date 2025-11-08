@@ -60,13 +60,11 @@ Method signature without parameters or parentheses
 ---
 
 (program
-  (inline_content
-    (inline_type
-      (inline_prefix)
-      (inline_body
-        (method_type_body
-          (type
-            (builtin_type)))))))
+  (inline_type
+    (inline_prefix)
+    (method_type_body
+      (type
+        (builtin_type)))))
 
 ==================
 Method signature with parameters
@@ -309,30 +307,30 @@ Full multiline method overloading
 ---
 
 (program
-  (inline_type
-    (inline_prefix)
-    (method_type_body
-      (parameters
-        (optional_positionals
-          (parameter
-            (type
-              (optional_type
-                (type
-                  (class_type
-                    (class_name
-                      (constant)))))))))
-      (type
-        (class_type
-          (class_name
-            (constant))
-          (type_arguments
-            (type
-              (class_type
-                (class_name
-                  (constant))))
-            (type
-              (builtin_type)))))))
-  (inline_type
+  (inline_content
+    (inline_type
+      (inline_prefix)
+      (method_type_body
+        (parameters
+          (optional_positionals
+            (parameter
+              (type
+                (optional_type
+                  (type
+                    (class_type
+                      (class_name
+                        (constant)))))))))
+        (type
+          (class_type
+            (class_name
+              (constant))
+            (type_arguments
+              (type
+                (class_type
+                  (class_name
+                    (constant))))
+              (type
+                (builtin_type)))))))
     (inline_prefix)
     (method_type_body
       (parameters
@@ -369,20 +367,8 @@ Simple multiline method signature with #: and #|
 ---
 
 (program
-  (inline_type
-    (inline_prefix)
-    (ERROR))
-  (inline_type
-    (inline_prefix)
-    (ERROR
-      (constant)))
-  (inline_type
-    (inline_prefix)
-    (ERROR
-      (constant)))
-  (inline_type
-    (inline_prefix)
-    (method_type_body
-      (parameters)
-      (type
-        (builtin_type)))))
+  (ERROR
+    (inline_prefix))
+  (comment)
+  (comment)
+  (comment))

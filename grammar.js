@@ -16,6 +16,7 @@ module.exports = grammar({
     $._parantheses_type,
     $._nestable_decls,
     $._attribute_name,
+    $.inline_body,
   ],
 
   conflicts: $ => [
@@ -32,13 +33,11 @@ module.exports = grammar({
   rules: {
     program: $ => choice(
       seq(repeat($.use_directive), repeat($.decl)),
+      $.inline_type,
       $.inline_content
     ),
 
-    inline_content: $ => choice(
-      $.inline_type,
-      seq($.inline_type, repeat1(seq($.inline_prefix, $.inline_body)))
-    ),
+    inline_content: $ => seq($.inline_type, repeat1(seq($.inline_prefix, $.inline_body))),
 
     inline_type: $ => seq(
       optional($.inline_prefix),
@@ -46,7 +45,6 @@ module.exports = grammar({
     ),
 
     inline_body: $ => choice(
-      prec(4, seq("|", choice($.method_type, $.method_type_body))),
       prec(3, $.method_type),
       prec(2, $.method_type_body),
       prec(1, $.type)
@@ -55,7 +53,7 @@ module.exports = grammar({
     inline_prefix: $ => token(choice(
       /#:\s*/,
       /#\s*@rbs\s*/,
-      /#\|\s*/
+      /#\s*\|\s*/
     )),
 
     constant: $ => /[A-Z]\w*/,
