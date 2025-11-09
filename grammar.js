@@ -25,7 +25,6 @@ module.exports = grammar({
     [$.trailing_positionals],
     [$.type],
     [$.class_name, $.type_variable],
-    [$.builtin_type, $.class_decl, $.class_alias_decl],
   ],
 
   word: $ => $.identifier,
