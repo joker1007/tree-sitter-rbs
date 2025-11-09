@@ -40,7 +40,7 @@ class Foo[A]
   @int: 42
          # <- number
 
-  @record: { foo: String, "hoge" => Integer }
+  @record: { foo: String, bar: Integer }
              # <- symbol
 
   def success?: () -> bool
