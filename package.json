@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-rbs",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "rbs grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -17,11 +17,11 @@
     "src/**"
   ],
   "dependencies": {
-    "node-addon-api": "^7.1.0",
+    "node-addon-api": "^8.5.0",
     "node-gyp-build": "^4.8.0"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.21.0"
+    "tree-sitter": "^0.25.0"
   },
   "peerDependenciesMeta": {
     "tree_sitter": {
@@ -29,7 +29,7 @@
     }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.22.5",
+    "tree-sitter-cli": "^0.25.10",
     "prebuildify": "^6.0.0"
   },
   "scripts": {
