@@ -560,6 +560,64 @@
     }
   },
   {
+    "type": "inline_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "inline_prefix",
+          "named": true
+        },
+        {
+          "type": "inline_type",
+          "named": true
+        },
+        {
+          "type": "method_type",
+          "named": true
+        },
+        {
+          "type": "method_type_body",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inline_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "inline_prefix",
+          "named": true
+        },
+        {
+          "type": "method_type",
+          "named": true
+        },
+        {
+          "type": "method_type_body",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "interface_decl",
     "named": true,
     "fields": {
@@ -1413,7 +1471,6 @@
   {
     "type": "program",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1421,6 +1478,14 @@
       "types": [
         {
           "type": "decl",
+          "named": true
+        },
+        {
+          "type": "inline_content",
+          "named": true
+        },
+        {
+          "type": "inline_type",
           "named": true
         },
         {
@@ -2049,10 +2114,6 @@
     "named": false
   },
   {
-    "type": "::",
-    "named": false
-  },
-  {
     "type": "<",
     "named": false
   },
@@ -2223,6 +2284,10 @@
   {
     "type": "include",
     "named": false
+  },
+  {
+    "type": "inline_prefix",
+    "named": true
   },
   {
     "type": "instance",

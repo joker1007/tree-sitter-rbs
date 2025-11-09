@@ -1,26 +1,133 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "rbs",
   "word": "identifier",
   "rules": {
     "program": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "use_directive"
+              }
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "decl"
+              }
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "inline_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "inline_content"
+        }
+      ]
+    },
+    "inline_content": {
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "use_directive"
-          }
+          "type": "SYMBOL",
+          "name": "inline_type"
         },
         {
-          "type": "REPEAT",
+          "type": "REPEAT1",
           "content": {
-            "type": "SYMBOL",
-            "name": "decl"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "inline_prefix"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "inline_body"
+              }
+            ]
           }
         }
       ]
+    },
+    "inline_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "inline_prefix"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "inline_body"
+        }
+      ]
+    },
+    "inline_body": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PREC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "method_type"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 2,
+          "content": {
+            "type": "SYMBOL",
+            "name": "method_type_body"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "type"
+          }
+        }
+      ]
+    },
+    "inline_prefix": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "#:\\s*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "#\\s*@rbs\\s*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "#\\s*\\|\\s*"
+          }
+        ]
+      }
     },
     "constant": {
       "type": "PATTERN",
@@ -3996,6 +4103,18 @@
     ],
     [
       "trailing_positionals"
+    ],
+    [
+      "type"
+    ],
+    [
+      "class_name",
+      "type_variable"
+    ],
+    [
+      "builtin_type",
+      "class_decl",
+      "class_alias_decl"
     ]
   ],
   "precedences": [],
@@ -4004,7 +4123,8 @@
     "_no_parantheses_type",
     "_parantheses_type",
     "_nestable_decls",
-    "_attribute_name"
+    "_attribute_name",
+    "inline_body"
   ],
   "supertypes": []
 }
