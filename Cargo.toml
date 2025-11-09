@@ -4,7 +4,7 @@ description = "rbs grammar for the tree-sitter parsing library"
 version = "0.2.0"
 keywords = ["incremental", "parsing", "rbs"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-rbs"
+repository = "https://github.com/joker1007/tree-sitter-rbs"
 edition = "2018"
 license = "MIT"
 
