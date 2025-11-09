@@ -1,4 +1,5 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "rbs",
   "word": "identifier",
   "rules": {
@@ -4110,11 +4111,6 @@
     [
       "class_name",
       "type_variable"
-    ],
-    [
-      "builtin_type",
-      "class_decl",
-      "class_alias_decl"
     ]
   ],
   "precedences": [],
@@ -4126,5 +4122,6 @@
     "_attribute_name",
     "inline_body"
   ],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }
