@@ -647,6 +647,10 @@
           "named": true
         },
         {
+          "type": "rest_prefix",
+          "named": true
+        },
+        {
           "type": "type",
           "named": true
         },
@@ -2401,11 +2405,11 @@
   },
   {
     "type": "interface",
-    "named": false
+    "named": true
   },
   {
     "type": "interface",
-    "named": true
+    "named": false
   },
   {
     "type": "ivar_name",
@@ -2445,6 +2449,10 @@
   },
   {
     "type": "record_key",
+    "named": true
+  },
+  {
+    "type": "rest_prefix",
     "named": true
   },
   {

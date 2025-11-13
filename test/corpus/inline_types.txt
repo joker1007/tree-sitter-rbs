@@ -521,3 +521,57 @@ Doc style syntax with "return" keyword
         (class_type
           (class_name
             (constant)))))))
+
+==================
+Doc style syntax with rest parameter pattern
+==================
+
+# @rbs *rest: Array[Integer]
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (rest_prefix)
+      (var_name
+        (identifier))
+      (type
+        (class_type
+          (class_name
+            (constant))
+          (type_arguments
+            (type
+              (class_type
+                (class_name
+                  (constant))))))))))
+
+==================
+Doc style syntax with rest kw parameter pattern
+==================
+
+# @rbs **params: Hash[String, Integer]
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (rest_prefix)
+      (var_name
+        (identifier))
+      (type
+        (class_type
+          (class_name
+            (constant))
+          (type_arguments
+            (type
+              (class_type
+                (class_name
+                  (constant))))
+            (type
+              (class_type
+                (class_name
+                  (constant))))))))))
