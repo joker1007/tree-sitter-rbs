@@ -552,7 +552,7 @@ Doc style syntax with block pattern
   (inline_type
     (inline_prefix)
     (inline_doc
-      (block_prefix)
+      (block_operator)
       (var_name
         (identifier))
       (inline_block_type
@@ -574,10 +574,10 @@ Doc style syntax with optional block pattern
   (inline_type
     (inline_prefix)
     (inline_doc
-      (block_prefix)
+      (block_operator)
       (var_name
         (identifier))
-      (optional_block_annotation)
+      (optional_block_operator)
       (inline_block_type
         (parameters
           (unnamed_parameter))
@@ -598,7 +598,7 @@ Doc style syntax with unnamed block pattern
   (inline_type
     (inline_prefix)
     (inline_doc
-      (block_prefix)
+      (block_operator)
       (inline_block_type
         (parameters
           (required_positionals
@@ -641,7 +641,7 @@ Doc style syntax with rest parameter pattern
   (inline_type
     (inline_prefix)
     (inline_doc
-      (rest_prefix)
+      (rest_operator)
       (var_name
         (identifier))
       (type
@@ -666,7 +666,7 @@ Doc style syntax with rest kw parameter pattern
   (inline_type
     (inline_prefix)
     (inline_doc
-      (rest_prefix)
+      (rest_operator)
       (var_name
         (identifier))
       (type

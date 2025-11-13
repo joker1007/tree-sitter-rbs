@@ -56,8 +56,8 @@ module.exports = grammar({
     ),
 
     inline_doc: $ => choice(
-      seq(seq(alias("&", $.block_prefix), optional($.var_name)), ":", optional(alias("?", $.optional_block_annotation)), $.inline_block_type, optional($.inline_doc_comment)),
-      seq(seq(alias(/\*\*?/, $.rest_prefix), optional($.var_name)), ":", $.type, optional($.inline_doc_comment)),
+      seq(seq(alias("&", $.block_operator), optional($.var_name)), ":", optional(alias("?", $.optional_block_operator)), $.inline_block_type, optional($.inline_doc_comment)),
+      seq(seq(alias(/\*\*?/, $.rest_operator), optional($.var_name)), ":", $.type, optional($.inline_doc_comment)),
       seq(alias("!return", $.var_name), ":", $.type, optional($.inline_doc_comment)),
       seq($.var_name, ":", $.type, optional($.inline_doc_comment)),
     ),
