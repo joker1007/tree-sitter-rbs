@@ -84,6 +84,12 @@
 (const_name (constant) @constant)
 (global_name) @property
 
+; Generics Keywords
+[
+  (generics_unchecked)
+  (generics_variance)
+] @keyword
+
 ; Standard Arguments
 (parameter (var_name) @parameter)
 (unnamed_parameter) @parameter
@@ -144,3 +150,4 @@
 (inline_class_annotation) @keyword
 (inline_doc (var_name) @parameter)
 (inline_doc (inline_doc_comment) @comment)
+(inline_generic) @keyword
