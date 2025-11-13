@@ -600,6 +600,14 @@
           "named": true
         },
         {
+          "type": "inline_doc_comment",
+          "named": true
+        },
+        {
+          "type": "inline_generic",
+          "named": true
+        },
+        {
           "type": "inline_override",
           "named": true
         },
@@ -625,6 +633,10 @@
         },
         {
           "type": "method_type_body",
+          "named": true
+        },
+        {
+          "type": "module_type_parameter",
           "named": true
         },
         {
@@ -695,6 +707,14 @@
           "named": true
         },
         {
+          "type": "inline_doc_comment",
+          "named": true
+        },
+        {
+          "type": "inline_generic",
+          "named": true
+        },
+        {
           "type": "inline_override",
           "named": true
         },
@@ -716,6 +736,10 @@
         },
         {
           "type": "method_type_body",
+          "named": true
+        },
+        {
+          "type": "module_type_parameter",
           "named": true
         },
         {
@@ -2416,6 +2440,10 @@
     "named": false
   },
   {
+    "type": "inline_generic",
+    "named": true
+  },
+  {
     "type": "inline_override",
     "named": true
   },
@@ -2437,11 +2465,11 @@
   },
   {
     "type": "interface",
-    "named": true
+    "named": false
   },
   {
     "type": "interface",
-    "named": false
+    "named": true
   },
   {
     "type": "ivar_name",
