@@ -655,7 +655,7 @@
       "required": true,
       "types": [
         {
-          "type": "block_prefix",
+          "type": "block_operator",
           "named": true
         },
         {
@@ -667,11 +667,11 @@
           "named": true
         },
         {
-          "type": "optional_block_annotation",
+          "type": "optional_block_operator",
           "named": true
         },
         {
-          "type": "rest_prefix",
+          "type": "rest_operator",
           "named": true
         },
         {
@@ -2363,7 +2363,7 @@
     "named": false
   },
   {
-    "type": "block_prefix",
+    "type": "block_operator",
     "named": true
   },
   {
@@ -2488,7 +2488,7 @@
     "named": false
   },
   {
-    "type": "optional_block_annotation",
+    "type": "optional_block_operator",
     "named": true
   },
   {
@@ -2512,7 +2512,7 @@
     "named": true
   },
   {
-    "type": "rest_prefix",
+    "type": "rest_operator",
     "named": true
   },
   {

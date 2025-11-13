@@ -231,7 +231,7 @@
                     "value": "&"
                   },
                   "named": true,
-                  "value": "block_prefix"
+                  "value": "block_operator"
                 },
                 {
                   "type": "CHOICE",
@@ -261,7 +261,7 @@
                     "value": "?"
                   },
                   "named": true,
-                  "value": "optional_block_annotation"
+                  "value": "optional_block_operator"
                 },
                 {
                   "type": "BLANK"
@@ -299,7 +299,7 @@
                     "value": "\\*\\*?"
                   },
                   "named": true,
-                  "value": "rest_prefix"
+                  "value": "rest_operator"
                 },
                 {
                   "type": "CHOICE",

@@ -125,6 +125,9 @@
  "|"
  "^"
  "?"
+ (rest_operator)
+ (block_operator)
+ (optional_block_operator)
  ] @operator
 
 ; Punctuation
