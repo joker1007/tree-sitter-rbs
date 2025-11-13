@@ -112,6 +112,40 @@
         },
         {
           "type": "PREC",
+          "value": 6,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "STRING",
+                  "value": "generic"
+                },
+                "named": true,
+                "value": "inline_generic"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "module_type_parameter"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "inline_doc_comment"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC",
           "value": 5,
           "content": {
             "type": "SYMBOL",
@@ -399,6 +433,14 @@
         {
           "type": "STRING",
           "value": "module-self"
+        },
+        {
+          "type": "STRING",
+          "value": "module"
+        },
+        {
+          "type": "STRING",
+          "value": "class"
         }
       ]
     },
@@ -4408,6 +4450,16 @@
     [
       "class_name",
       "type_variable"
+    ],
+    [
+      "inline_class_annotation",
+      "class_decl",
+      "class_alias_decl"
+    ],
+    [
+      "inline_class_annotation",
+      "module_decl",
+      "module_alias_decl"
     ]
   ],
   "precedences": [],

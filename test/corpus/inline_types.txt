@@ -374,7 +374,7 @@ Simple multiline method signature with #: and #|
   (comment))
 
 ==================
-Annotated type
+Annotated type (inherits)
 ==================
 
 # @rbs inherits Array[String]
@@ -394,6 +394,112 @@ Annotated type
             (class_type
               (class_name
                 (constant)))))))))
+
+==================
+Annotated type (module-self)
+==================
+
+# @rbs module-self Array[String]
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_class_annotation)
+    (type
+      (class_type
+        (class_name
+          (constant))
+        (type_arguments
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
+
+==================
+Annotated type (module)
+==================
+
+# @rbs module Array[String]
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_class_annotation)
+    (type
+      (class_type
+        (class_name
+          (constant))
+        (type_arguments
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
+
+==================
+Annotated type (class)
+==================
+
+# @rbs class Array[String]
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_class_annotation)
+    (type
+      (class_type
+        (class_name
+          (constant))
+        (type_arguments
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
+
+==================
+Generic type simple
+==================
+
+# @rbs generic A
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_generic)
+    (module_type_parameter
+      (type_variable
+        (constant)))))
+
+==================
+Generic type complex
+==================
+
+# @rbs generic unchecked in B < String -- Type of `b`
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_generic)
+    (module_type_parameter
+      (generics_unchecked)
+      (generics_variance)
+      (type_variable
+        (constant))
+      (generics_bound
+        (bound_type
+          (class_type
+            (class_name
+              (constant))))))
+    (inline_doc_comment)))
 
 ==================
 Doc style syntax

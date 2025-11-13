@@ -24,6 +24,8 @@ module.exports = grammar({
     [$.trailing_positionals],
     [$.type],
     [$.class_name, $.type_variable],
+    [$.inline_class_annotation, $.class_decl, $.class_alias_decl],
+    [$.inline_class_annotation, $.module_decl, $.module_alias_decl],
   ],
 
   word: $ => $.identifier,
@@ -45,6 +47,7 @@ module.exports = grammar({
     inline_body: $ => choice(
       prec(6, alias("override", $.inline_override)),
       prec(6, alias("skip", $.inline_skip)),
+      prec(6, seq(alias("generic", $.inline_generic), $.module_type_parameter, optional($.inline_doc_comment))),
       prec(5, $.inline_doc),
       prec(4, $.method_type),
       prec(3, $.method_type_body),
@@ -66,6 +69,8 @@ module.exports = grammar({
     inline_class_annotation: $ => choice(
       "inherits",
       "module-self",
+      "module",
+      "class",
     ),
 
     inline_prefix: $ => token(choice(
