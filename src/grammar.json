@@ -172,8 +172,25 @@
           "type": "PREC",
           "value": 2,
           "content": {
-            "type": "SYMBOL",
-            "name": "ivar_member"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "ivar_member"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "inline_doc_comment"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
           }
         },
         {
