@@ -560,6 +560,25 @@
     }
   },
   {
+    "type": "inline_block_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameters",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "inline_class_annotation",
     "named": true,
     "fields": {}
@@ -612,7 +631,11 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "block_prefix",
+          "named": true
+        },
+        {
+          "type": "inline_block_type",
           "named": true
         },
         {
@@ -620,7 +643,15 @@
           "named": true
         },
         {
+          "type": "optional_block_annotation",
+          "named": true
+        },
+        {
           "type": "type",
+          "named": true
+        },
+        {
+          "type": "var_name",
           "named": true
         }
       ]
@@ -1456,6 +1487,10 @@
         {
           "type": "trailing_positionals",
           "named": true
+        },
+        {
+          "type": "unnamed_parameter",
+          "named": true
         }
       ]
     }
@@ -2018,7 +2053,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "identifier",
@@ -2276,6 +2311,10 @@
     "named": false
   },
   {
+    "type": "block_prefix",
+    "named": true
+  },
+  {
     "type": "bool",
     "named": false
   },
@@ -2385,6 +2424,10 @@
     "named": false
   },
   {
+    "type": "optional_block_annotation",
+    "named": true
+  },
+  {
     "type": "out",
     "named": false
   },
@@ -2431,6 +2474,10 @@
   {
     "type": "type",
     "named": false
+  },
+  {
+    "type": "unnamed_parameter",
+    "named": true
   },
   {
     "type": "untyped",

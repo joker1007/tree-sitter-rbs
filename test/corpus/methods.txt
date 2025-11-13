@@ -50,7 +50,8 @@ end
             (method_types
               (method_type
                 (method_type_body
-                  (parameters)
+                  (parameters
+                    (unnamed_parameter))
                   (type
                     (class_type
                       (class_name

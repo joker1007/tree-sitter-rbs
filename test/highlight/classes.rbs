@@ -40,8 +40,11 @@ class Foo[A]
   @int: 42
          # <- number
 
-  @record: { foo: String, bar: Integer }
+  @record: { foo: String, bar: Integer? }
              # <- symbol
+
+  def untyped_arg: (?) -> String
+                    # <- parameter
 
   def success?: () -> bool
       # <- method

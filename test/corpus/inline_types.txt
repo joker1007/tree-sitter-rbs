@@ -406,7 +406,8 @@ Doc style syntax
   (inline_type
     (inline_prefix)
     (inline_doc
-      (identifier)
+      (var_name
+        (identifier))
       (type
         (class_type
           (class_name
@@ -424,9 +425,99 @@ Doc style syntax with document body
   (inline_type
     (inline_prefix)
     (inline_doc
-      (identifier)
+      (var_name
+        (identifier))
       (type
         (class_type
           (class_name
             (constant))))
       (inline_doc_comment))))
+
+==================
+Doc style syntax with block pattern
+==================
+
+# @rbs &block: (?) -> untyped -- foo
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (block_prefix)
+      (var_name
+        (identifier))
+      (inline_block_type
+        (parameters
+          (unnamed_parameter))
+        (type
+          (builtin_type)))
+      (inline_doc_comment))))
+
+==================
+Doc style syntax with optional block pattern
+==================
+
+# @rbs &block: ? (?) -> untyped -- foo
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (block_prefix)
+      (var_name
+        (identifier))
+      (optional_block_annotation)
+      (inline_block_type
+        (parameters
+          (unnamed_parameter))
+        (type
+          (builtin_type)))
+      (inline_doc_comment))))
+
+
+==================
+Doc style syntax with unnamed block pattern
+==================
+
+# @rbs &: (String) -> void -- foo
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (block_prefix)
+      (inline_block_type
+        (parameters
+          (required_positionals
+            (parameter
+              (type
+                (class_type
+                  (class_name
+                    (constant)))))))
+        (type
+          (builtin_type)))
+      (inline_doc_comment))))
+
+==================
+Doc style syntax with "return" keyword
+==================
+
+# @rbs !return: Integer
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (var_name)
+      (type
+        (class_type
+          (class_name
+            (constant)))))))

@@ -1,7 +1,6 @@
 const IDENTIFIER_CHARS = /[^\x00-\x1F\s:;`"'@$#.,|^&<=>+\-*/\\%?!~()\[\]{}]*/;
 const LOWER_ALPHA_CHAR = /[^\x00-\x1F\sA-Z0-9:;`"'@$#.,|^&<=>+\-*/\\%?!~()\[\]{}]/;
 
-
 module.exports = grammar({
   name: 'rbs',
 
@@ -50,9 +49,13 @@ module.exports = grammar({
       prec(1, seq(repeat($.inline_class_annotation), $.type))
     ),
 
-    inline_doc: $ => seq(
-      $.identifier, ":", $.type, optional($.inline_doc_comment)
+    inline_doc: $ => choice(
+      seq(seq(alias("&", $.block_prefix), optional($.var_name)), ":", optional(alias("?", $.optional_block_annotation)), $.inline_block_type, optional($.inline_doc_comment)),
+      seq(alias("!return", $.var_name), ":", $.type, optional($.inline_doc_comment)),
+      seq($.var_name, ":", $.type, optional($.inline_doc_comment)),
     ),
+
+    inline_block_type: $ => seq(optional($.parameters), "->", $.type),
 
     inline_doc_comment: $ => seq("--", /.*/),
 
@@ -325,7 +328,7 @@ module.exports = grammar({
     parameters: $ => seq(
       "(",
       optional(choice(
-        "?",
+        alias("?", $.unnamed_parameter),
         seq($.required_positionals),
         seq($.required_positionals, ",", choice($.optional_positionals, $.rest_positional, $.keywords)),
         seq($.required_positionals, ",", $.optional_positionals, ",", choice($.rest_positional, $.trailing_positionals, $.keywords)),
