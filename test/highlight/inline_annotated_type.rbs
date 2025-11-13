@@ -1,0 +1,4 @@
+# @rbs inherits Hash[String, Integer]
+  # <- comment
+       # <- keyword
+                # <- type

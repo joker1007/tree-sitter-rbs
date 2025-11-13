@@ -560,6 +560,11 @@
     }
   },
   {
+    "type": "inline_class_annotation",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "inline_content",
     "named": true,
     "fields": {},
@@ -567,6 +572,14 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "inline_class_annotation",
+          "named": true
+        },
+        {
+          "type": "inline_doc",
+          "named": true
+        },
         {
           "type": "inline_prefix",
           "named": true
@@ -591,6 +604,34 @@
     }
   },
   {
+    "type": "inline_doc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "inline_doc_comment",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inline_doc_comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "inline_type",
     "named": true,
     "fields": {},
@@ -598,6 +639,14 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "inline_class_annotation",
+          "named": true
+        },
+        {
+          "type": "inline_doc",
+          "named": true
+        },
         {
           "type": "inline_prefix",
           "named": true
@@ -2079,6 +2128,10 @@
     "named": false
   },
   {
+    "type": "--",
+    "named": false
+  },
+  {
     "type": "->",
     "named": false
   },
@@ -2292,6 +2345,10 @@
     "named": false
   },
   {
+    "type": "inherits",
+    "named": false
+  },
+  {
     "type": "inline_prefix",
     "named": true
   },
@@ -2305,11 +2362,11 @@
   },
   {
     "type": "interface",
-    "named": true
+    "named": false
   },
   {
     "type": "interface",
-    "named": false
+    "named": true
   },
   {
     "type": "ivar_name",
@@ -2317,6 +2374,10 @@
   },
   {
     "type": "module",
+    "named": false
+  },
+  {
+    "type": "module-self",
     "named": false
   },
   {

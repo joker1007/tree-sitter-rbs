@@ -1,0 +1,6 @@
+# @rbs foo: String -- foo is foo
+  # <- comment
+       # <- parameter
+            # <- type
+                   # <- comment
+                       # <- comment
