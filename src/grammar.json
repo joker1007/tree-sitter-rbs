@@ -86,7 +86,33 @@
       "members": [
         {
           "type": "PREC",
-          "value": 4,
+          "value": 6,
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "override"
+            },
+            "named": true,
+            "value": "inline_override"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 6,
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "skip"
+            },
+            "named": true,
+            "value": "inline_skip"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 5,
           "content": {
             "type": "SYMBOL",
             "name": "inline_doc"
@@ -94,7 +120,7 @@
         },
         {
           "type": "PREC",
-          "value": 3,
+          "value": 4,
           "content": {
             "type": "SYMBOL",
             "name": "method_type"
@@ -102,10 +128,18 @@
         },
         {
           "type": "PREC",
-          "value": 2,
+          "value": 3,
           "content": {
             "type": "SYMBOL",
             "name": "method_type_body"
+          }
+        },
+        {
+          "type": "PREC",
+          "value": 2,
+          "content": {
+            "type": "SYMBOL",
+            "name": "ivar_member"
           }
         },
         {
