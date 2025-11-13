@@ -366,8 +366,9 @@ Simple multiline method signature with #: and #|
 
 ---
 
-(ERROR
-  (inline_prefix)
+(program
+  (ERROR
+    (inline_prefix))
   (comment)
   (comment)
   (comment))
@@ -575,3 +576,67 @@ Doc style syntax with rest kw parameter pattern
               (class_type
                 (class_name
                   (constant))))))))))
+
+==================
+Inline override
+==================
+
+# @rbs override
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_override)))
+
+==================
+Inline skip
+==================
+
+# @rbs skip
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_skip)))
+
+==================
+Inline Ivar
+==================
+
+# @rbs @name: String
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (ivar_member
+      (ivar_name)
+      (type
+        (class_type
+          (class_name
+            (constant)))))))
+
+
+==================
+Inline Ivar of class
+==================
+
+# @rbs self.@all_names: String
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (ivar_member
+      (self)
+      (ivar_name)
+      (type
+        (class_type
+          (class_name
+            (constant)))))))

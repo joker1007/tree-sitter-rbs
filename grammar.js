@@ -43,9 +43,12 @@ module.exports = grammar({
     ),
 
     inline_body: $ => choice(
-      prec(4, $.inline_doc),
-      prec(3, $.method_type),
-      prec(2, $.method_type_body),
+      prec(6, alias("override", $.inline_override)),
+      prec(6, alias("skip", $.inline_skip)),
+      prec(5, $.inline_doc),
+      prec(4, $.method_type),
+      prec(3, $.method_type_body),
+      prec(2, $.ivar_member),
       prec(1, seq(repeat($.inline_class_annotation), $.type))
     ),
 

@@ -600,11 +600,23 @@
           "named": true
         },
         {
+          "type": "inline_override",
+          "named": true
+        },
+        {
           "type": "inline_prefix",
           "named": true
         },
         {
+          "type": "inline_skip",
+          "named": true
+        },
+        {
           "type": "inline_type",
+          "named": true
+        },
+        {
+          "type": "ivar_member",
           "named": true
         },
         {
@@ -683,7 +695,19 @@
           "named": true
         },
         {
+          "type": "inline_override",
+          "named": true
+        },
+        {
           "type": "inline_prefix",
+          "named": true
+        },
+        {
+          "type": "inline_skip",
+          "named": true
+        },
+        {
+          "type": "ivar_member",
           "named": true
         },
         {
@@ -2392,7 +2416,15 @@
     "named": false
   },
   {
+    "type": "inline_override",
+    "named": true
+  },
+  {
     "type": "inline_prefix",
+    "named": true
+  },
+  {
+    "type": "inline_skip",
     "named": true
   },
   {
