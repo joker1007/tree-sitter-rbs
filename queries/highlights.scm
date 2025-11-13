@@ -86,6 +86,7 @@
 
 ; Standard Arguments
 (parameter (var_name) @parameter)
+(unnamed_parameter) @parameter
 
 ; Keyword Arguments
 (keyword) @parameter
@@ -141,5 +142,5 @@
 
 ; RBS Inline syntax
 (inline_class_annotation) @keyword
-(inline_doc (identifier) @parameter)
+(inline_doc (var_name) @parameter)
 (inline_doc (inline_doc_comment) @comment)
