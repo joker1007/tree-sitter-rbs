@@ -8,11 +8,12 @@ class Foo[A]
   # <- keyword
         # <- type
           # <- constant
-  def foo: (String) -> String
+  def foo: (String) -> String?
    # <- keyword.function
       # <- method
               # <- type
                         # <- type
+                             # <- operator
 
   include Mod1
     # <- function.method

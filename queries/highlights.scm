@@ -124,6 +124,7 @@
  "&"
  "|"
  "^"
+ "?"
  ] @operator
 
 ; Punctuation
