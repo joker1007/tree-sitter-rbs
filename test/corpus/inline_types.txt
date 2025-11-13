@@ -713,7 +713,7 @@ Inline skip
 Inline Ivar
 ==================
 
-# @rbs @name: String
+# @rbs @name: String -- name of Person
 
 ---
 
@@ -725,7 +725,8 @@ Inline Ivar
       (type
         (class_type
           (class_name
-            (constant)))))))
+            (constant)))))
+    (inline_doc_comment)))
 
 
 ==================

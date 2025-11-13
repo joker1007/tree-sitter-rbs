@@ -51,7 +51,7 @@ module.exports = grammar({
       prec(5, $.inline_doc),
       prec(4, $.method_type),
       prec(3, $.method_type_body),
-      prec(2, $.ivar_member),
+      prec(2, seq($.ivar_member, optional($.inline_doc_comment))),
       prec(1, seq(repeat($.inline_class_annotation), $.type))
     ),
 
