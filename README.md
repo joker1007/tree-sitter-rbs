@@ -11,3 +11,16 @@ syntax reference is https://github.com/ruby/rbs/blob/master/docs/syntax.md
 this parser is supported in nvim-treesitter. (https://github.com/nvim-treesitter/nvim-treesitter/pull/5745)
 
 Please run `:TSInstall rbs`
+
+## If you want to use specific version in Neovim
+
+Please write it to neovim config.
+
+```lua
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  callback = function()
+    require("nvim-treesitter.parsers").rbs.install_info.revision = "<commit sha1>"
+  end,
+})
+```
