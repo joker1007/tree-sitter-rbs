@@ -149,5 +149,7 @@
 ; RBS Inline syntax
 (inline_class_annotation) @keyword
 (inline_doc (var_name) @parameter)
-(inline_doc (inline_doc_comment) @comment)
+(inline_doc_comment) @comment
 (inline_generic) @keyword
+(inline_override) @keyword
+(inline_skip) @keyword
