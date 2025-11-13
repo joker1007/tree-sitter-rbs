@@ -44,9 +44,21 @@ module.exports = grammar({
     ),
 
     inline_body: $ => choice(
+      prec(4, $.inline_doc),
       prec(3, $.method_type),
       prec(2, $.method_type_body),
-      prec(1, $.type)
+      prec(1, seq(repeat($.inline_class_annotation), $.type))
+    ),
+
+    inline_doc: $ => seq(
+      $.identifier, ":", $.type, optional($.inline_doc_comment)
+    ),
+
+    inline_doc_comment: $ => seq("--", /.*/),
+
+    inline_class_annotation: $ => choice(
+      "inherits",
+      "module-self",
     ),
 
     inline_prefix: $ => token(choice(

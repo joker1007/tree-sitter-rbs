@@ -366,9 +366,67 @@ Simple multiline method signature with #: and #|
 
 ---
 
-(program
-  (ERROR
-    (inline_prefix))
+(ERROR
+  (inline_prefix)
   (comment)
   (comment)
   (comment))
+
+==================
+Annotated type
+==================
+
+# @rbs inherits Array[String]
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_class_annotation)
+    (type
+      (class_type
+        (class_name
+          (constant))
+        (type_arguments
+          (type
+            (class_type
+              (class_name
+                (constant)))))))))
+
+==================
+Doc style syntax
+==================
+
+# @rbs size: Integer
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (identifier)
+      (type
+        (class_type
+          (class_name
+            (constant)))))))
+
+==================
+Doc style syntax with document body
+==================
+
+# @rbs size: Integer -- the size of the section
+
+---
+
+(program
+  (inline_type
+    (inline_prefix)
+    (inline_doc
+      (identifier)
+      (type
+        (class_type
+          (class_name
+            (constant))))
+      (inline_doc_comment))))
