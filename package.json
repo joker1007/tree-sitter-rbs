@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-rbs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "rbs grammar for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
