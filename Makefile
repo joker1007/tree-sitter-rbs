@@ -1,6 +1,6 @@
 LANGUAGE_NAME := tree-sitter-rbs
 HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-rbs
-VERSION := 0.2.2
+VERSION := 0.2.3
 DESCRIPTION := rbs grammar for tree-sitter
 
 # repository
